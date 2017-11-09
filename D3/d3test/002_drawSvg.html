@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		window.onload = function(){
+			/*
+			 * append() 用于添加元素
+			 * attr() 用于给指定属性赋值
+			 */
+			
+			var width = "400";	//svg绘制区域的宽度
+			var height = "400";	//svg绘制区域的高度
+			var svg = d3.select("body")	//选择<body>
+				.append("svg")			//在<body>中添加<svg>
+				.attr("width", width)	//设置<svg>的宽度属性
+				.attr("height", height)	//设置<svg>的高度属性
+				;
+				
+			//在坐标为(50, 50),添加一个半径为50px、颜色为红色的圆形。
+			svg.append("circle")	//在<svg?中添加<cifcle>标签
+				.attr("cx", "50px")	//设置属性cx的值为50px
+				.attr("cy", "50px")	//设置属性cy的值为50px
+				.attr("r", "50px")	//设置属性r的值为50px
+				.attr("fill", "lightgray")//设置属性fill的值为red
+				;
+		};
+	</script>
+	</head>
+	<body>
+	</body>
+</html>

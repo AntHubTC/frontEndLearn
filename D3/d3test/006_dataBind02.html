@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//由于用了箭头函数，这个在firefox下可以运行
+			window.onload =  () => {
+				//数据
+				var persons = [{ id: 3, name: "张三"},
+							{ id:6, name: "李四"},
+							{ id:9, name: "王五"}];
+				var p = d3.select("body").selectAll("p");
+				
+				p.data(persons).text((d) => d.id + " : " + d.name);
+				
+				persons = [{ id: 6, name: "张三"},
+							{ id:9, name: "李四"},
+							{ id:3, name: "王五"}];
+				
+				p.data(persons, function(data){ //根据键函数的规则绑定数据，并修改内容。
+					return data.id;
+				}).text((d) => d.id + " : " + d.name);
+			};
+		</script>
+	</head>
+	<body>
+		<p></p>
+		<p></p>
+		<p></p>
+	</body>
+</html>

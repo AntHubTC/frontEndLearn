@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function () {
+				/*
+				 * 根据条件获取选择集的一部分方法称为过滤器
+				 * var arr = selection.filter(function(d,i){return true或者false;}) 返回满足条件的元素集合
+				 */
+				var body = d3.select("body");
+				var p = body.selectAll("p");
+				var dataset = [10, 20, 80, 40, 20];
+				var update = p.data(dataset);
+				update.text(function(d){
+					return d;
+				});
+				var enter = update.enter();
+				enter.append("p").text(function(d){
+					return d;
+				});
+				
+				p = body.selectAll("p");
+				console.info(p);
+				
+				
+				var result = p.filter(function(d, i){//result是过滤出来的结果集
+					console.info(d);
+					return d > 20;
+				});
+				console.info(result);
+				result.remove();//移除过滤出来的内容
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

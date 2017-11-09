@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function loadRun(){
+				/*
+				 * D3-API 数据绑定
+				 * 
+				 * selection.datum([data]) 
+				 * 		选择集中每一个元素都绑定相同的数据data
+				 * 		在绑定之后，每一个元素中都会有一个__data__属性，该属性值就是绑定的数据。
+				 * 		D3还有一个特性，能使绑定的数据传递给子元素。       在被绑定数据的选择集中添加元素后，新元素会继承改数据。
+				 * 
+				 * selection.data([data[, key]]) 
+				 * 		选择集中的每一个元素分别绑定数组data的每一项。key是一个键函数，用于指定绑定数组的对应规则。
+				 * 		data()能将数组各项分别绑定到选择集的各元素上，并且能指定绑定的规则。当数组长度域元素数量不一致时，
+				 * 		data()也能够进行处理。当数组长度大于元素数量时，为多余数据预留元素位置，以便将来插入新元素；当数组长度小于元素数量时，能获取多余元素的位置，以便将来删除。
+				 */
+				
+				var p = d3.select("body").selectAll("p");
+				//将数据绑定到每个p元素上
+				p.datum("zhangsan");
+				//用绑定的内容替换掉段落原来的字符串
+				p.text(function(data, index){ //data 绑定的数据     index 当前元素在选择集中的序号
+					return data + "  " + index;
+				});
+				//在绑定之后，每一个元素中都会有一个__data__属性，该属性值就是绑定的数据。
+				console.info("selection.datum([data]) :", p);
+				
+				//D3还有一个特性，能使绑定的数据传递给子元素。       在被绑定数据的选择集中添加元素后，新元素会继承改数据。
+				p.append("span").append("span").text(function(data, index){
+					return " " + data;
+				});
+				
+				var div = d3.select("body").selectAll("div");
+				
+				var dataset = [3,6,9,10];
+				
+				//绑定数据到选择集上
+				var update = div.data(dataset);
+				console.info("update:", update);
+				
+				//输出绑定的数据
+				var t = div.data();
+				console.info("t:", t);
+				
+				/*
+				 * 在D3中，根据数组长度和元素数量的关系，分别把各种情况归纳入下：
+				 * update:数组长度 = 元素数量
+				 * enter:数组长度 > 元素数量
+				 * exit:数组长度 <元素数量
+				 */
+				console.info("enter:" , update.enter());
+				console.info("exit:", update.exit());
+			};
+			window.onload = loadRun;
+		</script>
+	</head>
+	<body>
+		<!-- 三个段落元素
+        -->
+        <p>Fire</p>
+        <p>Water</p>
+        <p>Wind</p>
+        
+        <div>a</div>
+        <div>b</div>
+        <div>c</div>
+	</body>
+</html>

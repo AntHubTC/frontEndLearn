@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			/*
+			 * 数据绑定处理模板
+			 * 
+			 * 有时候不知道数据多，还是元素多。其实，不必在意数组长度和元素数量。大多数情况下，
+			 * update部分都是“更新元素属性”，enter部分都是“添加元素并赋予初始属性”，
+			 * exit部分都是“删除元素”。因此，无论数据和元素如何，其处理方法都是类似的。
+			 * 因此，可归纳成一个处理模板，用户不必理会数组长度和元素数量之间的关系。
+			 */
+			window.onload = function(){
+				var dataset = [10, 20, 30];
+				var p = d3.select("body").selectAll("p");
+				
+				//绑定数据后，分别返回update、enter、exit部分
+				var update = p.data(dataset);
+				var enter = update.enter();
+				var exit = update.exit();
+				
+				//1.update部分的处理方法
+				update.text(function(d){
+					return d;
+				});
+				
+				//2.enter部分的处理方法
+				enter.append("p").text(function(d){
+					return d;
+				});
+				
+				//3.exit部分的处理方法
+				exit.remove();
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

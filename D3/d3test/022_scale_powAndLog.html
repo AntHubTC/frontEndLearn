@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				/*
+				 * 指数比例尺（Power Scale)和对数比例尺(Log Scale)中的很多方法和线性比
+				 * 例尺是一样的，但是，指数比例尺多一个exponent(),用于指定指数；对数比
+				 * 例尺多一个base()，用于指定底数。两种的用法和原理是一样的。
+				 */
+				var pow = d3.scale.pow();//创建一个对数比例尺
+				pow.exponent(3); //设置指数比例尺的指数为3
+				
+				console.info("pow:" + pow(2)); //output: 8
+				console.info("pow:" + pow(3)); //output: 27
+				//这样使用的话，效果和Javascript的Math.pow()是一样的额，即为是N次方运算。
+				
+				pow.domain([0, 3]); //定义域
+				pow.range([0, 90]);	//值域
+				
+				console.info(pow(2)); //output:输出26.666666666
+				//结果是怎么得来的  2^3 / (3/90) = 26.666666666
+				//这是对2做了3次方后，再对这个结果应用了线性比例尺
+				
+				//相当于如下线性比例尺
+				var linear = d3.scale.linear();
+				linear.domain([0, Math.pow(3, 3)]);
+				linear.range([0, 90]);
+				console.info(linear(Math.pow(2, 3)));
+				
+			};
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

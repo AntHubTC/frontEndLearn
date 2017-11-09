@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				/*
+				 * 嵌套结构（Nest）
+				 * 嵌套结构能够使用键（key）对应数组中的大量对象进行分类，多个键一层套一层，
+				 * 使得分类越来越具体，索引越来越方便。
+				 * 比如有一个数组，装的是很多的用户信息，那么使用嵌套结构可以把这个数组首先
+				 * 按照性别分类，然后按照地域分类，再按照语言分类。
+				 * 
+				 * d3.nest() 该函数没有任何参数，表示接下来将会构件一个新的嵌套结构。其他
+				 * 		函数需要跟在此函数后一起使用。
+				 * nest.key(function) 指定嵌套结构的键。
+				 * nest.entries(array) 指定数组array将被用于构建嵌套结构。
+				 * nest.sortKeys(comparator) 按照键对嵌套结构进行排序，接在nest.key()后使用。
+				 * nest.sortValues(comparator) 按照值对嵌套结构进行排序。
+				 * nest.rollup(function) 对每一组叶子节点调用指定的函数function，该函数含有一
+				 * 		个values，是当前叶子节点的数组。
+				 * nest.map(array [, mapType])
+				 */
+				var persons = [{
+					id:100,
+					name:"张某某",
+					year:1989,
+					hometown:"北京"
+				},{
+					id:101,
+					name:"李某某",
+					year:1987,
+					hometown:"北京"
+				},{
+					id:102,
+					name:"王某某",
+					year:1988,
+					hometown:"上海"
+				},{
+					id:103,
+					name:"赵某某",
+					year:1987,
+					hometown:"广州"
+				},{
+					id:104,
+					name:"孙某某",
+					year:1989,
+					hometown:"上海"
+				}];
+				
+				//嵌套结构
+				var nest = d3.nest()
+					//将year作为第一个键
+					.key(function(d){return d.year;})
+					//通过key进行排序
+					.sortKeys(d3.ascending)
+					//将hometown作为第二个键
+					.key(function(d){return d.hometown})
+					//通过值进行排序
+					.sortValues(function(a, b){
+						return d3.ascending(a.age, b.age);
+					})
+					//rollup()的参数是一个函数，设定之后，各元素分组都会调用。
+					.rollup(function(values){
+						console.info(values);
+					})
+					//指定将应用嵌套结构的数组混合persons
+					.entries(persons);
+					//如果想将结果输出为映射形式，可以使用nest.map()
+//					.map(persons, d3.map);
+				console.info(nest);
+				
+			};
+		</script>
+	</head>
+	<body>
+		<p>效果请查看控制台输出</p>
+	</body>
+</html>

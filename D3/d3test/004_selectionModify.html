@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function loadRun(){
+				/*
+				 * D3-API 学习新增删除节点
+				 * selection.append(name) 在末尾新增一个元素
+				 * selection.insert(name[,before]) 在选择集中的指定元素之前插入一个元素，name是被插入的元素名称，before是CSS选择器名称。如果不指定before，那么元素会被插入到选择集末尾。
+				 * selection.remove() 删除选择集中的元素
+				 */
+				
+				//选择body元素
+				var body = d3.select("body");
+				//在body中所有元素的末尾处添加一个p元素，内容为Train
+				body.append("p").text("Train");
+				
+				//在body中id为plane的元素前面添加一个p元素，内容为Bike
+				body.insert("p", "#plane").text("Bike"); //如果不指定插入到哪里，改p元素将插入到最后
+				
+				//删除id为plane的元素
+				body.select("#plane").remove();
+			}
+			window.onload = loadRun;
+		</script>
+	</head>
+	<body>
+		<p>Car</p>
+		<p id="plane">Plane</p>
+		<p>Ship</p>
+	</body>
+</html>

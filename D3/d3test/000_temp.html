@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				var body = d3.select("body");
+				var graph = body.append("svg")
+						.attr("width", "400")
+						.attr("height", "400");
+				
+				graph.append("svg:g"); //在svg下面加入一个g组
+			};
+		</script>
+	</head>
+	<body>
+		<input type="search" />
+	</body>
+</html>

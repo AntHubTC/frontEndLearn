@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				/*
+				 * 通常，从服务器读取数据后，网页中是没有与之对应的元素的。因此，
+				 * 有一个场景的用法：选择一个空集，然后使用enter().append()的
+				 * 形式来添加足够数量的元素。
+				 */
+				//dataset看作从服务器获取的数据
+				var dataset = [10, 20, 30, 40, 50];
+				var body = d3.select("body");
+				body.selectAll("p")	//选择body中的所有p，但由于没有p，因此选择了一个空集
+					.data(dataset)	//绑定dataset数组
+					.enter()	//返回enter部分
+					.append("p")	//添加p元素
+					.text(function(d){ return d;});
+					
+				//这样就使后台取出来的数据的个数和元素个数相同。
+			};
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

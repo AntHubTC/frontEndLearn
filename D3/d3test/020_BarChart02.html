@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			/*
+			 * 有时候需要更新数据，更新后柱形图也得跟着变化。
+			 * 
+			 * 
+			 */
+			//要展示的图标数据
+			var dataset = [50,43,120,87,99];
+			//svg绘制区域的宽度
+			var width = 350; 
+			//svg绘制区域的高度
+			var height = 250;
+			//svg绘制区域
+			var svg = null;
+			//定义上下左右的边距
+			var padding = {top:20, right:20, bottom:30, left:20};
+			//矩形所占的宽度（包括空白），单位为像素
+			var rectStep = 35;
+			//矩形所占的宽度（不包括空白），单位为像素
+			var rectWidth = 30;
+			
+			//排序
+			function myAscSort(){//升序
+				dataset.sort(d3.ascending);
+				draw();
+			}
+			function myDesSort(){//降序
+				dataset.sort(d3.descending);
+				draw();
+			}
+			
+			//新增
+			function myadd(){
+				dataset.push(~~(Math.random()*90)+10); //添加一个项
+				draw();
+			}
+			
+			var draw = function(){
+				if(!svg || svg.empty()) {
+					svg = d3.select("body").select("div#barChartBox").append("svg"); //在body中添加一个<svg>
+					svg.attr("width", width)	//设定svg的宽度属性
+						.attr("height", height);//设定svg的高度属性	
+					
+					//画框1
+					svg.append("rect")
+						.attr("fill", "none")
+						.attr("stroke", "#000")
+						.attr("stroke-width", "2")
+	//					.attr("stroke-dasharray", "4")
+						.attr("x", 0)
+						.attr("y", 0)
+						.attr("width", width)
+						.attr("height", height);
+					
+					//画框2
+					svg.append("rect")
+						.attr("fill", "none")
+						.attr("stroke", "#000")
+						.attr("stroke-width", "1")
+						.attr("stroke-dasharray", "4")
+						.attr("x", padding.left)
+						.attr("y", padding.top)
+						.attr("width", width - padding.left - padding.right)
+						.attr("height", height - padding.top - padding.bottom);
+				}
+				
+				var pillarGroup = svg.selectAll("g.dataNode");
+				var update = pillarGroup.data(dataset, function(d){ //根据键函数的规则绑定数据，并修改内容。
+					return d; //在需要更新的时候，这个函数一定不能好，它是每一块的key标识。
+				}); //绑定数据
+				var enter = update.enter();	//获取矩形enter部分
+				var exit = update.exit(); //获取矩形exist部分
+				
+				//画柱形
+				//1.update部分的处理方法
+				update.selectAll("rect.dataRect")
+					.attr("class", "dataRect")
+					.attr("fill", "steelblue") //设置颜色为steelblue
+					.attr("x", function(d, n, i){//设置矩形的x坐标
+						return 5 + padding.left + i * rectStep;
+					})
+					.attr("y", function(d, n, i){//设置矩形的y坐标
+						return height - padding.bottom - d;
+					})
+					.attr("width", rectWidth)//设置矩形的宽度
+					.attr("height", function(d){//设置矩形的高度
+						return d;
+					});
+				update.selectAll("text.dataNodeText") //文字部分
+					.attr("class", "dataNodeText")
+					.attr("fill", "white")    //填充为白色
+					.attr("font-size", "14px") //设置字体大小
+					.attr("x", function(d, n, i){//设置矩形的x坐标
+						return 5 + padding.left + i * rectStep;
+					})
+					.attr("y", function(d, n, i){//设置矩形的y坐标
+						return height - padding.bottom - d;
+					})
+					.attr("text-anchor", "middle")  
+					.attr("dx", rectWidth / 2)
+					.attr("dy", "1em")
+					.text(function(d){
+						return d;
+					});
+				//2.enter部分的处理方法
+				pillarGroup = enter.append("g")
+					.attr("class", "dataNode");
+				pillarGroup.append("rect")//添加rect元素，使其与绑定数组的长度一致
+					.attr("class", "dataRect")
+					.attr("fill", "steelblue") //设置颜色为steelblue
+					.attr("x", function(d, i){//设置矩形的x坐标
+						return 5 + padding.left + i * rectStep;
+					})
+					.attr("y", function(d, i){//设置矩形的y坐标
+						return height - padding.bottom - d;
+					})
+					.attr("width", rectWidth)//设置矩形的宽度
+					.attr("height", function(d){//设置矩形的高度
+						return d;
+					})
+				
+				//画数字
+				pillarGroup.append("text")
+					.attr("class", "dataNodeText")
+					.attr("fill", "white")    //填充为白色
+					.attr("font-size", "14px") //设置字体大小
+					.attr("x", function(d, i){//设置矩形的x坐标
+						return 5 + padding.left + i * rectStep;
+					})
+					.attr("y", function(d, i){//设置矩形的y坐标
+						return height - padding.bottom - d;
+					})
+//					.attr("dx", function(d){  //该居中方法没有下面的好
+//						return (rectWidth - (d+'').length*8.5) / 2;
+//					})
+					// 主要通过下面两行进行居中
+					.attr("text-anchor", "middle")  
+					.attr("dx", rectWidth / 2)
+					.attr("dy", "1em")
+					.text(function(d){
+						return d;
+					});
+				
+				//3.exit部分的处理方法
+				exit.remove();
+			}
+		
+			window.onload = function(){
+				draw();				
+			};
+		</script>
+	</head>
+	<body>
+		<div align="middle" style="width: 350px;">柱状图</div>
+		<div id="barChartBox">
+			
+		</div>
+		<div style="text-align: center;width: 350px;">
+			<button type="button" onclick="myAscSort()">升排</button>
+			<button type="button" onclick="myDesSort()">降排</button>
+			<button type="button" onclick="myadd()">增加数据</button>
+		</div>
+	</body>
+</html>

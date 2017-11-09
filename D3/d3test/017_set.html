@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				/*
+				 * 集合Set
+				 * 集合是数学中常用的概念，表是具有某种特定性质的事务的总体。集合里的项叫做
+				 * 元素。集合的相关方法如下：
+				 * d3.set([array]) 使用数组来构件集合，如果数组里有重复的元素，则只会添加其中一项。
+				 * set.has(value) 如果集合中有指定元素则返回true，否则false。
+				 * set.add(value) 如果该集合中没有指定元素，则将其添加到集合中，并返回
+				 * 		该元素，如果有则不添加。
+				 * set.remove(value) 如果该集合中有指定元素，则将其删除并返回true；否则返回false。
+				 * set.values() 以数组形式返回该集合中所有的元素。
+				 * set.forEach(function) 对每一个元素都调用function函数，函数里传入一个
+				 * 		参数，即该元素的值。
+				 * set.empty() 如果该集合为空，则返回true，否则返回false。
+				 * set.size() 返回集合的大小。
+				 * 
+				 * 与映射相比，集合比较简单，没有键的概念。
+				 */
+				
+				//源数组
+				var dataset = ["triger", "dragon", "snake", "horse", "horse", "sheep"];
+				//构建一个集合，将其保存在变量set中
+				var set = d3.set(dataset);
+				console.info("has:" + set.has("triger"));
+				console.info("has:" + set.has("monkey"));
+				
+				set.remove("snake"); //移除元素
+				
+				console.info("values:", set.values()); //获取值
+				
+				console.info("set.forEach:");
+				set.forEach(function(v){  //遍历
+					console.info(v);
+				});
+				
+				console.info("set is empty:" + set.empty()); //是否为空
+				console.info("set size:" + set.size());	//元素个数
+			};
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

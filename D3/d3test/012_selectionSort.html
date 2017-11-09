@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function () {
+				/*
+				 * 对选择集进行排序，参数自定义一个排序规则
+				 * selection.sort(function(a,b)....)
+				 * 此比较函数有两个参数，当a应该位于b之前时，则返回一个负数；当a应该位于b之后时，则返回一个正数：如果a与b相等，则返回0。
+				 */
+				var body = d3.select("body");
+				var p = body.selectAll("p");
+				var dataset = [10, 20, 80, 40, 20];
+				var update = p.data(dataset);
+				update.text(function(d){
+					return d;
+				});
+				var enter = update.enter();
+				enter.append("p").text(function(d){
+					return d;
+				});
+				
+				p = body.selectAll("p");
+				console.info(p);
+				
+				//此比较函数有两个参数，当a应该位于b之前时，
+				//则返回一个负数；当a应该位于b之后时，则返回一个正数：如果a与b相等，则返回0。
+				p.sort(function(a, b){
+					return b-a;
+				});
+				/*
+				 * 如此可使选择集递减排序。如果不指定比较函数，则
+				 * 默认为d3.ascending,这是D3提供的一个递增函数。
+				 */
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

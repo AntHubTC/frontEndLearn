@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				/*
+				 * selection.call(myfun);
+				 * call()运行将选择集自身作为参数，传递给某一函数。
+				 * 
+				 * 后续案例中，将会出现拖拽、缩放元素等操作，那时会常用到call()
+				 */
+				var p = d3.select("body").selectAll("p");
+				var myfun = function (selection){
+					//在这里进行相关操作
+					selection.attr("name", "value");
+				};
+				p.call(myfun);	//等同于myfun(p)
+			};
+		</script>
+	</head>
+	<body>
+		<p>1</p>
+		<p>2</p>
+		<p>3</p>
+		<p>4</p>
+	</body>
+</html>

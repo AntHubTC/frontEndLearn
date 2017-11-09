@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function loadRun(){
+				var dataset = [3, 6, 9];
+				/*
+				 *   查询的节点的时候必须先查询body，然后再查下p，
+				 * 否则在append之后，数据会加到body外同级。
+				 */
+				var p = d3.select("body").selectAll("p");
+				
+				//绑定数据后，分别获取update和enter部分
+				var update = p.data(dataset);
+				var enter = update.enter();
+				
+				//update部分的处理方法是直接修改内容
+				update.text(function(d){
+					return d;
+				});
+				
+				//enter部分通过append，使其与多余数据对应。这里就补齐了6和9的绑定容器。
+				enter.append("p").text(function(d){
+					return d;
+				});
+			}
+			window.onload = loadRun;
+		</script>
+	</head>
+	<body>
+		<p></p>
+	</body>
+</html>

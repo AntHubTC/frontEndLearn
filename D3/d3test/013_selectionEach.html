@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				var persons = [{
+					id:1001, name:"ZhangSan"
+				},{
+					id:1002, name:"LiSi"
+				}];
+				var body = d3.select("body");
+				var p = body.selectAll("p");
+				var update = p.data(persons);
+				var enter = update.enter();
+				var eachHandler=function(d, i){
+					d.age = 20;
+				};
+				var textHandler = function(d, i){
+					return d.id+" "+d.name+" "+d.age;
+				};
+				update.each(eachHandler)
+				update.text(textHandler);
+				
+				var enterSelection = enter.append("p");
+				enterSelection.each(eachHandler);
+				enterSelection.text(textHandler);
+			};
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

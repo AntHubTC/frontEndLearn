@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				/*
+				 * 映射（Map）是十分常见的一种数据结构，由一系列键（key）和值（value）组成。
+				 * 每个key对应一个value，根据key可以获取和设定value，也可以根据key来查询value。
+				 * 
+				 * d3.map([object][,key]) 构造映射。第一个参数是源数组，第二个参数用于指定映射的key。
+				 * map.has(key) 如果指定的key存在，则返回true，否则false。
+				 * map.get(key) 如果指定的key存在，则返回该key的value，否则返回undefined。
+				 * map.set(key, value) 对指定的key设定value，如果key已经存在，则新的value会覆盖旧的value；
+				 * 		如果该key不存在，则会添加一个新的value。
+				 * map.remove(key) 如果指定的key存在，则将此key和value删除，并返回true；否则，返回false。
+				 * map.keys() 以数组形式返回该map所有的key。
+				 * map.values() 以数组形式返回该map所有的value。
+				 * map.entries() 以数组形式返回该map所有的key和value。
+				 * map.forEach(function) 分别对该映射中的每一项调用function函数，function函数传入两个
+				 * 		参数：key和value，分别代表每一项的key和value。
+				 * map.empty() 如果该映射为空，返回true，否则返回false。
+				 * map.size() 返回该映射的大小。
+				 */
+				
+				var dataset = [{
+					id : 1000,
+					color: "red"
+				},{
+					id : 1001,
+					color: "green"
+				},{
+					id : 1002,
+					color: "blue"
+				}];
+				var map = d3.map(dataset, function(d){
+					return d.id;
+				});
+				console.dir(map);
+				console.info("has:"+map.has(1000));
+				console.info("get:",map.get(1000));
+				
+				//将1001键的值设置为{id:1001,color:"yellow"}
+				map.set(1001, {id:1001, color:"yellow"});
+				console.info(map.get(1001));
+				
+				//将1003键的值设置为{id:1003,color:"white"}
+				map.set(1003,{id:1003,color:"white"});
+				console.info("set:",map);
+				
+				map.remove(1000); //删除1000的键和值
+				console.info("remove:", map);
+				
+				console.info("keys:",map.keys());		//返回所有键值数组
+				console.info("values:",map.values());	//返回所有值数组
+				console.info("entries:", map.entries());//返回所有的键和值对。
+				
+				//遍历map中的所有键值对
+				console.info("map.forEach:");
+				map.forEach(function(key, value){
+					console.info(key,":",value);
+				});
+				
+				console.info("map is empty:"+ map.empty());
+				console.info("map entry size:" + map.size());
+			};
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.red{
+				color: red;
+			}
+			.green{
+				color:green;
+			}
+			.f30 {
+				font-size: 30px;
+			}
+		</style>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function loadRun(){
+				/*
+				 * 主要学习如何选择元素，一起对选择集操作的部分API
+				 */
+				
+				//D3-API  select
+				var p1 = d3.select("p"); //通过标签选择
+				console.dir("result1:" + p1.text());
+				
+				var idp = d3.select("#idp");	//通过id选择
+				
+				var csp = d3.select(".class1");	//通过class选择
+				
+				var txtIpt = d3.select("form input[name='txt']"); //通过属性选择
+				
+				//D3-API  selectAll
+				var pList = d3.selectAll("p");//通过标签选择
+				console.info("result2:" + pList);
+				
+				var class1List = d3.selectAll(".class1");//通过class选择 
+				
+				var layerList = d3.selectAll("ul li");//通过标签层级来选择
+				
+				var mixSelect = d3.selectAll("ul li#idli.class2"); //混合选择器
+				/*
+				 * 混合使用选择器（任意搭配）
+				 * ul li#idli 
+				 * ul li.class2
+				 * ul li#idli.class2
+				 */
+				
+				console.info("result3:" + mixSelect);
+				 
+				//D3-API select
+				//除了CSS选择器，还可以是已经被DOM API选择的元素，代码如下：
+				var boxEle = document.getElementById("box1");
+				var d3BoxEle = d3.select(boxEle);
+				
+				//如果是多个
+				var pSelectEles = document.getElementsByTagName("p");
+				var d3SelectEles = d3.selectAll(pSelectEles);
+				
+				//可以对结果集再进行选择一番
+				d3.selectAll("p").select(".class1");  //"连缀语法"
+				
+				//======================================
+				//D3-API 查看选择集状态
+				//D3-API selection.empty(); 选择集是否为空    空true  非空false
+				console.info("selection.empty():" + d3SelectEles.empty());
+				//D3-API selection.node(); 返回第一个非空元素，如果选择集为空，则返回null
+				console.log("selection.node():"+ d3SelectEles.node());
+				//D3-API selection.size();返回选择集中元素的个数
+				console.log("selection.size():" + d3SelectEles.size());
+				
+				//D3-API selection.attr("property"[,"property-value"])获取属性设置属性
+				d3SelectEles.attr("defAttr", "attr-value");//设置属性
+				var attrVal = d3SelectEles.attr("defAttr");//获取属性
+				console.info("defAttr-value:" + attrVal);
+				
+				//D3-API selection.classed(name[,value])  是否开启某个class类
+				d3SelectEles.attr("class", "red green f30");
+				setInterval(function(){
+					var flag = d3SelectEles.classed("green");
+					d3SelectEles.classed("green", !flag);
+					//如果要同时配置多个，可以用下面两种方式写
+//					d3SelectEles.classed({
+//						"green":true,
+//						"red": false
+//					});
+//					d3SelectEles.classed("class1 class2", true);
+				}, 1000)
+				
+				//D3-API selection.style(name[,value[,priority]]) 设定或者获取选择集的样式。
+				mixSelect.style("font-size", "19px");
+				var fsValue = mixSelect.style("font-size"); 
+				console.info("selection.style(name):"+fsValue);
+				
+				//D3-API selection.property(name[, value]) 设置或者获取选择器的属性
+				//有部分属性，不能用attr()设定和获取，最典型的是文本输入框的value属性，此属性值不会再标签中显示。例如，文本框元素。
+				var txtSel = d3.select("form input[name='txt']");
+				txtSel.property("value", "value");
+				var value = txtSel.property("value"); 
+				console.info("selection.property(name):"+value);
+				
+				//D3-API selection.text([value]) 设定或获取选择集的文本内容
+				console.info(d3.select("#idp").text()); //不包含内部的标签
+				d3.select("div#box1").text("content");
+				
+				//D3-API selection.html([value]) 设定或者获取选择集中的内部html内容 
+				console.info(d3.select("#idp").html());
+			};
+			window.onload = loadRun;
+		</script>
+	</head>
+	<body>
+		<p id="idp" class="class1">p1<span>----</span></p>
+		<p class="class1">p2</p>
+		<ul>
+			<li id="idli" class="class2">li1</li>
+			<li>li2</li>
+		</ul>
+		<div id="box1">
+			
+		</div>
+		<form>
+			<input name="txt" type="text" />
+		</form>
+	</body>
+</html>

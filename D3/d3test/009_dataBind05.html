@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				/*
+				 * exit部分的处理方法
+				 * 如果存在多余的元素，没有数据与之对应，那么就需要删除元素。使用remove()即可删除元素。
+				 */
+				
+				var dataset = [10, 20, 30];
+				var p = d3.select("body").selectAll("p");
+				var update = p.data(dataset);
+				update.text(function(d){
+					return d;
+				});
+				var exit = update.exit();
+				
+				//如果没有以下代码，会发现运行的效果中，box4和box5没有数据内容，这两个是多的元素
+				exit.remove();//多的元素，删除即可。
+				
+			}
+		</script>
+	</head>
+	<body>
+		<p>box1</p>
+		<p>box2</p>
+		<p>box3</p>
+		<p>box4</p>
+		<p>box5</p>
+	</body>
+</html>

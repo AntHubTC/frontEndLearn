@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				/*
+				 * 柱形图（Bar Chart）
+				 * 是使用柱形的长短来表示数据变化的图标，也是最简单的图标之一。
+				 * 一般情况下，柱形图包括：矩形、坐标和文字。
+				 */
+				
+				var dataset = [50,43,120,87,99,167,142];//要展示的图标数据
+				var width = 350; //svg绘制区域的宽度
+				var height = 250;//svg绘制区域的高度
+				var svg = d3.select("body").append("svg"); //在body中添加一个<svg>
+				svg.attr("width", width)	//设定svg的宽度属性
+					.attr("height", height);//设定svg的高度属性
+				//定义上下左右的边距
+				var padding = {top:20, right:20, bottom:30, left:20};
+				//矩形所占的宽度（包括空白），单位为像素
+				var rectStep = 35;
+				//矩形所占的宽度（不包括空白），单位为像素
+				var rectWidth = 30;
+				var dataNode = svg.selectAll("rect.dataNode");
+				var update = dataNode.data(dataset); //绑定数据
+				var enter = update.enter();	//获取enter部分
+				
+				//画框1
+				svg.append("rect")
+					.attr("fill", "none")
+					.attr("stroke", "#000")
+					.attr("stroke-width", "2")
+//					.attr("stroke-dasharray", "4")
+					.attr("x", 0)
+					.attr("y", 0)
+					.attr("width", width)
+					.attr("height", height)
+				;
+				
+				//画框2
+				svg.append("rect")
+					.attr("fill", "none")
+					.attr("stroke", "#000")
+					.attr("stroke-width", "1")
+					.attr("stroke-dasharray", "4")
+					.attr("x", padding.left)
+					.attr("y", padding.top)
+					.attr("width", width - padding.left - padding.right)
+					.attr("height", height - padding.top - padding.bottom)
+				;
+				
+				
+				//画柱形
+				var pillarGroup = enter.append("g");
+				pillarGroup.append("rect")//添加rect元素，使其与绑定数组的长度一致
+					.attr("class", "dataNode")
+					.attr("fill", "steelblue") //设置颜色为steelblue(刚蓝色)
+					.attr("x", function(d, i){//设置矩形的x坐标
+						return 5 + padding.left + i * rectStep;
+					})
+					.attr("y", function(d, i){//设置矩形的y坐标
+						return height - padding.bottom - d;
+					})
+					.attr("width", rectWidth)//设置矩形的宽度
+					.attr("height", function(d){//设置矩形的高度
+						return d;
+					})
+					
+				//画数字
+				pillarGroup.append("text")
+					.attr("class", "dataNodeText")
+					.attr("fill", "white")    //填充为白色
+					.attr("font-size", "14px") //设置字体大小
+					.attr("x", function(d, i){//设置矩形的x坐标
+						return 5 + padding.left + i * rectStep;
+					})
+					.attr("y", function(d, i){//设置矩形的y坐标
+						return height - padding.bottom - d;
+					})
+//					.attr("dx", function(d){  //该居中方法没有下面的好
+//						return (rectWidth - (d+'').length*8.5) / 2;
+//					})
+					// 主要通过下面两行进行居中
+					.attr("text-anchor", "middle")  
+					.attr("dx", rectWidth / 2)
+					.attr("dy", "1em")
+					.text(function(d){
+						return d;
+					});
+					/*
+					 * text-anchor 如果没有这个，会从中间位置开始画字。有这个会把这个当作文字的中心点
+					 * 这个属性的值还有  start | middle | end | inherit
+					 */
+			};
+		</script>
+	</head>
+	<body>
+		<div align="middle" style="width: 350px;">柱状图</div>
+	</body>
+</html>

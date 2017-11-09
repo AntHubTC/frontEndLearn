@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				/*
+				 * 	数组
+				 * 
+				 * 数组是一组很常用的数据结构，通常是由相同数据类型的项组成集合，
+				 * 拥有数组名，可以凭借数组名和下标来访问数组项。虽然JavaScript允许
+				 * 一个数组中存在不同的数据类型，但实际很少这样使用。需要被可视化的
+				 * 数据常以数组的形式存在，虽然JavaScript中提供了不少操作数组的方法，但
+				 * JavaScript不是为了数据可视化而存在的。因此，D3根据数据可视化的需
+				 * 求封装了不少数组处理函数。
+				 */
+				var body = d3.select("body");
+				var numbers = [54,23,77,11,34];
+				
+				/*
+				 * 排序
+				 * d3.ascending 递增函数
+				 * d3.descending 递减函数
+				 * 
+				 * 原理
+				 * d3.ascending(a, b)  如果a小于b，返回-1；如果a大于b，返回1,；如果a等于b，返回0.
+				 */
+				
+				var p1 = body.select("p#p1");
+				var p2 = body.select("p#p2");
+				var p3 = body.select("p#p3");
+				p1.text("ori arr:"+numbers);
+				
+				numbers.sort(d3.descending);
+				p2.text("d3.descending递减:" + numbers);
+				
+				numbers.sort(d3.ascending);
+				p3.text("d3.ascending递增:" + numbers);
+				
+				
+				
+				
+				/**
+				 * 求值
+				 * 
+				 * 求取数组的最大值、最小值、中间值、平均值等，是十分常用的操作。
+				 * 
+				 * d3.min(arr[,accessor]) 返回数组最小值
+				 * d3.max(arr[,accessor]) 返回数组最大值
+				 * d3.extend(arr[,accessor]) 返回数组最小值和最大值   d3.extend()相当于分别调用d3.min()和d3.max()，返回值是一个数组，第一项是最小值，第二项是最大值。
+				 * d3.sum(arr[,accessor]) 返回数组的总和，如果数组为空，则返回0.
+				 * d3.mean(arr[,accessor]) 返回数组的平均值，如果数组为空，则返回undefined
+				 * d3.median(arr[,accessor]) 返回数组的中间值，如果数组为空，返回undefined
+				 * d3.quantile(numbers, p) 求取p分位点的值，p的范围为[0, 1]。数组需先递增排序。
+				 * d3.variance(array[, accessor]) 求方差
+				 * d3.deviation(array[, accessor]) 求标准差
+				 * d3.bisectLeft() 获取某数组项左边的位置。
+				 * d3.bisect() 获取某数组项右边的位置。
+				 * d3.bisectRight() 和bisect()一样。
+				 * d3.shuffle(arr[,lo[,hi]]) 随机排列数组
+				 * d3.merge(arr); 合并多个个数组
+				 * d3.pairs(arr) 返回邻接的数组对
+				 * d3.range([start,]stop[,step]) 返回等差数列
+				 * d3.permute(array, indexes)  根据指定的索引号数组返回排列后的数组
+				 * d3.zip(arrays...) 用多个数组来制作数组的数组
+				 * d3.transpose(matrix) 求转置矩阵  将矩阵的行换成相应的列，得到的矩阵即转置矩阵。
+				 * 
+				 * 参数中accessor，使用它是在求值前处理数据。
+				 */
+				
+				var min = d3.min(numbers); //求最小值
+				var max = d3.max(numbers);	//求最大值
+				var extent = d3.extent(numbers); //求最小值和最大值，形成一个数组标示一个范围。
+				body.select("#p4").text("min:" + min);
+				body.select("#p5").text("max:" + max);
+				body.select("#p6").text("extent:" + extent);
+				
+				//使用accessor，在求值前先处理数据
+				var minAcc = d3.min(numbers, function(d){
+					return d*3;
+				});
+				var maxAcc = d3.max(numbers, function(d){
+					return d-3;
+				});
+				var extentAcc = d3.extent(numbers, function(d){
+					return d%7;
+				});
+				body.select("#p7").text("minAcc:" + minAcc);
+				body.select("#p8").text("maxAcc" + maxAcc);
+				body.select("#p9").text("extentAcc:" + extentAcc);
+				
+				var sum = d3.sum(numbers, function(d){
+					return d;
+				});
+				body.select("#p10").text("sum:" + sum); //求和
+				
+				//这个平均是去掉无效数组的一个平均值。
+				var mean = d3.mean(numbers, function(d){ //求平均值
+					return d;
+				});
+				body.select("#p11").text("mean:" + mean);
+				
+				var median = d3.median(numbers, function(d){ //求中间值
+					return d;
+				});
+				body.select("#p12").text("median:" + median);
+				
+				var quantile1 = d3.quantile(numbers, 0.5); //求取0.5分位点的值
+				body.select("#p13").text("quantile：" + quantile1);
+				
+				var quantile2 = d3.quantile(numbers, 0.0); //求取0.5分位点的值
+				body.select("#p14").text("quantile：" + quantile2);
+				
+				/*
+				 * 方差和标准差用于度量随机变量和均值之间的偏离程度，在概率统计中经常用到。
+				 * 其中标准差是方差的二次方根。这两个值越大，表示此随机变量偏离均值的程度越大。
+				 */
+				var variance = d3.variance(numbers, function(d){ //求方差
+					return d;
+				}); 
+				body.select("#p15").text("variance：" + variance);
+				
+				var deviation = d3.deviation(numbers, function(d){ //求标准差
+					return d;
+				}); 
+				body.select("#p16").text("deviation：" + deviation);
+				
+				/*
+				 * 有时候需要对数组中指定的位置插入项，因此需要获取指定的位置。
+				 * 在JavaScript中，要向数组插入项，可使用splice()，
+				 * 而bisectLeft(),bisect(),bisectRight()可配合splice()使用。
+				 */
+				var countries = ["China", "America", "Japan", "France"];
+				//在数组索引1的位置处，删除0个项后，插入字符串Germany
+				countries.splice(1, 0, "Germany");
+				console.info(countries);
+				
+				//在数组索引为3的位置处，删除一个项后，插入两个字符串Britain和Russia
+				countries.splice(3, 1, "Britain", "Russia");
+				console.info(countries);
+				
+				//javascript的splice()可用于删除数组项，也可以用于插入数组项。
+				
+				var numArr = [10, 13, 16, 19, 22, 25];
+				console.info(numArr);
+				var iLeft = d3.bisectLeft(numArr.sort(d3.ascending), "16"); //获取数组元素16左边一个位置的数组索引
+				//在iLeft位置处，删除0个后，插入77
+				numArr.splice(iLeft, 0, 77);
+				console.info(numArr);
+				//bisectLeft 如果指定的16不存在，那么就会返回13和19之间的位置
+				
+				var shuffle = d3.shuffle(numArr); //随机排列数组		有点重新“洗牌”的概念
+				console.info(shuffle);
+				
+				var merge = d3.merge([[1],[2,3],[4,5,6]]);
+				console.info("merge:"+merge);//[1,2,3,4,5,6]
+				
+				var pairs = d3.pairs([1,2,3,4]);
+				console.info("pairs:"+pairs); //[[1,2],[2,3],[3,4]]
+				
+				//d3.range([start,]stop[,step]) 返回等差数列     不包含stop
+				console.info(d3.range(10)); 
+				console.info(d3.range(4, 10));
+				console.info(d3.range(4, 10, 2));
+				
+				console.info(numArr);
+				var newArr = d3.permute(numArr, [3,1,4,100]); //[3,1,4,100]是索引号数组，索引号的先后顺序决定新生成数组元素的顺序
+				console.info("newArr:"+newArr);
+				
+				//d3.zip(arrays...) 用多个数组来制作数组的数组
+				var zip = d3.zip(['a1','a2','a3','a4'],['b1','b2','b3'],['c1','c2','c3','c4']); 
+				console.info(zip); //需要在浏览器控制台查看真实效果  结果[[a1,b1,c1],[a2,b2,c2],[a3,b3,c3]]
+				
+				//zip()可以被用来求向量的内积
+				var va = [10, 20, 5];
+				var vb = [-5, 10, 3];
+				//10*-5+20*10+5*3=165
+				var vab = d3.sum(d3.zip(va,vb), function(d){
+					return d[0] * d[1];
+				});
+				console.info("vab:"+vab);
+				
+				//d3.transpose(matrix) 求转置矩阵  将矩阵的行换成相应的列，得到的矩阵即转置矩阵。
+				var matrix = [[1,2,3],
+							[4,5,6]];
+				console.info("====matrix===");
+				console.info(matrix[0].join(" "));
+				console.info(matrix[1].join(" "));
+				console.info("=======");
+				
+				var tpMatrix = d3.transpose(matrix);
+				console.info("====transpose matrix==="); //转置矩阵
+				console.info(tpMatrix[0].join(" "));
+				console.info(tpMatrix[1].join(" "));
+				console.info(tpMatrix[2].join(" "));
+				console.info("=======");
+			};
+		</script>
+	</head>
+	<body>
+		<p>---排序----</p>
+		<p id="p1"></p>
+		<p id="p2"></p>
+		<p id="p3"></p>
+		<p>---求值----</p>
+		<p id="p4"></p>
+		<p id="p5"></p>
+		<p id="p6"></p>
+		<p id="p7"></p>
+		<p id="p8"></p>
+		<p id="p9"></p>
+		<p id="p10"></p>
+		<p id="p11"></p>
+		<p id="p12"></p>
+		<p id="p13"></p>
+		<p id="p14"></p>
+		<p id="p15"></p>
+		<p id="p16"></p>
+	</body>
+</html>
