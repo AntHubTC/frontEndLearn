@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../js/flexgrid/css/flexigrid.css">
+		<script type="text/javascript" src="../js/jquery-1.7.min.js"></script>
+		<script type="text/javascript" src="../js/flexgrid/js/flexigrid.js"></script>
+		<style type="text/css">
+			.clearfix:after {
+				content: "." ;
+				display: block ;
+				height: 0 ;
+				clear: both ;
+				visibility: hidden ;
+			}
+			.clearfix{ display: inline-block; }
+			/* Hides from IE-mac */
+			*html .clearfix{ 
+				height:1%; 
+			}
+			.clearfix{
+				display:block;
+			}
+			/* End hide from IE-mac */
+			.fl{
+				float: left;
+			}
+			.fr{
+				float: right;
+			}
+			.cursor_pointer{
+				cursor: pointer;
+			}
+			.bt_line{
+				border-bottom: solid 1px #93BBEA;
+			}
+			.no_select{
+				-webkit-user-select:none;
+			    -moz-user-select:none;
+			    -ms-user-select:none;
+			    user-select:none;
+			}
+			
+			body{
+				font: 14px arial,tahoma,helvetica,sans-serif;
+			}
+			.batch_content_box {
+				border: solid 1px #93BBEA;
+				width: 100%;
+				margin: 0 auto;
+			}
+			.batch_content_box, .batch_content_box > div{
+				min-height: 500px;
+			}
+			.content_left{
+				width: 200px;
+				height: 100%;
+				min-height: 500px;
+				border-right: solid 1px #93BBEA;
+			}
+			.content_middle{
+				width: 2px;
+				border-right: solid 1px #93BBEA;
+			}
+			.content_right{
+				width: auto;
+				margin-left: 204px;
+			}
+			.reload_batch_btn:hover {
+				border: solid 2px #93BBEA;
+			}
+			.batch_list_title{
+				padding: 5px 5px;
+				background-color: #CFE8F7;
+				height:24px;
+				font-size: 16px;
+			}
+			.batch_tool_bar{
+				padding: 5px 3px;
+				background-color: #CFE8F7;
+				border-right: 1px solid #93BBEA;
+				height:24px;
+				overflow: hidden;
+			}
+			.batch_list_content{
+				padding: 2px 3px;
+			}
+			.batch_history_list{
+				padding: 0 0;
+			}
+			.toolbar_btn{
+				display: inline-block;
+				border: solid 2px #CFE8F7;
+				padding: 1px 1px;
+			}
+			.toolbar_btn:hover{
+				cursor: pointer;
+				border: solid 2px #93BBEA;
+			}
+			.toolbar_btn_icon{
+				display: inline-block;
+				height: 16px;
+				width: 16px;
+				margin-top: 2px;
+				margin-right: 2px;
+			}
+			.database_refresh_icon{
+				background-image: url(images/database_refresh.png);
+			}
+			.go_icon{
+				background-image: url(images/go.png);
+			}
+			.trigger_icon{
+				background-image: url(images/trigger.png);			
+			}
+			.start_icon{
+				background-image: url(images/run.png);
+			}
+			.pause_icon{
+				background-image: url(images/pause.png);
+			}
+			.stop_icon{
+				background-image: url(images/stop.png);
+			}
+			.search_icon{
+				background-image: url(images/search.png);
+			}
+			.toolbar_text{
+				font-size: 14px;
+				display: inline-block;
+				height: 16px;
+			}
+			.batch_history_list_table{
+				width: 100%;
+			}
+			.batch_history_list_table .tab_head td{
+				background-color: #CFE8F7;
+				border-right: solid 1px #93BBEA;
+				border-bottom: solid 1px #93BBEA;
+			}
+			/*功能未激活*/
+			.fun_no_active{
+				opacity: 0.6;
+				color: gray;
+			}
+			.fun_no_active:hover{
+				cursor: default;
+				border: solid 2px #CFE8F7;
+			}
+			.flexigrid th{
+				background-image: none;
+			}
+			.flexigrid div.bDiv{
+				border: none;
+			}
+		</style>
+		<script type="text/javascript">
+			$(function(){
+				/**
+				 *  flexigrid参数说明:
+				    height: 200, //flexigrid插件的高度，单位为px
+				    width: 'auto', //宽度值，auto表示根据每列的宽度自动计算，在IE6下建议设置具体值否则会有问题
+				    striped: true, //是否显示斑纹效果，默认是奇偶交互的形式
+				    novstripe: false,//没用过这个属性
+				    minwidth: 30, //列的最小宽度
+				    minheight: 80, //列的最小高度
+				    resizable: false, //resizable table是否可伸缩
+				    url: false, //ajax url,ajax方式对应的url地址
+				    method: 'POST', // data sending method,数据发送方式
+				    dataType: 'json', // type of data loaded,数据加载的类型，xml,json
+				    errormsg: '发生错误', //错误提升信息
+				    usepager: false, //是否分页
+				    nowrap: true, //是否不换行
+				    page: 1, //current page,默认当前页
+				    total: 1, //total pages,总页面数
+				    useRp: true, //use the results per page select box,是否可以动态设置每页显示的结果数
+				    rp: 25, // results per page,每页默认的结果数
+				    rpOptions: [10, 15, 20, 25, 40, 100], //可选择设定的每页结果数
+				    title: false, //是否包含标题
+				    pagestat: '显示记录从{from}到{to}，总数 {total} 条', //显示当前页和总页面的样式
+				    procmsg: '正在处理数据，请稍候 ...', //正在处理的提示信息
+				    query: '', //搜索查询的条件
+				    qtype: '', //搜索查询的类别
+				    qop: "Eq", //搜索的操作符
+				    nomsg: '没有符合条件的记录存在', //无结果的提示信息
+				    minColToggle: 1, //允许显示的最小列数
+				    showToggleBtn: true, //是否允许显示隐藏列，该属性有bug设置成false点击头脚本报错。
+				    hideOnSubmit: true, //是否在回调时显示遮盖
+				    showTableToggleBtn: false, //是否显示【显示隐藏Grid】的按钮
+				    autoload: true, //自动加载，即第一次发起ajax请求
+				    blockOpacity: 0.5, //透明度设置
+				    onToggleCol: false, //当在行之间转换时，可在此方法中重写默认实现，基本无用
+				    onChangeSort: false, //当改变排序时，可在此方法中重写默认实现，自行实现客户端排序
+				    onSuccess: false, //成功后执行
+				    onSubmit: false, // 调用自定义的计算函数，基本没用      
+				    //Style
+				    gridClass: "bbit-grid"//样式   
+				 */
+				$("#batch_history_list").flexigrid({
+					url: false,
+					dataType: 'json',
+					colModel : [
+						{display: '任务名称', name : 'iso', width : 80, sortable : true, align: 'left'},
+						{display: '任务编号', name : 'iso', width : 60, sortable : true, align: 'left'},
+						{display: '任务描述', name : 'iso', width : 60, sortable : true, align: 'left'},
+						{display: '任务开始时间', name : 'iso', width : 80, sortable : true, align: 'left'},
+						{display: '任务结束时间', name : 'iso', width : 80, sortable : true, align: 'left'},
+						{display: '任务状态', name : 'iso', width : 60, sortable : true, align: 'left'},
+						{display: '任务参数', name : 'iso', width : 100, sortable : true, align: 'left'},
+						{display: '当前阶段序号', name : 'iso', width : 80, sortable : true, align: 'left'},
+						{display: '当前步骤序号', name : 'iso', width : 80, sortable : true, align: 'left'},
+						{display: '记录索引号', name : 'iso', width : 60, sortable : true, align: 'left'},
+						{display: '预约时间', name : 'iso', width : 60, sortable : true, align: 'left'}
+						],
+					searchitems : [
+						{display: 'ISO', name : 'iso'},
+						{display: 'Name', name : 'name', isdefault: true}
+					],
+					sortname: "iso",
+					sortorder: "asc",
+					usepager: false,
+					title: 'Countries',
+					useRp: true,
+					rp: 15,
+					showTableToggleBtn: true,
+					title:false,
+					resizable:false,
+					width: '100%',
+//					onSubmit: addFormData,
+					height: 200
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<!--div>(div>div*2)*2-->
+		<div class="batch_content_box">
+			<div class="content_left fl">
+				<div class="batch_list_title bt_line no_select">
+					<span class="bold">任务列表</span>
+					<div class="toolbar_btn fr">
+						<span class="database_refresh_icon toolbar_btn_icon"></span><span class="toolbar_text">刷新</span>
+					</div>
+				</div>
+				<div class="batch_list_content">dtree</div>
+			</div>
+			<div class="content_middle fl"></div>
+			<div class="content_right">
+				<div class="batch_tool_bar bt_line no_select">
+					<div class="toolbar_btn">
+						<span class="database_refresh_icon toolbar_btn_icon"></span><span class="toolbar_text">刷新</span>
+					</div>
+					<div class="toolbar_btn fun_no_active">
+						<span class="go_icon toolbar_btn_icon"></span><span class="toolbar_text">启动新任务</span>
+					</div>
+					<div class="toolbar_btn fun_no_active">
+						<span class="trigger_icon toolbar_btn_icon"></span><span class="toolbar_text">触发启动</span>
+					</div>
+					<div class="toolbar_btn fun_no_active">
+						<span class="start_icon toolbar_btn_icon"></span><span class="toolbar_text">继续执行</span>
+					</div>
+					<div class="toolbar_btn fun_no_active">
+						<span class="pause_icon toolbar_btn_icon"></span><span class="toolbar_text">任务挂起</span>
+					</div>
+					<div class="toolbar_btn fun_no_active">
+						<span class="stop_icon toolbar_btn_icon"></span><span class="toolbar_text">终止任务</span>
+					</div>
+					<div class="toolbar_btn fun_no_active">
+						<span class="search_icon toolbar_btn_icon"></span><span class="toolbar_text">状态查询</span>
+					</div>
+				</div>
+				<div id="batch_history_list" class="batch_history_list">
+					<!--<table class="batch_history_list_table" cellspacing="0" cellpadding="" >
+						<tr class="tab_head no_select">
+							<td>任务名称</td>
+							<td>任务编号</td>
+							<td>任务描述</td>
+							<td>任务开始时间</td>
+							<td>任务结束时间</td>
+							<td>任务状态</td>
+							<td>任务参数</td>
+							<td>当前阶段序号</td>
+							<td>当前步骤序号</td>
+							<td>记录索引号</td>
+							<td>预约时间</td>
+						</tr>
+					</table>-->
+				</div>
+			</div>
+		</div>
+		
+	</body>
+</html>

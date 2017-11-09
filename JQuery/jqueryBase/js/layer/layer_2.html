@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="layer/skin/default/layer.css"/>
+		<script src="../jquery-1.7.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.a{
+			}
+		</style>
+		<script type="text/javascript">
+			//api文档http://www.layui.com/doc/modules/layer.html
+			$(function(){
+				var layerContent = $("#layerContent").html();
+				//自定页
+//				layer.open({
+//				  type: 1,
+//				  closeBtn: 1, //不显示关闭按钮
+//				  anim: 2,
+//				  shadeClose: true, //开启遮罩关闭
+//				  title: '<b>启动任务</b>',
+//				  content: layerContent,
+//				  btnAlign: 'r', //按钮右对齐
+//				  btn: ['+','启动','探测'],
+//				  btn1:function(index,layero){ //按钮1和按钮2的回调分别是yes/btn1和cancel/btn2，而从按钮3开始，则回调为btn3
+//				  	alert("按钮1的回调");
+//				  },
+//				  btn2:function(index,layero){
+//				  	alert("按钮2的回调");
+//				  },
+//				  btn3:function(index,layero){
+//				  	alert("按钮3的回调");
+//				  },
+//				  resize: true, //是否允许拉伸
+//				  moveOut: false, //是否允许拖拽到窗口外
+//				  area: ['500px', 'auto'],
+//				  success: function(){ //弹出后回调函数
+//				  	console.info("弹出后回调函数");
+//				  },
+//				  cancel: function(){ 
+//				    //右上角关闭回调
+//				    console.info("你点击了关闭");
+//				  }
+//				});
+			});
+		</script>
+	</head>
+	<body>
+		<input id="dispaly_btn" type="button" value="dispaly"/>
+		<input id="hidden_btn" type="button" value="hidden"/>
+		
+		<div id="layerContent" style="display: none;">
+			<table border="1" cellspacing="0" cellpadding="5" style="width: 100%;">
+				<tr>
+					<th>参数名称</th>
+					<th style="width: 40%;">值</th>
+					<th style="width: 80px;">操作</th>
+				</tr>
+				<tr>
+					<td>Data1</td><td>Data2</td><td><u>修改</u>&nbsp;<u>删除</u></td>
+				</tr>
+			</table>
+		</div>
+		<style>
+			.addParamPanel{
+				width:100%;
+				padding: 2px 4px;
+				text-align: right;
+			}
+		</style>
+		<div class="addParamPanel" style="width: 320px;border: 1px solid red;">
+			<div><span>参数名称：</span><span><input type="text" /></span></div>
+			<div><span>值：</span><span><input type="text" /></span></div>
+		</div>
+	</body>
+</html>
