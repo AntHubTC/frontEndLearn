@@ -1,0 +1,92 @@
+<!--
+        本案例要使用离线运行，如果要在线运行
+    可能需要使用一些特殊的配置。
+-->
+<html>
+  <head>
+    <title></title>
+      <meta charset="utf-8"/>
+    <style>
+      .fn-hide{
+        display: none;
+      }
+    </style>
+    <script>
+        if(ActiveXObject){
+          alert("你使用的浏览器不支持ActiveXObject，建议使用IE打开本网页。");
+        }
+        function $(id){
+          return document.getElementById(id);
+        }
+        function openBrower(){
+          $("excelFile").click();
+        }
+        var xlsObj;
+        var xlsBook;
+        var excelSheet;
+        function openExcel(){
+            xlsObj = new ActiveXObject("Excel.Application");
+            //获取选择的文件路径
+            var filePath = $("excelFile").value;
+            //打开Excel
+            xlsBook = xlsObj.WorkBooks.open(filePath);
+            excelSheet = xlsBook.ActiveSheet;
+            excelSheet.Application.visible = true;
+            fromExcel();
+        }
+        function buildTableInput(val){
+            return '<input class="edit-btn" type="text" value="'+val+'"/>';
+        }
+        function fromExcel(){
+            var i = 2;//数据是从第二行开始
+            var hasRow = true;//是否还有行
+            var table = $("dataTable");
+            while(hasRow){//只要有行就行就循环
+                var newTr = table.insertRow(table.rows.length);
+                newTr.insertCell(0).innerHTML = buildTableInput(excelSheet.Cells(i, 1));
+                newTr.insertCell(1).innerHTML = buildTableInput(excelSheet.Cells(i, 2));
+                i++;
+                if(excelSheet.Cells(i, 1).Value == undefined){
+                    hasRow = false;//改变状态
+                }
+            }
+        }
+        function toExcel(){
+            var table = $("dataTable");
+            for(var i = 0;i < table.rows.length-1;i++){
+                var index = i + 2;
+                var row = table.rows[i+1];
+                var td = row.getElementsByTagName("input")
+                excelSheet.Cells(index, 1).Value = td[0].value;
+                excelSheet.Cells(index, 2).Value = td[1].value;
+            }
+        }
+        function insertRow(){
+            var table = $("dataTable");
+            var newTr = table.insertRow(table.rows.length);
+            newTr.insertCell(0).innerHTML = buildTableInput("");
+            newTr.insertCell(1).innerHTML = buildTableInput("");
+        }
+    </script>
+  </head>
+  <body>
+  <div class="box">
+    <h1>本示例目前只能在线下运行！</h1>
+      <a class="btn" href="#" onclick="openBrower()">选择文件</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <a class="btn" href="#" onclick="insertRow()">添加一行</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <a class="btn" href="#" onclick="toExcel()">同步到Excel</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <a class="btn" href="#" onclick="fromExcel()">Excel同步到页面</a>
+    <input id="excelFile" type="file" class="fn-hide"
+        onchange="openExcel()">
+    <table id="dataTable" width="500">
+        <tr>
+            <td>姓名</td>
+            <td>性别</td>
+        </tr>
+    </table>
+  </div>
+  </body>
+</html>
