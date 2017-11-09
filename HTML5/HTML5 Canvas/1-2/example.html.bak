@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Canvas element size:600*300,
+			Canvas drawing surface size:300*150
+		</title>
+		<style>
+			body {
+				background: #ddd;
+			}
+			#canvas{
+				margin: 20px;
+				padding: 20px;
+				background:#fff;
+				border: thin inset #aaa;
+				width: 600px;
+				height: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas">
+			Canvas not supported
+		</canvas>
+		<script language="javascript" type="text/javascript" src="example.js">
+	</body>
+</html>

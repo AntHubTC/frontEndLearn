@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			A Clock
+		</title>
+		<style>
+			body {
+				background: #ddd;
+			}
+			#canvas{
+				position:absolute;
+				left: 10px;
+				top: 1.5em;
+				margin: 20px;
+				background:#fff;
+				border: thin inset #aaa;
+			}
+			#snapshotImageElement {
+				position: absolute;
+				left: 10px;
+				top: 1.5em;
+				margin: 20px;
+				border: thin solid #aaa;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="controls">
+			<input id="snapshotButton" type="button" value="Take snapshot"/>
+		</div>
+		<img id="snapshotImageElement"/>
+		<canvas id="canvas" width="400" height="400">
+			Canvas not supported
+		</canvas>
+		<script language="javascript" type="text/javascript" src="example.js">
+		</script>
+	</body>
+</html>
