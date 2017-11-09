@@ -1,0 +1,57 @@
+.bubble { margin:0px auto; width:320px; }
+.content {
+    margin-bottom:20px;
+    padding-left:50px;
+    position:relative;
+}
+ 
+.triangle {
+    position:absolute;
+    top:9px;
+    left:32px;
+    display:block;
+    width:0;
+    height:0;
+    overflow:hidden;
+	z-index:2;
+    border-bottom:8px solid transparent;
+    border-top:8px solid transparent;
+    border-left:none;
+    border-right:18px solid #3079ED;
+}
+ 
+.content .article {
+    float:left;
+    color:#FFF;
+    display:inline-block;
+    *display:inline; zoom:1;
+    padding:5px 10px;
+    border:1px solid #3079ED;
+    background:#eee;
+    border-radius:5px;
+    background-color: #4D90FE;
+    background-image:-webkit-gradient(linear,left top,left bottom,from(#4D90FE),to(#4787ED));
+    background-image:-webkit-linear-gradient(top,#4D90FE,#4787ED);
+    background-image:-moz-linear-gradient(center top , #4D90FE, #4787ED);
+    background-image:linear-gradient(top,#4D90FE,#4787ED);
+}
+ 
+.fr { padding-left:0px; padding-right:50px; }
+ 
+.fr .triangle {
+    left:auto;
+    right:42px;
+    border-bottom:8px solid #FFF;
+    border-top:8px solid #FFF;
+    border-right:none;
+    border-left:8px solid #3079ED;
+}
+ 
+.fr .article {
+    float:right;
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
+}

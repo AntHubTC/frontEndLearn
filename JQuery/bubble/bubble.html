@@ -1,0 +1,56 @@
+<html>
+<head>
+	<title>bubble</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="./bubble/bubble.css">
+	<script type="text/javascript" src="./jQuery/jquery-2.1.4.js"></script>
+	<script type="text/javascript" src="./bubble/bubble.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			bubblePlugin.init({
+				htmlOpt:{
+					width: null,
+					height: null,
+					baseColor: null
+				},
+				datas:[{
+					id: "name", //要进行提示的id
+					baseInfo: "请输入用户名", //提示的基本
+					text:{
+						limitMaxCount:5
+					}
+				},
+				{ 
+					id: "pwd", //要进行提示的id
+					baseInfo: "请输入密码", //提示的基本
+					text:{
+						limitMaxCount:6
+					}
+				},
+				{
+					id: "birth", //要进行提示的id
+					baseInfo: "请输入你的出生日期"//提示的基本
+				},
+				{
+					id:"personDescr",
+					baseInfo:"描述一下你的个人详情吧！",
+					text:{
+						limitMaxCount:50
+					}
+				}]
+			});
+		});
+	</script>
+</head>
+<body>
+	<div style="width:500px;margin:0 auto;">
+		<form style="line-height:30px">
+			用户名:<input id="name" type="text" name="name"/><br/>
+			密码:<input id="pwd" type="password" name="pwd"/><br/>
+			出生日期:<input id="birth" type="text" name="birth"/><br/>
+			个人说明：<br/>
+			<textarea id="personDescr" rows="4" cols="20"></textarea>
+		</form>
+	</div>
+</body>
+</html>
