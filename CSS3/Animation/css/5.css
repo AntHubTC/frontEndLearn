@@ -1,0 +1,32 @@
+/*
+另外需要注意的是IE 10和Firefox（>=16）都支持没有前缀的animation，
+而chrome不支持,所以必须使用-webkit-animation前缀。
+所以为了兼容更多的浏览器通常是这样写的：
+*/
+
+div {
+	background: yellowgreen;
+}
+
+div:hover{
+	animation: 2s rainbow 4 alternate;
+	-webkit-animation: 2s rainbow 4 alternate;
+}
+
+@keyframes rainbow {
+	0%{
+		background: yellowgreen;
+	}
+	100%{
+		background: red;
+	}
+}
+
+@-webkit-keyframes rainbow {
+	0%{
+		background: yellowgreen;
+	}
+	100%{
+		background: red;
+	}
+}

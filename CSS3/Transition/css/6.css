@@ -1,0 +1,25 @@
+
+/*
+*cubic-bezier
+*/
+
+img{
+	width: 150px;
+	height: 100px;
+	transition: 0.5s width, 0.5s 0.5s height cubic-bezier(.83,.97,.05,1.77);
+	/*这其实是一种简写形式,完整写是这样:
+	img{
+		width: 150px;
+		height: 100px;
+		transition-property: height;
+		transition-duration: 0.5s;
+		transition-delay: 0.5s;
+		transition-timing-function: cubic-bezier(.83,.97,.05,1.77);
+	}
+	*/
+}
+
+img:hover{
+	width: 500px;
+	height: 400px;
+}

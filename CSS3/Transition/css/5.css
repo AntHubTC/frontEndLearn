@@ -1,0 +1,21 @@
+
+/*
+*transition-timing-function
+*transition的状态变化速度（又称timming function），默认不是匀速的，而是逐渐慢放，这叫做ease。
+*除了ease以外，其他的还包括：
+*linear：匀速；
+*ease-in：加速；
+*ease-out：减速：
+*cubic-bezier函数：自定义速度模式 //可以使用工具网站定制
+*/
+
+img{
+	width: 150px;
+	height: 100px;
+	transition: 0.5s width ease, 0.5s 0.5s height ease-out;
+}
+
+img:hover{
+	width: 500px;
+	height: 400px;
+}

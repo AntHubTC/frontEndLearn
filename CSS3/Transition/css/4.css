@@ -1,0 +1,13 @@
+
+/*动画：高度宽度变换不一样,延迟*/
+
+img{
+	width: 150px;
+	height: 100px;
+	transition: 0.5s width, 0.5s 0.5s height;
+}
+
+img:hover{
+	width: 500px;
+	height: 400px;
+}

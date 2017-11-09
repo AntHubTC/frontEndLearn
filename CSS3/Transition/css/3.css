@@ -1,0 +1,9 @@
+
+img{
+	width: 100px;
+	transition: 0.5s width;/*动画：0.5s动画过渡,只针对宽度*/
+}
+
+img:hover{
+	width: 400px;
+}

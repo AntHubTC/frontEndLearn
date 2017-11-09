@@ -1,0 +1,9 @@
+
+img{
+	width: 100px;
+	transition: 0.5s;/*¶¯»­£º0.5s¶¯»­¹ý¶É*/
+}
+
+img:hover{
+	width: 400px;
+}

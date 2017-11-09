@@ -1,0 +1,29 @@
+
+/*
+*默认情况下动画只播放一次
+*参数infinite可以在hover状态下一直不停的播放动画帧
+*另外还可以指定播放的次数
+*eg:hover{
+*	animation: 2s rainbow 5;//播放五次停止
+*}
+*/
+
+div {
+	background: yellowgreen;
+}
+
+div:hover{
+	animation: 2s rainbow infinite;
+}
+
+@keyframes rainbow {
+	0%{
+		background: yellowgreen;
+	}
+	50%{
+		background: orange;
+	}
+	100%{
+		background: yellowgreen;
+	}
+}

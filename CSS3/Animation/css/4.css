@@ -1,0 +1,70 @@
+
+/*
+默认的情况是播放到最后一帧又到第一帧播放
+animation-direction属性可以改变这个
+参数有：alternate，reverse，alternate-reverse等值。
+*/
+
+div {
+	background: yellowgreen;
+}
+
+div:hover{
+	animation: 2s rainbow 4 alternate;
+}
+
+@keyframes rainbow {
+	0%{
+		background: yellowgreen;
+	}
+	100%{
+		background: orange;
+	}
+}
+/*
+下面不是简写的形式：
+div:hover{
+	animation-name: rainbow;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-delay: 1s;
+	animation-fill-mode: forwards;
+	animation-direction:normal;
+	animation-iteration-count: 3;
+}
+*/
+/*
+在定义动画的时候其中
+0%可以由from替换
+100%可以由to替换
+eg:
+@keyframes rainbow {
+	from {
+		background: yellowgreen;
+	}
+	to {
+		background: orange;
+	}
+}
+还可以将多个相同的简写成一行
+eg:
+@keyframes rainbow {
+	from {
+		background: yellowgreen;
+	}
+	20%,80% {
+		background: red;
+	}
+	50% {
+		background:green
+	}
+	to {
+		background: orange;
+	}
+}
+浏览器从一个状态转换到另一个状态是平滑过渡
+如果要分布过渡就要使用steps函数;
+	animation: 1s rainbow 5 setp(步数);
+播放状态：animation-play-state:参数；
+参数：paused；running；
+*/

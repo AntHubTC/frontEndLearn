@@ -1,0 +1,20 @@
+
+div {
+	background: yellowgreen;
+}
+
+div:hover{
+	animation: 2s rainbow;
+}
+
+@keyframes rainbow {
+	0%{
+		background: yellowgreen;
+	}
+	50%{
+		background: orange;
+	}
+	100%{
+		background: yellowgreen;
+	}
+}

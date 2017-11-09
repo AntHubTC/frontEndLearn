@@ -1,0 +1,30 @@
+
+/*
+让动画停留在播放停止的那一刻，而不返回开始
+加animation-fill-mode属性
+参数包括：
+none:默认；
+backwards：回到第一帧;
+forwards:停留到最后一帧;
+both: backwards和forwards轮流使用。
+*/
+
+div {
+	background: yellowgreen;
+}
+
+div:hover{
+	animation: 2s rainbow 4 forwards;
+}
+
+@keyframes rainbow {
+	0%{
+		background: yellowgreen;
+	}
+	50%{
+		background: orange;
+	}
+	100%{
+		background: yellowgreen;
+	}
+}
