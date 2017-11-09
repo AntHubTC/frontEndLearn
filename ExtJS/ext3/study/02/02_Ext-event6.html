@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--
+			本实例演示了EventManager中的几个监听事件
+		-->
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../../ext/resources/css/ext-all.css"/>
+		<script src="../../ext/adapter/ext/ext-base-debug.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../ext/ext-all-debug.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			Ext.EventManager.onDocumentReady(function(){
+				console.info("文档已经准备完成!~");
+				Ext.EventManager.onWindowResize(function(width, height){
+					console.info("WindowResize");
+					console.info("width:"+width);
+					console.info("height"+height);
+					console.info("我们可以使用width和height值构造响应式布局");
+				});
+				Ext.EventManager.onTextResize(function(oldSize, newSize){
+					//当网页上的文字大小比例发生变化的时候就会触发
+					console.info("TextResize");
+					console.info("oldSize" + oldSize);
+					console.info("newSize" + newSize);
+				})
+				/*
+				 * 验证：
+				 * 1.使用ctrl+鼠标滚轮滑动，上面两个事件都会触发；
+				 * 2.使用拖动边框的方式，只有onWindowResize会触发；
+				 */
+			});
+		</script>
+	</head>
+	<body>
+		演示文字
+	</body>
+</html>

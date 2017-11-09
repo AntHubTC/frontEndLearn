@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css"/>
+		<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Ext.onReady(function(){
+				/*
+				 * anchor 布局
+				 * 
+				 * 简介：也称“锚点布局”。感觉无卵用， anchor布局将使组件固定于父容器的某一个位置，使用anchor
+				 * 布局的子组件尺寸相对于容器的尺寸，即父容器容器的大小发生变化时，使用anchor布局的组件会根据
+				 * 规定的规则重新渲染位置和大小。
+				 * 
+				 * 注意：anchor属性为一组字符串，可以使用百分比或者是-数字（注意前面是有负号的，即数字为负数）
+				 * 来表示，字符串之间用空格隔开。
+				 */
+				
+				var anchorPanel = new Ext.Panel({  
+				     renderTo: 'anchorDiv',  
+				     layout: 'anchor',  
+				     title: 'Anchor Layout',  
+				     width: 500,  
+				     height: 300,  
+				     items: [{  
+				         title: 'panel-1',  
+				         height: 100,  
+				         anchor: '-50',  
+				         html: '高度等于100，宽度 = 容器宽度 - 50'  
+				     }, {  
+				         title: 'panel-2',  
+				         height: 100,  
+				         anchor: '50%',  
+				         html: '高度等于100，宽度 = 容器宽度的50%'  
+				     },{  
+				         title:'panel-3',  
+				         anchor: '50% 50%',  
+				         html: '高度、宽度 = 容器的50%'  
+				     }]  
+				 });
+			});
+		</script>
+	</head>
+	<body>
+		<div id="anchorDiv"></div>
+	</body>
+</html>

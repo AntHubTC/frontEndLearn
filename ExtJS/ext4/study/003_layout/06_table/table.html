@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css"/>
+		<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Ext.onReady(function(){
+				/*
+				 * table 布局
+				 * 简介：也称“表格布局”。按照普通表格的方法布局子元素，用 layoutConfig:{columns:3} ,//将父
+				 * 容器分成3列。它的item可配置的参数有：rowspan 合并的行数；colspan 合并的列数。
+				 * 
+				 * 注意：table布局本身并没有什么特殊功能，它所实现的效果其实完全可以用 border 布局和 column
+				 * 布局等方式代替，而且这些布局方式更灵活。
+				 */
+				var tablePanel = new Ext.Panel({  
+			        renderTo: 'tableDiv',  
+			        width: 500,  
+			        height: 300,  
+			        layout: 'table',  
+			        layoutConfig: {columns: 3},//定义了一共要分3列  
+			        items: [  
+			            {title: 'panel-1', html: '1111111111',rowspan:2},//合并了2行  
+			            {title: 'panel-2', html: '2222222222',colspan:2},//合并了2列  
+			            {title: 'panel-3', html: '3333333333'},
+			            {title: 'panel-4', html: '4444444444'}
+			        ]  
+			    });
+			});
+		</script>
+	</head>
+	<body>
+		<div id="tableDiv"></div>
+	</body>
+</html>

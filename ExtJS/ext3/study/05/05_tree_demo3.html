@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--
+			本实例演示了tree组件的使用
+			TreePanel在渲染之前，必须要有一个root根节点的对象。
+		-->
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../../ext/resources/css/ext-all.css"/>
+		<script src="../../ext/adapter/ext/ext-base-debug.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../ext/ext-all-debug.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var tree = new Ext.tree.TreePanel({
+				el:"tree3",
+				root: {
+					text : "根节点",
+					expanded:true,
+					leaf:false
+				},
+				loader: new Ext.tree.TreeLoader({ //读取远程数据
+					dataUrl:'05_tree_demo3.json'
+				})
+			});
+			Ext.onReady(function(){
+				tree.render();
+			});
+		</script>
+	</head>
+	<body>
+		<p>demo3:本例在本地打开，不要放服务器上打开，否则找不到资源</p>
+		<p>为什么第一个节点会无限展开下去，是由于每点击一个节点，它会通过dataUrl去寻找下一个节点是什么，我们现在直接指定的json文件，
+		所以会一直重复下去。</p>
+		<div id="tree3"></div>
+	</body>
+</html>

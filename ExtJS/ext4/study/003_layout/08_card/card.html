@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css"/>
+		<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Ext.onReady(function(){
+				/*
+				 * card布局
+				 * 简介：也称“卡牌布局”、“卡片式布局”。该布局最TMD麻烦了。这种布局用来管理多个子组件，并且
+				 * 在任何时刻只能显示一个子组件。这种布局最常用的情况是向导模式，也就是我们所说的分步提交。
+				 * 
+				 * 注意：由于此布局本身不提供分步导航功能，所以需要用户自己开发该功能。可以通过调用 setActiveItem( ) 
+				 * 函数来实现跳转。由于只有一个面板处于显示状态，那么在初始时，我们可以使用 activeItem： 属性来指定某
+				 * 一个面板的显示。对了，如果Ext-4 之后的版本就不是这样操作了。
+				 */
+				// card布局所需要的跳转方法-setActiveItem  
+				var navigate = function(panel, direction){
+    				// 此程序可以包含一些控制导航步骤的必要业务逻辑. 比如调用setActiveItem, 管理导航按钮的状态,
+				    // 处理可能出现的分支逻辑, 处理特殊操作像取消或结束等等. 一个完整的向导页, 对于复杂的需求
+				    // 实现起来可能也会相当复杂, 在实际的程序中通常应该以继承CardLayout的方式来实现. 
+    				var layout = panel.getLayout();
+				    layout[direction]();
+				    Ext.getCmp('move-prev').setDisabled(!layout.getPrev());
+				    Ext.getCmp('move-next').setDisabled(!layout.getNext());
+				};
+
+				Ext.create('Ext.panel.Panel', {
+				    title: 'Example Wizard',
+				    width: 300,
+				    height: 200,
+				    layout: 'card',
+				    bodyStyle: 'padding:15px',
+				    defaults: {
+				        // 应用到所有子面板
+				        border: false
+				    },
+				    // 这里仅仅用几个按钮来示例一种可能的导航场景.
+				    bbar: [
+				        {
+				            id: 'move-prev',
+				            text: 'Back',
+				            handler: function(btn) {
+				                navigate(btn.up("panel"), "prev");
+				            },
+				            disabled: true
+				        },
+				        '->', // 一个长间隔, 使两个按钮分布在两边
+				        {
+				            id: 'move-next',
+				            text: 'Next',
+				            handler: function(btn) {
+				                navigate(btn.up("panel"), "next");
+				            }
+				        }
+				    ],
+				    // 布局下的各子面板
+				    items: [{
+				        id: 'card-0',
+				        html: '<h1>Welcome to the Wizard!</h1><p>Step 1 of 3</p>'
+				    },{
+				        id: 'card-1',
+				        html: '<p>Step 2 of 3</p>'
+				    },{
+				        id: 'card-2',
+				        html: '<h1>Congratulations!</h1><p>Step 3 of 3 - Complete</p>'
+				    }],
+				    renderTo: Ext.getBody()
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<dvi id="cardDiv"></dvi>
+	</body>
+</html>

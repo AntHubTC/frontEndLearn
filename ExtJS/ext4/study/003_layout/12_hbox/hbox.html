@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css"/>
+		<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Ext.onReady(function(){
+				/*
+				 * hbox 布局
+				 * 简介：也称“水平布局”。horizontal box ，水平方向的分列显示。和 vbox 类似，有flex 属性。
+				 */
+				var hbox = new Ext.Panel({  
+			       renderTo: 'hboxDiv',  
+			       layout: {  
+			           type: 'hbox',  
+			           align: 'stretch'  
+			       },  
+			       width: 500,  
+			       height: 300,  
+			       items: [{  
+			           title: 'panel-1', html: 'flex:1', flex: 1  
+			       }, {  
+			           title: 'panel-2', html: 'height:150', width: 150  
+			       }, {  
+			           title: 'panel-3', html: 'flex:2', flex: 2  
+			       }]  
+			   });
+			});
+		</script>
+	</head>
+	<body>
+		<div id="hboxDiv"></div>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css"/>
+		<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Ext.onReady(function(){
+				/*
+				 * column 布局
+				 *     简介：也称“列布局”。该布局把整个容器组件看成一列,然后往里面放入子元素的时候,可以通过
+				 * 子元素制定columnWidth和width来制定列的宽度,columnWidth是按百分比来制定列的宽度,width是
+				 * 按照绝对像素来制定列的宽度。在实际应用中可以两种混合使用。
+				 *     注意：该布局的子面板的所有columnWidth值必须在0~1之间或者是百分比。columnWidth值的总
+				 * 和应该为1，即100%。另外，如果任何子面板没有指定columnWidth值，那么它将占满剩余的空间。
+				 */
+				
+				var columnPanel = new Ext.Panel({  
+			       renderTo: 'columnDiv',  
+			       layout: 'column',  
+			       width: 500,  
+			       height: 300,  
+			       items: [{  
+			           title: 'Width = 25%',  
+			           columWidth: .25,  
+			           html: '111111111111'  
+			       }, {  
+			           title: 'Width = 75%',  
+			           columnWidth: .75,  
+			           html: '111111111111'  
+			       }, {  
+			           title: 'Width = 200px',  
+			           width: 200,  
+			           html: '111111111111'  
+			       }]  
+			   });
+			});
+		</script>
+	</head>
+	<body>
+		<div id="columnDiv"></div>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>case01</title>
+	<link rel="stylesheet" type="text/css" href="../../js/ext4.2/resources/css/ext-all.css"/>
+	<script src="../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		Ext.onReady(function(){
+			//因为IE6和IE8不支持这样的格式，所以要给它指定一个图片
+			if(-1 != Ext.BLANK_IMAGE_URL.indexOf("data:image")){
+				Ext.BLANK_IMAGE_URL = "../../js/ext4.2/resources/ext-theme-classic-sandbox/images/tree/s.gif"
+			}
+			Ext.MessageBox.alert("title", "Hello World!");
+			console.info(Ext.BLANK_IMAGE_URL);
+			
+			console.info(1);
+		});
+		
+		Ext.onReady(function(){
+			console.info(2);
+		});
+	</script>
+</head>
+<body>
+</body>
+</html>

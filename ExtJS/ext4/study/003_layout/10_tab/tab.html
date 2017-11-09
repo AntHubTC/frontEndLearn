@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css"/>
+		<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Ext.onReady(function(){
+				/*
+				 * tab 布局
+				 * 
+				 * 简介：也称“分页布局”、“标签布局”。
+				 * 注意：码字好累，这个布局你懂得，不多说了。
+				 */
+				var tabPanel = new Ext.TabPanel({  
+			      renderTo: 'tabDiv',  
+			      width: 500,  
+			      height: 300,  
+			      activeTab: 0, // 默认显示第一个Tab的内容  
+			      defaults: {  
+			          autoScroll: true  
+			      },  
+			      items: [{  
+			          title: 'Tab-0',  
+			          html: "第一个Tab的内容"  
+			      }, {  
+			          title: 'Tab-1',  
+			          html: '我是另一个Tab',  
+			      }, {  
+			          title: 'Tab-2',  
+			          html: '这是一个可以关闭的Tab',  
+			          closable: true  
+			      }]  
+			  });
+			});
+		</script>
+	</head>
+	<body>
+		<div id="tabDiv"></div>
+	</body>
+</html>

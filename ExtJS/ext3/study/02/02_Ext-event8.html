@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--
+			本实例讲述了在ext中处理mousewheel事件
+		-->
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../../ext/resources/css/ext-all.css"/>
+		<script src="../../ext/adapter/ext/ext-base-debug.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../ext/ext-all-debug.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			Ext.onReady(function(){
+				Ext.get("test").on("mousewheel", function(evt){
+					var delta = evt.getWheelDelta();
+					
+					var x = this.getX();
+					var width = this.getWidth();
+					this.setX(x - delta*8);
+					this.setWidth(width + delta*16);
+					
+					//通过this.dom.style.borderRadius第一次获取到的值是空的，什么都没有。
+					if(!this.dom.style.borderRadius){
+						this.dom.style.borderRadius = "20px";
+					} else {
+						var borderRadius = parseInt(this.dom.style.borderRadius) + delta*2;
+						this.dom.style.borderRadius = borderRadius + "px";	
+					}
+				});
+			});
+		</script>
+		<style type="text/css">
+			#test{
+				background-color: #00ff00;
+				position: relative;
+				left: 500px;
+				top: 70px;
+				border: solid 1px black;
+				width: 170px;
+				height: 170px;
+				border-radius: 20px 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="test">
+		</div>
+	</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--
+			本例使用的lambda表达式，可能有些浏览器还不支持，不是Ext本身造成的。
+			本例演示了ext中事件复合参数delay和buffer的差别
+			delay:仅仅是延迟触发，可以连续点击加入事件队列；
+			buffer：延迟触发，并且在完成之前，不能将一个新的事件加入队列；
+			
+			buffer和delay的作用是相同的，都是延迟一段设计后执行相应的监听函数，
+			但是buffer会创建一个Ext.util.DelayTask对象，并把fn放入其中等待执行。
+			在等待的过程中，如果我们再次触发了事件，那么上次的任务就会被取消，并
+			把新的fn放入任务队列里，这样就可以保证fn不会重复执行多次。
+		-->
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../../ext/resources/css/ext-all.css"/>
+		<script src="../../ext/adapter/ext/ext-base-debug.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../ext/ext-all-debug.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//lambda 1加到100
+			console.info(((fun, num) => fun(fun, num))((fun, num) => num ? fun(fun, num-1) + num : num, 100));
+			var displayText = "";
+			var queue = [];
+			
+			function run() {//call调用不能写成Lambda表达式（箭头函数）
+				var head = !queue.length ? "&nbsp;" : queue.pop();
+				this.dom.innerHTML = displayText = head + displayText.substring(0, 
+					displayText.substring(displayText.length - 6) == "&nbsp;" ? 
+					displayText.length - 6 : 
+					displayText.length - 1);
+			}
+			Ext.onReady(() => {
+				var container = Ext.get("container");
+				container.slideIn();
+				displayText = container.dom.innerHTML;
+				setInterval(function(){
+					run.call(Ext.get("container"));
+				}, 100);
+				
+				Ext.get("btn-delay").on("click", (evt, dom, args) => {//Lambda表达式（箭头函数）
+					queue.push(args.defArg);
+				}, this, {
+					delay: 1000,
+					defArg: "*" //自定义参数
+				});
+				Ext.get("btn-buffer").on("click", (evt, dom, args) => {
+					queue.push(args.defArg);
+				}, this, {
+					buffer: 1000,
+					defArg: "+" //自定义参数
+				});
+			});
+		</script>
+		<style type="text/css">
+			body {
+				margin-top: 20px;
+				margin-left: 600px;
+				line-height: 30px;
+			}
+			#container {
+				border: #15171A solid 1px;
+				width: 135px;
+				height: 30px;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		<input id="btn-delay" type="button" value="btn-delay"/>
+		<input id="btn-buffer" type="button" value="btn-buffer"/>
+	</body>
+</html>

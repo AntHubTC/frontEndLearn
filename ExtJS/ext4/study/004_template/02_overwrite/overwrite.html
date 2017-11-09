@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css"/>
+		<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Ext.onReady(function(){
+				var tpl = new Ext.Template(//定义模板  
+				    '<table  border=1 cellpadding=0 cellspacing = 0>',  
+				    '<tr><td width=90>姓名</td><td width=90>{name}</td></tr>',  
+				    '<tr><td>年龄</td><td>{age}</td></tr>',  
+				    '<tr><td>性别</td><td>{sex}</td></tr>',  
+				    '</table>'  
+				);
+				var data = {name:'小王',age:25,sex:'男'};
+				//模板值和模板进行组合并将新生成的节点插入到id为'tpl-table'的元素中  
+				tpl.overwrite('tpl-box', data); 
+			});
+		</script>
+	</head>
+	<body>
+		<div id="tpl-box"></div>
+	</body>
+</html>

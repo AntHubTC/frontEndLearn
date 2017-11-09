@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--
+				本实例演示了在一个组件上绑定多个事件，并且每一个事件
+			处理上可以指定复合参数。
+		-->
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../../ext/resources/css/ext-all.css"/>
+		<script src="../../ext/adapter/ext/ext-base-debug.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../ext/ext-all-debug.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			function showMsg(msg){
+				Ext.get("showContainer").dom.innerText = msg;
+			}
+			Ext.onReady(function(){
+				Ext.get("btn-1").on({
+					"click":{	//单击
+						fn:function(){
+							showMsg("click");
+						}
+					},
+					"dblclick":{	//双击
+						fn:function(){
+							showMsg("dblclick");
+						}
+					},
+					"mouseover":{	//鼠标经过
+						fn:function(){ //fn要执行的函数
+							showMsg("mouseover");
+						},
+						single:true,	//出现该事件只处理一次
+						buffer: 500		//延迟触发
+					}
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<input id="btn-1" type="button" value="btn-1"/><br />
+		<div id="showContainer">
+			
+		</div>
+	</body>
+</html>

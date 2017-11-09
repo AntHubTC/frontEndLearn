@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--
+			
+		-->
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../../ext/resources/css/ext-all.css"/>
+		<script src="../../ext/adapter/ext/ext-base-debug.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../ext/ext-all-debug.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			Ext.onReady(function(){
+				//开启提示功能
+				Ext.QuickTips.init();
+				
+				var tree = new Ext.tree.TreePanel({
+					renderTo: Ext.getBody(),
+					title:"树标题",
+			        root: {
+			            text: 'Root',
+			            expanded: true, //是否展开
+//			            icon:"testIcon.png", //指定图标图片
+						iconCls:"testIconCls",//指定图标样式
+						qtip:'我是根节点提示信息', //设置提示信息
+			            children: [
+			            	{
+				                text: '子节点1',
+				                qtip:'我是提示信息', //设置提示信息
+				                leaf: false,
+				                children: [{
+						                text: '子节点1-1',
+						                qtip: '子节点1-1',
+						                leaf: true 
+						            }, {
+						                text: '子节点1-2',
+						                qtip: '带提示信息的节点',
+						                leaf: true
+					            }]
+				            }, {
+				                text: '带超链接的节点1',
+				                leaf: true,
+				                href:'http://www.baidu.com/' //链接会在本页面打开
+				            }, {
+				                text: '带超链接的节点2',
+				                leaf: true,
+				                 href:'http://www.baidu.com/', 
+				                hrefTarget:'_blank' //设置在新的页面打开该节点
+				            }
+				        ]
+			        }
+		        });
+		        var contextMenu = new Ext.menu.Menu({
+		        	id:"contextMenu1",
+		        	items:[{
+		        		text:"有本事点我哦！~",
+		        		listeners : {
+		        			"click" : function(){
+		        				alert("我被击中了，啊。。。");
+		        			}	
+		        		}
+		        	},{
+		        		text:"功能开发中！~",
+		        		listeners : {
+		        			"click" : function(){
+		        				
+		        			}	
+		        		}
+		        	}]
+		        });
+		        tree.on("contextmenu", function(node, e){
+		        	e.preventDefault();
+		        	node.select();
+		        	contextMenu.showAt(e.getXY());
+		        });
+			});
+		</script>
+		<style type="text/css">
+			.testIconCls{
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		
+	</body>
+</html>

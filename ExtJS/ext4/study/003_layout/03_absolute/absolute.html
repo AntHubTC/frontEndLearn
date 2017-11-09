@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>absolute</title>
+		<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css"/>
+		<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Ext.onReady(function(){
+				/*
+				 * 也称“绝对定位布局”。该布局使用很简单粗暴，直接给出其x、y值来定位即可。
+				 * 注意：x、y值是相对其父容器而言，从左上角（0,0）开始计算。
+				 */
+				var absolutePanel = new Ext.Panel({  
+			       renderTo: 'absoluteDiv',  
+			       layout: 'absolute',  
+			       title: 'Absolute Layout',  
+			       width: 500,  
+			       height: 300,  
+			       items: [{  
+			           title: 'panel-1',  
+			           x: 50,  
+			           y: 50,  
+			           html: 'x:50,y:50'
+			       }, {  
+			           title: 'panel-2',  
+			           x: 100,  
+			           y: 100,  
+			           html: 'x:100,y:100',  
+			       }]  
+			   });
+			});
+		</script>
+	</head>
+	<body>
+		<div id="absoluteDiv"></div>
+	</body>
+</html>

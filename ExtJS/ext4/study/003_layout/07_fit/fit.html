@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css"/>
+		<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Ext.onReady(function(){
+				/*
+				 * fit布局
+				 * 简介：也称“自适应布局”。子元素将自动填满整个父容器。。
+				 * 注意：在fit布局下，对其子元素设置宽度是无效的。如果在fit布局中放置了多个组
+				 * 件，则只会显示第一个子元素。
+				 */
+				var fitPanel = new Ext.Panel({  
+			       renderTo: 'fitDiv',  
+			       layout: 'fit',  
+			       width: 500,  
+			       height: 300,  
+			       items: [{  
+			           title: 'Fit Panel',  //只会显示第一个
+			           html: '111111111111'  
+			       },{  
+			           title: 'Fit Panel',  
+			           html: '222222222222'  
+			       }]  
+			   });
+			});
+		</script>
+	</head>
+	<body>
+		<div id="fitDiv"></div>
+	</body>
+</html>

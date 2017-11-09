@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!--
+		本例将Ext-event4.html中的代码进行浓缩更规范
+	-->
+	<meta charset="UTF-8" />
+	<title>事件拦截器</title>
+	<link rel="stylesheet" type="text/css" href="../../ext/resources/css/ext-all.css"/>
+	<script src="../../ext/adapter/ext/ext-base-debug.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../ext/ext-all-debug.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		function sleep(num){
+			for(var i = 0;i < num*1000; i+=2){
+				i--;
+			}
+		}
+		function showMsg(msg){
+			Ext.getDom("showContainer").innerText = msg;
+		}
+	
+		function FormManager(){
+			this.addEvents("submit", "validate");
+		}
+		Ext.extend(FormManager, Ext.util.Observable, {
+			valid: false, //默认表单未验证通过
+			submitHanlder: function(){
+//				console.info(this);
+				console.info("表单提交中...");
+				//...
+				showMsg("表单已经提交！~");
+				console.info("表单已经提交！~");
+			},
+			validateHanlder: function(){
+//				console.info(this);
+				this.valid = false;
+				console.info("valid before:"+this.valid);
+				sleep(100)//起延迟作用
+				console.info("o");
+				//表单验证
+				var name = Ext.get("txt_name").getValue();
+				this.valid = !!name;
+				console.info("valid after:"+this.valid);
+				return !!name;
+			},
+			capture:function(evtName){
+				if(this[evtName+"Capture"]) return this[evtName+"Capture"]();
+			},
+			submitCapture:function(){
+				console.info("进入submit事件拦截器");
+				//打出的结果先是o后是k，证明触发事件不是异步的。
+				var result = this.fireEvent("validate");//触发事件可以返回一个boolean值
+				console.info("触发事件返回结果："+result);
+				console.info("k");
+				if(!result) {
+					showMsg("表单未验证通过");
+					console.info("拦截器发现表单未验证通过，不允许表单提交。");
+				}
+				return result;
+			}
+		});
+		Ext.onReady(function(){
+			var formManager = new FormManager();
+			formManager.on("submit", formManager.submitHanlder); //设置监听处理器
+			formManager.on("validate", formManager.validateHanlder); //设置监听处理器
+			Ext.util.Observable.capture(formManager, formManager.capture); //设置拦截器
+			
+			Ext.get("btn-submit").addListener("click", function(){
+				formManager.fireEvent("submit");
+			});
+		});
+	</script>
+</head>
+<body>
+	<input id="txt_name" type="text" />
+	<input id="btn-submit" type="button" value="提交"/><br />
+	<div id="showContainer">
+		
+	</div>
+</body>
+</html>

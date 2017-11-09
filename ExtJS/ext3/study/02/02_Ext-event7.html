@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--
+			
+		-->
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../../ext/resources/css/ext-all.css"/>
+		<script src="../../ext/adapter/ext/ext-base-debug.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../ext/ext-all-debug.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			function showMsg(msg){
+				Ext.getDom("showContainer").innerText += msg + "\n";
+			}
+			Ext.onReady(function(){
+				Ext.get(document.body).on("keypress", function(evt, ele, arg3){
+					console.info("arg1:",evt);
+					console.info("arg2:",ele);
+					console.info("arg3:",arg3);
+					
+					//获取浏览器原生事件对象
+					var bowerEvt = evt.browserEvent;
+					
+					showMsg("key:"+evt.getKey());
+					showMsg("charCode:"+evt.getCharCode());
+					
+					console.info("RelatedTarget:"+evt.getRelatedTarget());
+					
+					if(evt.getCharCode() == evt.SPACE){
+						Ext.Msg.alert("info","你按下了空格键");
+					}
+					
+					evt.preventDefault();
+				});
+			});
+		</script>
+	</head>
+	<body>
+		请按键
+		<div id="showContainer">
+		
+		</div>
+	</body>
+</html>

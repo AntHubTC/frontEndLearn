@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Template的使用----append方法 </title>
+		<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css"/>
+		<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Ext.onReady(function(){
+				 var tpl = new Ext.Template(//定义模板  
+				    '<table  border=1 cellpadding=0 cellspacing = 0>',  
+				    '<tr><td width=90>姓名</td><td width=90>{0}</td></tr>',  
+				    '<tr><td>年龄</td><td>{1}</td></tr>',  
+				    '<tr><td>性别</td><td>{2}</td></tr>',  
+				    '</table>'  
+				);
+				var data = ['小王', 25, '男'];
+				
+				/*
+				 * append( String/HTMLElement/Ext.Element el, Object/Array values, Boolean returnElement ) : HTMLElement/Ext.Element
+				 * 应用提供的values值到模板，并添加新节点(s)到指定的el。
+				 * 
+				 */
+				//模板值和模板进行组合并将新生成的节点插入到id为'tpl-box'的元素中  
+				tpl.append("tpl-box", data);
+			});
+		</script>
+	</head>
+	<body>
+		<div id="tpl-box"></div>
+	</body>
+</html>

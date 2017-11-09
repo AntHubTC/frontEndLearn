@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>border</title>
+		<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css"/>
+		<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Ext.onReady(function(){
+				Ext.QuickTips.init();//启用标签的data-qtip提示
+				
+				/*
+				 *     简介：border布局也称“边界布局”、“方位布局”。该布局把容器分为东、南、西、北、中五个区域,
+				 * 分别由east、south、west、north、center表示。我们需要在items中使用region参数来给它定位。
+				 *     注意：north和south部分只能设置高度（height），west和east部分只能设置宽度（width）。ce
+				 * nter区域必须有，且它的大小是在其他4个部分设置好以后自动计算出来的，所以不能为它指定宽度值或
+				 * 高度值。
+				 */
+				var borderPanel = new Ext.Panel({  
+			       renderTo: 'borderDiv',  
+			       layout: 'border',  
+			       tltle: 'Border Layout',
+			       height: 600,
+			       renderTo: Ext.getBody(),
+			       defaults: {  
+			           collapsible: true, // 支持该区域的展开和折叠  
+			           split: true, // 支持用户拖放改变该区域的大小  
+			           bodyStyle: 'padding:15px'  
+			       },  
+			       items: [{  
+			           title: 'Footer-s',  
+			           region: 'south',  
+			           height: 100,  
+			           minSize: 75,  
+			           maxSize: 250,  
+			           html: '这是南边区域 south'  
+			  
+			       }, {  
+			           titlr: 'Main Content-c',  
+			           region: 'center',  
+			           collapsible: false,  
+			           html: '这是中间区域 center'  
+			       }, {  
+			           title: 'Navigation-w',  
+			           region: 'west',  
+			           width: 150,  
+			           minSize: 100,  
+			           maxSize: 250,  
+			           html: '这是西边区域 west'  
+			       }, {  
+			           title: 'North',  
+			           region: 'north',  
+			           height: 100,  
+			           html: '这是北边区域 north'  
+			       }, {  
+			           title: 'East',  
+			           region: 'east',  
+			           width: 150,  
+			           html: '这是东边区域 east'  
+			       }]  
+			   });
+			})
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

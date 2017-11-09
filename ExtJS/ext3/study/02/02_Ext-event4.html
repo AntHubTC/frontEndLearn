@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!--
+		本例演示事件拦截函数capture的使用
+	-->
+	<meta charset="UTF-8" />
+	<title>事件拦截器</title>
+	<link rel="stylesheet" type="text/css" href="../../ext/resources/css/ext-all.css"/>
+	<script src="../../ext/adapter/ext/ext-base-debug.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../ext/ext-all-debug.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		function sleep(num){
+			for(var i = 0;i < num*1000; i+=2){
+				i--;
+			}
+		}
+		function showMsg(msg){
+			Ext.getDom("showContainer").innerText = msg;
+			//相当于
+//			Ext.get("showContainer").dom.innerText = msg;
+		}
+	
+		function FormManager(){
+			this.addEvents("submit", "validate");
+// ext的构造类不允许下面这种return写法
+//			return {
+//				haha:function(){
+//					console.info("haha");
+//				}
+//			}
+		}
+		Ext.extend(FormManager, Ext.util.Observable, {
+			valid: false, //默认表单未验证通过
+			submit: function(){
+				console.info("表单提交中...");
+			}
+		});
+		Ext.onReady(function(){
+			var formManager = new FormManager();
+			formManager.on("submit", function(){
+				this.submit();
+				showMsg("表单已经提交！~");
+				console.info("表单已经提交！~");
+			}, formManager);
+			formManager.on("validate", function(){
+				formManager.valid = false;
+				console.info("valid before:"+formManager.valid);
+				sleep(100)//起延迟作用
+				console.info("o");
+				//表单验证
+				var name = Ext.get("txt_name").getValue();
+				formManager.valid = !!name;
+				console.info("valid after:"+formManager.valid);
+				return !!name;
+//				return name;
+			});
+			//拦截器不要写到submit的事件处理中, 也不要写到下面click的事件处理中，
+			//因为单击一次按钮就会增加一个拦截器，这样同样的拦截器会被执行很多次。
+			Ext.util.Observable.capture(formManager, function(evtsName){
+				console.info("capture1");
+				if(!!(evtsName.indexOf("submit")+1)){
+					console.info("进入submit事件拦截器");
+					//打出的结果先是o后是k，证明触发事件不是异步的。
+					var result = formManager.fireEvent("validate");//触发事件可以返回一个boolean值
+					console.info("触发事件返回结果："+result);
+					console.info("k");
+					if(!result) {
+						showMsg("表单未验证通过");
+						console.info("拦截器发现表单未验证通过，不允许表单提交。");
+					}
+					return result;
+//					return formManager.valid;
+				}
+				return true;
+			});
+			//我们可以为一个对象设置多个capture拦截器，这写拦截器最终构成一个处理链，其中任何一个拦截器返回false都将不继续往下执行。
+			//根据实践得出，后定义的拦截器会被先执行，本实例中拦截器执行顺序是capture2->capture1
+			Ext.util.Observable.capture(formManager, function(evtsName){
+				console.info("capture2");
+				return true;
+			});
+			Ext.get("btn-1").addListener({
+				"click" : {
+					fn : function (){
+//						extObj.fireEvent("a","b"); fireEvent能够进行同时触发多个事件
+						formManager.fireEvent("submit");
+					}
+				}
+			});
+			Ext.get("btn-2").on("click", function(){
+				//移除对象上绑定的所有的拦截器
+				console.info(Ext.util.Observable.releaseCapture);// function(o)
+				Ext.util.Observable.releaseCapture(formManager);
+				//移除了拦截器之后，我们将看见不再进入拦截器
+			});
+			Ext.get("btn-3").on("click", function(){
+				//如果只想暂时的通过一次设置来暂停某个对象中所有事件的发生，可以考虑使用suspendEvent函数
+				formManager.suspendEvents();
+				/*
+				 * 通过运行结果得出一个结果：
+				 * 通过suspendEvents虽然能够暂停对象上的事件，但是不能停止绑定到对象上的拦截器的调用。
+				 */
+			});
+			Ext.get("btn-4").on("click", function(){
+				//恢复通过suspendEvents暂停的所有事件，通过resumeEvents函数
+				formManager.resumeEvents();
+			});
+			Ext.get("btn-5").on("click", function(){
+				//删除掉所有的监听器
+				formManager.purgeListeners();
+				//和suspendEvents一样，不能影响到拦截器，拦截器照样执行。
+			});
+		});
+	</script>
+</head>
+<body>
+	<input id="txt_name" type="text" />
+	<input id="btn-1" type="button" value="提交"/>
+	<input id="btn-2" type="button" value="releaseCapture"/>
+	<input id="btn-3" type="button" value="suspendEvent"/>
+	<input id="btn-4" type="button" value="resumeEvent"/>
+	<input id="btn-5" type="button" value="purgeListeners"/><br />
+	<div id="showContainer">
+		
+	</div>
+</body>
+</html>

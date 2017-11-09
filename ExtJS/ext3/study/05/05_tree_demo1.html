@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--
+			
+		-->
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../../ext/resources/css/ext-all.css"/>
+		<script src="../../ext/adapter/ext/ext-base-debug.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../ext/ext-all-debug.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			Ext.onReady(function(){
+				var tree = new Ext.tree.TreePanel({
+					el:"tree1"
+				});
+				var root = new Ext.tree.TreeNode({
+					text:"根节点"
+				});
+				var node1 = new Ext.tree.TreeNode({
+					text:"节点1"
+				});
+				var node2 = new Ext.tree.TreeNode({
+					text:"节点2"
+				});
+				var node3 = new Ext.tree.TreeNode({
+					text:"节点3"
+				});
+				tree.setRootNode(root);
+				node1.appendChild(node2);
+				root.appendChild(node1);
+				root.appendChild(node3);
+				
+				tree.render();//渲染
+				
+				//第一个参数：是否展开改节点的子节点
+				//第二个参数：是否有动画效果
+				root.expand(true, true); //展开必须在渲染之后
+			});
+		</script>
+	</head>
+	<body>
+		<p>demo1</p>
+		<div id="tree1"></div>
+	</body>
+</html>

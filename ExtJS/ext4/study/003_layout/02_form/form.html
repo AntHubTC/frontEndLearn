@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>form</title>
+		<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css"/>
+		<style type="text/css">
+			#formDiv {
+				margin: 30px;
+			}
+		</style>
+		<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Ext.onReady(function(){
+				/*
+				 *     简介：form布局也称“表单布局”。是一种专门用于管理表单中输入字段的布局,这种布局在程序中主要
+				 * 用于创建表单字段或表单元素使用。
+				 *     注意：它可以是一种布局样式，也可以是一个组件。也就是说既可以 layout : ‘form’ 也可以 new E
+				 * xt.FormPanel 来使用它。区别就是对于 Panel 我们配置了 layout 为 form ，而对于 FormPanel 它默认
+				 * 的布局就是form布局，所以对于习惯于用 Panel 而不习惯用 FormPanel 的朋友尽管用Panel,但是一定要考
+				 * 虑好提交的问题，如果使用 panel 的话，要做提交可是要一个个获得控件的值的，而 FromPanel 则不需要。
+				 */
+				var formPanel = new Ext.FormPanel({  
+			       renderTo: "formDiv",  
+			       width: 300,  
+			       height: 150,  
+			       labelWidth: 80,  
+			       defaultType: 'textfield',  
+			       frame: true,  
+			       items: [{  
+			           fieldLabel: '用户名',  
+			           name: 'username'  
+			       }, {  
+			           fieldLabel: '密码',  
+			           name: 'password'  
+			       }, {  
+			           fieldLabel: '日期',  
+			           name: 'date',  
+			           xtype: 'datefield',  
+			       }]  
+			   });
+			});
+		</script>
+	</head>
+	<body>
+		<div id="formDiv"></div>
+	</body>
+</html>

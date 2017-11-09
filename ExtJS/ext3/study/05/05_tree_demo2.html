@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--
+			
+		-->
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../../ext/resources/css/ext-all.css"/>
+		<script src="../../ext/adapter/ext/ext-base-debug.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../ext/ext-all-debug.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			Ext.onReady(function(){
+				var tree = new Ext.tree.TreePanel({
+					renderTo: "tree2", //使用renderTo就可以不用调用render函数来渲染，直接渲染
+					root: new Ext.tree.TreeNode({
+						text:"根节点"
+					})
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<p>demo2</p>
+		<div id="tree2"></div>
+	</body>
+</html>

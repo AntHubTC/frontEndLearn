@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css"/>
+		<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Ext.onReady(function(){
+				/*
+				 * accordion 布局
+				 * 简介：也称“可折叠布局”、“手风琴布局”。该布局的容器的子元素是可折叠的形式表现。
+				 * 
+				 * 注意：只有Ext.Panels 和所有Ext.panel.Panel 子项，才可以使用accordion布局。
+				 */
+				var accordionPanel = new Ext.Panel({  
+			       renderTo: 'accordionDiv',  
+			       layout: 'accordion',  
+			       title: 'Accordion Layout',  
+			       width: 500,  
+			       height: 300,  
+			       layoutConfig: {animate: false},  
+			       items: [{  
+			           title: 'panel-1', html: 'hello accordion'  
+			       }, {  
+			           title: 'panel-2', html: '<p>段落</p>'  
+			       }, {  
+			           title: 'panel-3', html: '<a href="https://www.baidu.com" target="_blank">百度一下，你就知道</a>'  
+			       }, {  
+			           title: 'panel-4', html: '<button>按钮</button>'  
+			       }]  
+			   });
+			});
+		</script>
+	</head>
+	<body>
+		<div id="accordionDiv"></div>
+	</body>
+</html>

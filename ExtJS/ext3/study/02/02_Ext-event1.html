@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--
+			本实例演示了ext中自定义实现
+		-->
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../../ext/resources/css/ext-all.css"/>
+		<script src="../../ext/adapter/ext/ext-base-debug.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../ext/ext-all-debug.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var Person = function(name){
+				this.name = name;
+				//为该对象添加了三个事件
+				this.addEvents("walk","eat", "sleep");
+			}
+			//通过继承Ext.util.Observable来让一个“类”支持Ext的事件
+			Ext.extend(Person, Ext.util.Observable, {
+				info: function(event){
+					return this.name + " is " + event + "ing.";
+				}
+			});
+			Ext.onReady(function(){
+				//创建实例
+				var zhangsan = new Person("zhangsan");
+				zhangsan.on('walk', function(){
+					console.info(zhangsan.info("walk"));
+					Ext.Msg.alert('event', zhangsan.name + "在走啊走啊！");
+				});
+				zhangsan.on('eat', function(breakFast, lunch, supper){
+					Ext.Msg.alert('event', zhangsan.name + "要吃" + breakFast + "," + 
+						lunch + "和" + supper);
+				});
+				//on是addListener的简写形式
+				zhangsan.addListener('sleep', function(time){
+					Ext.Msg.alert('event', zhangsan.name + "从" + time.format("H") + "点开始睡觉啦。");
+				});
+				var eatHandler = function(){
+					console.info('当当！~这里也会执行！');
+				};
+				zhangsan.on('eat', eatHandler);
+//				zhangsan.un('eat', eatHandler); //on 可以取消事件的处理
+				
+				Ext.get('walk').on("click", function(){
+					zhangsan.fireEvent('walk');//触发walk事件
+				});
+				Ext.get('eat').on('click', function(){
+					zhangsan.fireEvent('eat', '早餐', '午餐', '晚餐');//触发eat事件
+				});
+				Ext.get('sleep').on('click', function(){
+					zhangsan.fireEvent('sleep', new Date());//触发sleep事件
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<a id="walk" href="javascript:void(0)">walk</a><br />
+		<a id="eat" href="javascript:void(0)">eat</a><br />
+		<a id="sleep" href="javascript:void(0)">sleep</a><br />
+	</body>
+</html>

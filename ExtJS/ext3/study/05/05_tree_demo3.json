@@ -1,0 +1,10 @@
+[
+	{
+		"text":"not leaf",
+		"leaf":false   //必须指定，否则显示读取状态
+	},
+	{
+		"text":"is leaf",
+		"leaf":true
+	}
+]
