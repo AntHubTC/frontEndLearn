@@ -6,8 +6,9 @@
 img{
 	width: 150px;
 	height: 100px;
+	/*cubic-bezier http://www.jianshu.com/p/d999f090d333*/
 	transition: 0.5s width, 0.5s 0.5s height cubic-bezier(.83,.97,.05,1.77);
-	/*这其实是一种简写形式,完整写是这样:
+	/*锟斤拷锟斤拷实锟斤拷一锟街硷拷写锟斤拷式,锟斤拷锟斤拷写锟斤拷锟斤拷锟斤拷:
 	img{
 		width: 150px;
 		height: 100px;
