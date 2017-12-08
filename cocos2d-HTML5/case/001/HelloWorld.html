@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Cocos2d-JS</title>
+    <style>
+    	body, canvas, div {
+    		-webkit-user-select: none;
+    		-moz-user-select: none;
+    		-ms-user-select: none;
+    		user-select: none;
+    		-khtml-user-select: none;
+    		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    	}
+    </style>
+</head>
+<body>   
+    <canvas id="gameCanvas" width="800" height="450"></canvas>
+    <script src="../../js/cocos2d-js-v3.13-lite.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+          window.onload = function(){
+              cc.game.onStart = function(){
+                  //load resources
+                  cc.LoaderScene.preload(["HelloWorld.png"], function () {
+                  	  //创建场景
+                      var MyScene = cc.Scene.extend({
+                          onEnter:function () {
+                              this._super();
+                              //Returns the size of the WebGL view in points.
+                              var size = cc.director.getWinSize();
+                              console.info(size);
+                              
+                              var sprite = cc.Sprite.create("./res/HelloWorld.png");
+                              sprite.setPosition(size.width / 2, size.height / 2);
+                              sprite.setScale(0.8);//缩放比例
+                              this.addChild(sprite, 0);
+
+                              var label = cc.LabelTTF.create("Hello World", "Arial", 40);
+                              label.setPosition(size.width / 2, size.height / 2);
+                              this.addChild(label, 1);
+                          }
+                      });
+                      //导演运行场景
+                      cc.director.runScene(new MyScene());
+                  }, this);
+              };
+              cc.game.run("gameCanvas");
+          };
+    </script>
+</body>
+</html>

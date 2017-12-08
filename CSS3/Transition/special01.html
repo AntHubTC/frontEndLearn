@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Generator" content="EditPlus®">
+		<meta name="Author" content="">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title>Document</title>
+		<style type="text/css">
+			.item {
+				list-style-type: none;
+				display: block;
+				width: 40px;
+				height: 40px;
+				border: #18448E solid 1px;
+			}
+			.button-rotate:hover a{
+				-webkit-transform: rotate3d(0,0,1,0deg);
+				transform: rotate3d(0,0,1,0deg);
+				text-decoration: none;
+				opacity: 1\9;
+				filter: alpha(opacity=100)\9;
+			}
+			.button-rotate:hover a, .button-rotate:hover {
+				-webkit-transition-timing-function: ease-out;
+				transition-timing-function: ease-out;
+			}
+			.button-rotate a{
+				content:attr(data-text);
+				position:absolute;
+				top:0;
+				left:0;
+				width:100%;
+				height:100%;
+				line-height:48px;
+				font-size:12px;
+				font-weight:700;
+				color:#fff!important;
+				border-radius:3px;
+				background-color:#18448e;
+				text-decoration:none!important;
+				text-align:center;
+				-webkit-transform-origin:-50% 50%;
+				transform-origin:-50% 50%;
+				-webkit-transform:rotate3d(0,0,1,90deg);
+				transform:rotate3d(0,0,1,90deg);
+				-webkit-transition:-webkit-transform .3s ease-in;
+				transition:transform .3s ease-in;
+				opacity:0\9;
+				filter:alpha(opacity=0)\9
+			}
+			.button-rotate:hover a,.button-rotate:hover{
+				-webkit-transition-timing-function:ease-out;
+				transition-timing-function:ease-out;
+			}
+		</style>
+	</head>
+
+	<body>
+		<ul id="goTop" class="mod-sidebar">
+			<li class="item report button-rotate" data-text="举报">
+				<a href="http://report.12377.cn:13225/toreportinputNormal_anis.do">举报</a>
+			</li>
+			<li class="item qr-code button-rotate" data-text="二维码">
+				<a href="javascript:;">二维码</a>
+			</li>
+			<li class="item favorite button-rotate" data-text="收藏本站">
+				<a href="javascript:;">收藏本站</a>
+			</li>
+			<li class="item media button-rotate" data-text="传媒">
+				<a href="http://media.baidu.com">传媒</a>
+			</li>
+			<li class="item search button-rotate" data-text="搜索">
+				<a href="javascript:;">搜索</a>
+			</li>
+			<li class="item feedback button-rotate" id="feedbackbtn" data-text="用户反馈">
+				<a href="javascript:;">用户反馈</a>
+			</li>
+			<li class="item gotop">
+				<a id="gotop_btn" onclick="window.scroll(0, 0)"></a>
+			</li>
+			<li class="close-tip">收起<i class="arrow"></i></li>
+		</ul>
+	</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css"/>
+		<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//半角转化为全角
+			function ToDBC(txtstring) { 
+			    var tmp = ""; 
+			    for(var i=0;i<txtstring.length;i++) { 
+			        if(txtstring.charCodeAt(i)==32){ 
+			            tmp= tmp+ String.fromCharCode(12288); 
+			        } 
+			        if(txtstring.charCodeAt(i)<127){ 
+			            tmp=tmp+String.fromCharCode(txtstring.charCodeAt(i)+65248); 
+			        } 
+			    } 
+			    return tmp; 
+			}
+			//全角转换为半角
+			function ToCDB(str) { 
+			    var tmp = ""; 
+			    for(var i=0;i<str.length;i++){ 
+			        if (str.charCodeAt(i) == 12288){
+			            tmp += String.fromCharCode(str.charCodeAt(i)-12256);
+			            continue;
+			        }
+			        if(str.charCodeAt(i) > 65280 && str.charCodeAt(i) < 65375){ 
+			            tmp += String.fromCharCode(str.charCodeAt(i)-65248); 
+			        } 
+			        else{ 
+			            tmp += String.fromCharCode(str.charCodeAt(i)); 
+			        } 
+			    } 
+			    return tmp 
+			}
+			
+			/**
+			 * 解决内嵌javascript特殊代码的方法是将代码中的javascript void alert等替换为全角字符
+			 */
+			Ext.onReady(function(){
+				Ext.QuickTips.init();
+	            Ext.create("Ext.form.Panel", {
+	                title: "Ext.form.field.HtmlEditor示例",
+	                width: 600,
+	                frame: true,
+	                renderTo: Ext.getBody(),
+	                bodyPadding: 5,
+	                items: [{
+	                	name:"editor",
+	                    fieldLabel: "HTML字段",
+	                    xtype: "htmleditor",
+	                    height: 150,
+	                    width: 580,
+//	                    style: {
+//				            marginBottom: '10px'
+//				        }
+//	                    labelWidth: 70,
+	                    labelSeparator: "：",
+	                    createLinkText: "创建超链接",
+	                    defaultLinkValue: "http://",
+	                    enableAlignments: true,
+	                    enableColors: true,
+	                    enableFont: true,
+	                    enableFontSize: true,
+	                    enableFormat: true,
+	                    enableLinks: true,
+	                    enableLists: true,
+	                    enableSourceEdit: true,
+	                    fontFamilies: ["宋体", "隶书", "黑体", "微软雅黑", "华文细黑"]
+	                }],
+	                buttons:[{
+						text:'提交',
+						handler:function(){
+//							this.up("form").getForm().submit({
+//								params:{
+//									info:'age是隐藏字段'
+//								}
+//							});
+							console.info(this.up("form").getForm().getValues());
+						}
+					}]
+	            });
+			});
+		</script>
+	</head>
+	<body>
+	<a href="/view/csii/main/common/ib/sys/query/index.html"></a>
+	</body>
+</html>
