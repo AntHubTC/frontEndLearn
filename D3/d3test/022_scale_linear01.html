@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				/*
+				 * 数学上有函数的概念，不是编程中所说的函数，如线性函数、指数函数、对数函数等，
+				 * 而指的是一个量随着另一个量的变化而变化。例如线性函数：y=2x+1。
+				 * 该线性函数在二维坐标系中绘制出来的图形是一条直线，如果限制x的范围为[0,2],则
+				 * 可计算得到y的范围为[1,5]。x的范围[0,2]称为函数的定义域，y的范围称为该函数的
+				 * 值域；根据x计算得到y的方法称为对应法则。
+				 * 定义域、值域、对应法则称为函数的三要素。
+				 * 
+				 * 在数据可视化中，常需要像上述函数一样，将一个量转换为另一个量。D3提供了这样的转换方法，
+				 * 称为比例尺(scale)。本节中所说的定量比例尺，指当定义域是连续的情况。从0~2直接的所有值，
+				 * 称为连续的值；类似0、1、2这样独立的值，称为离散的值。
+				 * 
+				 * 为什么要用比例尺呢？假设一家公司一月份销售了100辆车，用100个像素长度的柱子表示；那么
+				 * 二月份销售了3000辆车呢，不可能用3000个像素，浏览器页面的长度可能也不够，这时候就要用
+				 * 到比例尺了。我们可以将数值取原来的十分之一来作为柱子的高度，文字标签还是用原来的数组。
+				 * 
+				 * D3中提供了很多比例尺，适用于各种计算。每个比例尺都需要指定一个domain（定义域）和range
+				 * （值域）。
+				 * 
+				 * d3.scale.linear() 创建一个线性比例尺。
+				 * linear(x) 输入一个在定义域内的值x，返回值域内对应的值。
+				 * linear.invert(y) 输入一个在值域内的值，返回定义域内对应的值。
+				 * linear.domain([numbers]) 设定或获取定义域。
+				 * linear.range([values]) 设定或获取值域
+				 * linear.rangeRound([values]) 代替range()使用的话，比例尺的输出值会进行四舍五入的运算，
+				 * 		结果为整数。
+				 * linear.clamp([boolean]) 默认被设置为false，当该比例尺接收一个超出定义域范围的值时，依
+				 * 		然能够按照同样的计算方法计算得到一个值，这个值可能是超出值域范围的。如果设置为true，
+				 * 		则任何超出值域范围的值，都会被收缩到值域范围内。
+				 * linear.nice([count]) 将定义域的范围扩展成比较理想的形式。例如，定义域为[0.500000543,0.899995435234],
+				 * 		则使用nice()之后，其定义域变为[0.5,0.9]。
+				 * inear.ticks([count]) 设定或获取定义域内具有代表性的值的数目。cout默认为10，如果定义域
+				 * 		为[0, 70],则该函数返回[0, 10, 20, 30, 40, 50, 60, 70]。如果count设置为3，则返回
+				 * 		[0,20,40,60]。该方法主要用于选取坐标轴刻度。
+				 *      从比例尺上的输入域的代表值返回约数。如果未指定count，则默认为10。返回的刻度值是均匀
+				 * 		间隔的，具有人类可读的值（如10的幂的倍数），并且保证是输入域的范围之内。刻度尺通常用
+				 * 		于显示参考线或刻度线，在与可视化数据一起使用。指定的计数是只是一个提示;规模可能取决于
+				 * 		输入域返回更多或更少的值。
+				 * linear.tickFormat(count,[format]) 用于设置定义域内具有代表性的值的表现形式，如显示到
+				 * 		小数后两位，使用百分位的形式显示，主要用于坐标轴上。
+				 */
+				
+				var linearScale = d3.scale.linear(); //创建一个线性比例尺
+				linearScale.domain([0, 500]); //定义域
+				linearScale.range([0, 100]); //值域
+				
+				console.info(linearScale(50)); //output:10
+				console.info(linearScale(250));//ouput:50
+				console.info(linearScale(450));//ouput:90
+//				linearScale.clamp(true);
+				console.info(linearScale(950));//如果linearScale.clamp(true);超出都会返回值域最大值100。如果没设置为true，返回150.
+				/*
+				 *  这段代码创建了一个线性比例尺，其定义域被设置为[0, 500],值域被设置为[0, 100]。该比例
+				 * 尺相当于数学中的y=(1/5)x,0小于等于x小于等于500
+				 */
+				console.info("invert:"+linearScale.invert(34));
+				
+				console.info(linearScale(13.3));
+				linearScale.rangeRound([0, 100]); //如果输出数值，如果希望对其进行四舍五入，要使用rangeRound()来设置。
+				console.info(linearScale(13.3));
+				
+				//如果定义域有很多的小数，可以使用nice()，定义域变成了比较工整的形式，但是并不是四舍五入。
+				linearScale.domain([0.12341, 1.3123]);
+				linearScale.nice();
+				console.info(linearScale.domain());
+				
+				linearScale.domain([-20, 20]);
+				linearScale.range([0, 100]);
+				var ticks = linearScale.ticks(5);
+				console.info("ticks", ticks);
+				
+				var tickFormat = linearScale.tickFormat(5, "+");
+				console.info(tickFormat);
+				for(var i = 0; i < ticks.length; i++){
+					//ticks数组中的每一个值，都使用一次tickFormat()函数
+					ticks[i] = tickFormat(ticks[i]);
+				}
+				console.info(ticks);
+			};
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

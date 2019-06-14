@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				/*
+				 * 量子比例尺(Quantize Scale)的定义域是连续的，值域是离散的，根据输入值的不同，
+				 * 结果是其对应的离散值。例如：
+				 * 		定义域：[0, 10]
+				 * 		值域:["red", "green", "blue", "yellow", "black"]
+				 * 使用量子比例尺后，定义域将被分隔成5段，每一段对应值域的一个值。[0,2)对应red，
+				 * 		[2,4)对应green，以此类推。
+				 * 
+				 * 因此，量子比例尺很适合处理类似“数值对应颜色”的问题。例如，要表示中国各省份
+				 * 		的GDP，数值越大，就用越深的颜色来表示。此时可以使用量子比例尺。
+				 */
+				var quantize = d3.scale.quantize(); //创建一个量子比例尺
+				quantize.domain([0, 10]); //设置定义域
+				quantize.range(["red", "green", "blue", "yellow", "black"]); //设置值域
+				
+				console.info(quantize(1));			//red
+				console.info(quantize(3));			//green
+				console.info(quantize(5.9999));		//blue
+				console.info(quantize(6));			//yellow
+				
+				
+			};
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

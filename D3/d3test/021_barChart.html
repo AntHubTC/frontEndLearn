@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/d3.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			div.container {
+				width: 600px;
+				height: 400px;
+				background-color: #ddd;
+				display: flex;
+				align-items: flex-end;
+				overflow: hidden;
+			}
+			div.bar-line {
+				--height: 1px;
+				display: inline-block;
+				width: 40px;
+				height: var(--height);
+				text-align: center;
+				color: white;
+				margin-right: 5px;
+				background-color: dodgerblue;
+				animation:bar-height-animate 1s;
+				-moz-animation:bar-height-animate 1s; /* Firefox */
+				-webkit-animation:bar-height-animate 1s; /* Safari and Chrome */
+				-o-animation:bar-height-animate 1s; /* Opera */
+			}
+			
+			@keyframes bar-height-animate
+			{
+				from {height:1px;}
+				to {height:var(--height);}
+			}
+			@-moz-keyframes bar-height-animate
+			{
+				from {height:1px;}
+				to {height:var(--height);}
+			}
+			@-webkit-keyframes bar-height-animate
+			{
+				from {height:1px;}
+				to {height:var(--height);}
+			}
+			@-o-keyframes bar-height-animate
+			{
+				from {height:1px;}
+				to {height:var(--height);}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+		</div>
+		<script type="text/javascript">
+			/*
+			 * 本例使用HTML的dom来实现柱形图
+			 * 
+			 * 本例用到的CSS3特性：
+			 *   1.flex布局
+			 *   2.CSS原生变量     在目前版本的ie和edge浏览器不支持，所以这个实例不能用这些浏览器。
+			 *   3.CSS动画
+			 */
+			var dataset = [20, 50, 60, 100, 25, 50, 38, 88, 55, 83, 140]
+			d3.select('div.container').selectAll('div')
+				.data(dataset)
+				.enter()
+				.append('div')
+				.attr('class', 'bar-line')
+				.style('--height', function(d) {
+					return (d*2) + 'px';
+				})
+				.text(function(d) {
+					return d;
+				})
+		</script>
+	</body>
+</html>
