@@ -1,0 +1,172 @@
+.link {
+	stroke: #000;
+	stroke-opacity: 0; /* 
+	marker-end: url(#end); */
+}
+
+marker#end {
+	fill: #999;
+	fill-opacity: 1;
+	stroke: #999;
+	stroke-opacity: 1;
+	stroke-width: 0.5px;
+}
+
+.searchbar {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
+.optioncontainer{
+	position: absolute;
+	top: 240px;
+	left: 18px;
+}
+.traceoption {
+	position: absolute;
+	top: 55px;
+	left: 18px;
+}
+
+.searchbar img {
+	cursor: pointer;
+	vertical-align: middle;
+	margin-left: 5px;
+}
+
+.searchbar img:hover {
+	opacity: 0.8;
+}
+
+.node {
+	stroke: #fff;
+	stroke-width: 1.5px;
+	stroke-opacity: 0.3;
+	fill-opacity: 0.3;
+}
+
+.nodetext {
+	position: absolute;
+	font-size: 12px;
+	font-style: italic;
+	color: #000;
+}
+
+div.tooltip {
+	position: absolute;
+	padding: 12px;
+	background-color: #fff;
+	color: #000;
+	font-size: 12px;
+	text-align: left;
+	border: 1px #ccc solid;
+	border-radius: 6px;
+	box-shadow: #333 2px 2px 4px;
+	line-height: 1.5
+}
+
+.loading {
+	color: #000;
+	font-size: 20px;
+	text-align: left;
+	line-height: 1;
+}
+
+div.pinned {
+	word-wrap: break-word;
+	word-break: normal;
+	max-width: 400px;
+	max-height: 300px;
+	overflow-y: auto;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+.pinned table, td, th {
+	border: 1px solid #666666;
+}
+
+.pinned table tr:nth-child(odd) {
+	background-color: #f1f1f1;
+}
+
+.pinned table tr:nth-child(even) {
+	background-color: #ffffff;
+}
+
+.pinned img {
+	cursor: pointer;
+}
+
+.pinned img:hover {
+	opacity: 0.8;
+}
+
+g {
+	
+}
+
+g.cell {
+	cursor: pointer;
+}
+
+g.cell:hover {
+	fill-opacity: 0.4;
+}
+
+g.cell.active:hover {
+	fill-opacity: 1;
+}
+
+g.cell text {
+	fill: black;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+g.cell.active text {
+	fill: #e8941a;
+}
+
+.legendSize circle {
+	/*        stroke: white;*/
+	fill: #999;
+	fill-opacity: 0.6;
+}
+
+.legendContainer>text {
+	font-size: 12px;
+}
+
+.legendContainer>text:nth-child(2) {
+	font-size: 12px;
+}
+
+.legendContainer {
+	padding: 0;
+}
+
+.activeNode {
+	cursor: pointer;
+}
+
+.baseNode {
+	stroke: #e8941a;
+	stroke-width: 3px;
+}
+
+body {
+	margin: 0;
+	font-size: 15px;
+	font-family: 'Microsoft YaHei';
+}
+
+polygon {
+	fill: none;
+	/*        fill: #1e252b;*/
+}

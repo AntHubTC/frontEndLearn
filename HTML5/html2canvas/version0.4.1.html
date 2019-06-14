@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="./js/html2canvas0.4.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function saveCaptureImg(){
+				var canvas = document.querySelector("canvas");
+				window.open(canvas.toDataURL("image/jpeg"));
+			}
+			window.onload = function(){
+//				html2canvas(document.querySelector("#capture"), {
+//                      useOverflow: true,
+//                      onpreloaded: function(){
+//                      },
+//                      onparsed: function(){
+//                      },
+//                      onrendered: function(canvas) {
+//                         document.body.appendChild(canvas);
+//                      }
+//                  });
+                    html2canvas(document.querySelector("#capture"), {
+                //Whether to allow cross-origin images to taint the canvas
+                allowTaint: true,
+                //Whether to test each image if it taints the canvas before drawing them
+                taintTest: false,
+                onrendered: function(canvas) {
+                	document.body.appendChild(canvas);
+//                  var img = canvas.toDataURL('image/jpeg', 1.0);
+                    //打印出来之后:data:image/jpeg;base64,/9j/4AAQSkZJRg....
+                    //可以通过chrome来查看
+//                  console.log(img);
+                }
+            });
+			}
+		</script>
+	</head>
+	<body>
+		<div id="capture">
+			<div>哈哈哈</div>
+			<svg width="200px" height="200px">
+				<circle r="20" cx="40" cy="40" fill="red"></circle>
+				<circle r="20" cx="80" cy="80" fill="red"></circle>
+			</svg>
+		</div>
+		<input type="button" value="保存" onclick="saveCaptureImg()"/>
+		<p>照片：</p>
+	</body>
+</html>

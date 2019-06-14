@@ -1,0 +1,2506 @@
+{
+  "CLOUD_RELATION": [
+    {
+      "elementId": "1001010100000004_001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "Y01020334",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "10010904",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "Y01020342",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "1001010100000004_001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "Y01020368",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "1001010100000004_001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "Y01020408",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "10000106",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000010100000001_001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "10000204",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000020100000001_001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "10000208",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000020100000001_001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "1000040o",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000040n00000001_001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "1000040n00000001_001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000040n00000002_001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "1000040100000001_001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000040n00000002_001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "1000040i",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000040w00000001_001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "1000040j",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000040w00000001_001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "1000040t",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000040w00000001_001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "10000412",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000041100000001_001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "10000417",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000041600000001_001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "1000041k",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000041k00000001_001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101030b",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101030800000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101030d",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101030d00000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101030h",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101030d10000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101030110000002",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101030110000003",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101030810000001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101030110000003",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C1010309",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101030850000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101030150000002",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101030150000003",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101030a",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101030860000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101030g",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101030d60000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C1010405",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101040100000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101040a",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101040800000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101040d",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101040d00000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101040800000001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101040100000003",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C1010701",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101070100000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C1010706",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101070500000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101070e",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101070b00000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101070h",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101070b00000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101070l",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101070l00000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101070n",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101070l00000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101070o",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101070l00000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101070i00000001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101070100000002",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101070l00000001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101070100000002",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C1010713",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101070s00000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101071c",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101070s00000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101071g",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101071e00000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101071h",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101071e00000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101071k",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101071k00000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101071m",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101071k00000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101071q",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101071o00000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101071w",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101071u00000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101071o00000001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101070r00000002",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C101070r00000002",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101070100000003",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C1010801",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101080100000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "C1010509",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101050700000001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150030050",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010104005",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150050017",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010102010",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150050016",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010102008",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150010010",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010103003",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150030023",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010102015",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150050008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010102016",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150030021",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010106007",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150110003",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010109003",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150030018",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010106003",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150040001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010104004",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150010008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010109005",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150020007",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010109004",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150030046",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010109004",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150030002",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010105002",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150030050",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010104012",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150030049",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010109016",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150030004",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M0155002001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150030020",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M0155002001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150090003",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M0155001010",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150030021",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M0155004001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150030025",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M0155004001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150100005",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M0155004001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150050004",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M0155005001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150010006",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M0155005001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150030038",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010104003",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150010010",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010109012",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150010001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010109012",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150030020",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010109017",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150050002",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010102014",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M1010112019",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010104009",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150010001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010109019",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150020019",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010110003",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150040010",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010101001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150050002",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010107001",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150040001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010111003",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150030017",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010111003",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150020031",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010112008",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150030020",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M0155001003",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150030047",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M0155001008",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150050021",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M0155001008",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150110008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M0155001008",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150040008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010101002",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150040006",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010101002",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150010009",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010109007",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150030005",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010102008",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150010014",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010103003",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150030019",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010106007",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150030021",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010109003",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150110003",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010109006",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0150040001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "M1010109011",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10010704",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10010705",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001004",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1003010i",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10020204",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1004020d",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10010201",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10020107",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1004020x",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10010202",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10010105",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10020102",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001004",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10039902",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001004",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10039903",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001004",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10040100",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10010204",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10010503",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10040202",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1004020r",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10010207",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001004",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1003010h",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000041i",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000041b",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000041v",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0158001001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10000106",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10000412",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000041e",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000041u",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000040h",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000050u",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000050w",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1000040x",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10000508",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001007",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "40010807",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1001050c",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001007",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "4001080c",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001007",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "4001080f",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155002001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101010v",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155002001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C1010211",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10010601",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155002001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101050n",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155002001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101050r",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10080109",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1004021h",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10040507",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155002001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C101070i",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "1004021n",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10040301",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001008",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "10040805",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155001007",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "4001080o",
+      "fields": null,
+      "dims": null
+    },
+    {
+      "elementId": "M0155002001",
+      "elementName": null,
+      "elementInfo": null,
+      "elementType": null,
+      "layerId": null,
+      "superElementId": "C1010218",
+      "fields": null,
+      "dims": null
+    }
+  ],
+  "CLOUD_ELEMENT": {
+    "M1030005013": {
+      "elementId": "M1030005013",
+      "elementName": "信贷账务_转贴现基本信息",
+      "elementInfo": "M_AC_LOAN_TDIS",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005014": {
+      "elementId": "M1030005014",
+      "elementName": "信贷账务_再贴现基本信息",
+      "elementInfo": "M_AC_LOAN_REDI",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005011": {
+      "elementId": "M1030005011",
+      "elementName": "信贷账务_垫款登记薄",
+      "elementInfo": "M_AC_LOAN_ADVA",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005012": {
+      "elementId": "M1030005012",
+      "elementName": "信贷账务_贴现基本信息",
+      "elementInfo": "M_AC_LOAN_DISC",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005010": {
+      "elementId": "M1030005010",
+      "elementName": "信贷账务_贷款五级形态变动",
+      "elementInfo": "M_AC_LOAN_FIVEST",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005019": {
+      "elementId": "M1030005019",
+      "elementName": "银团贷款参贷行信息",
+      "elementInfo": "M_CR_GRPLOAN_PART",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005017": {
+      "elementId": "M1030005017",
+      "elementName": "贸易融资_信用证信息",
+      "elementInfo": "M_CR_TRAD_CRDTINFO",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005018": {
+      "elementId": "M1030005018",
+      "elementName": "银团贷款主表信息",
+      "elementInfo": "M_CR_GRPLOAN",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005015": {
+      "elementId": "M1030005015",
+      "elementName": "信贷账务_重组贷款变动信息",
+      "elementInfo": "M_AC_LOAN_RELOAN",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01005989": {
+      "elementId": "S01005989",
+      "elementName": "城市各类组织-农田基本建设贷款",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005022": {
+      "elementId": "M1030005022",
+      "elementName": "信贷管理_授信信息",
+      "elementInfo": "M_LM_CR_BASINFO",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005023": {
+      "elementId": "M1030005023",
+      "elementName": "信贷管理_贷款核销",
+      "elementInfo": "M_LM_LOAN_CANCEL",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005024": {
+      "elementId": "M1030005024",
+      "elementName": "信贷管理_贷款展期",
+      "elementInfo": "M_LM_LOAN_EX",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005025": {
+      "elementId": "M1030005025",
+      "elementName": "信贷管理_信贷资产转让信息",
+      "elementInfo": "M_LM_LOAN_EXHBASINFO",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005020": {
+      "elementId": "M1030005020",
+      "elementName": "委托贷款",
+      "elementInfo": "M_CR_AGT_LOAN",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005021": {
+      "elementId": "M1030005021",
+      "elementName": "信贷账务_贷款还款计划",
+      "elementInfo": "M_AC_LOAN_REPAYPL",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005026": {
+      "elementId": "M1030005026",
+      "elementName": "贷后检查_基本信息",
+      "elementInfo": "M_LM_AFT_CKINFO",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005027": {
+      "elementId": "M1030005027",
+      "elementName": "贷后检查_检查记录",
+      "elementInfo": "M_LM_AFT_CHKREG",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005028": {
+      "elementId": "M1030005028",
+      "elementName": "信贷管理_抵债资产登记薄",
+      "elementInfo": "M_LM_FRCLS_ASST",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006419": {
+      "elementId": "S01006419",
+      "elementName": "承兑境内中型企业签发商业汇票-水利、环境和公共设施管理业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006010": {
+      "elementId": "S01006010",
+      "elementName": "贷款分行业-信息传输、软件和信息技术服务业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006011": {
+      "elementId": "S01006011",
+      "elementName": "贷款分行业-金融业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006417": {
+      "elementId": "S01006417",
+      "elementName": "承兑境内中型企业签发商业汇票-租赁和商务服务业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M0155001007": {
+      "elementId": "M0155001007",
+      "elementName": "其它内部户业务汇总信息",
+      "elementInfo": "MD_ACCT_OTH_IACC",
+      "elementType": "ENTITY",
+      "layerId": "L007",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006418": {
+      "elementId": "S01006418",
+      "elementName": "承兑境内中型企业签发商业汇票-科学研究和技术服务业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006012": {
+      "elementId": "S01006012",
+      "elementName": "贷款分行业-房地产业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M0155001006": {
+      "elementId": "M0155001006",
+      "elementName": "表外业务汇总信息",
+      "elementInfo": "MD_ACCT_OBS_INFO",
+      "elementType": "ENTITY",
+      "layerId": "L007",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M0155001005": {
+      "elementId": "M0155001005",
+      "elementName": "衍生品资产汇总信息",
+      "elementInfo": "MD_ACCT_ASST_DV",
+      "elementType": "ENTITY",
+      "layerId": "L007",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M0155001003": {
+      "elementId": "M0155001003",
+      "elementName": "信贷资产汇总信息",
+      "elementInfo": "MD_ACCT_ASST_LOAN",
+      "elementType": "ENTITY",
+      "layerId": "L007",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006411": {
+      "elementId": "S01006411",
+      "elementName": "承兑境内中型企业签发商业汇票-批发和零售业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006412": {
+      "elementId": "S01006412",
+      "elementName": "承兑境内中型企业签发商业汇票-交通运输、仓储和邮政业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006410": {
+      "elementId": "S01006410",
+      "elementName": "承兑境内中型企业签发商业汇票-建筑业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006415": {
+      "elementId": "S01006415",
+      "elementName": "承兑境内中型企业签发商业汇票-金融业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006416": {
+      "elementId": "S01006416",
+      "elementName": "承兑境内中型企业签发商业汇票-房地产业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006413": {
+      "elementId": "S01006413",
+      "elementName": "承兑境内中型企业签发商业汇票-住宿和餐饮业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006414": {
+      "elementId": "S01006414",
+      "elementName": "承兑境内中型企业签发商业汇票-信息传输、软件和信息技术服务业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M0155001001": {
+      "elementId": "M0155001001",
+      "elementName": "负债业务汇总信息",
+      "elementInfo": "MD_ACCT_L_SAV",
+      "elementType": "ENTITY",
+      "layerId": "L007",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006018": {
+      "elementId": "S01006018",
+      "elementName": "贷款分行业-卫生和社会工作",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M0155001002": {
+      "elementId": "M0155001002",
+      "elementName": "衍生品负债汇总信息",
+      "elementInfo": "MD_ACCT_L_DV",
+      "elementType": "ENTITY",
+      "layerId": "L007",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006017": {
+      "elementId": "S01006017",
+      "elementName": "贷款分行业-教育",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006019": {
+      "elementId": "S01006019",
+      "elementName": "贷款分行业-文化、体育和娱乐业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006014": {
+      "elementId": "S01006014",
+      "elementName": "贷款分行业-科学研究和技术服务业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006013": {
+      "elementId": "S01006013",
+      "elementName": "贷款分行业-租赁和商务服务业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006016": {
+      "elementId": "S01006016",
+      "elementName": "贷款分行业-居民服务、修理和其他服务业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006015": {
+      "elementId": "S01006015",
+      "elementName": "贷款分行业-水利、环境和公共设施管理业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030006002": {
+      "elementId": "M1030006002",
+      "elementName": "担保关联关系信息",
+      "elementInfo": "M_AC_LOAN_GUAREL",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01005991": {
+      "elementId": "S01005991",
+      "elementName": "城市各类组织-农业生产资料制造贷款",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006001": {
+      "elementId": "S01006001",
+      "elementName": "贷款总计（12D26/22D26）",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01005992": {
+      "elementId": "S01005992",
+      "elementName": "城市各类组织-农用物资和农副产品流通贷款",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030006001": {
+      "elementId": "M1030006001",
+      "elementName": "担保合同基本信息",
+      "elementInfo": "M_AC_LOAN_BASICGUAR",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01005993": {
+      "elementId": "S01005993",
+      "elementName": "城市各类组织-农业科技贷款",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030006004": {
+      "elementId": "M1030006004",
+      "elementName": "保证金信息",
+      "elementInfo": "M_AC_LOAN_GUARAMT",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01005994": {
+      "elementId": "S01005994",
+      "elementName": "城市各类组织-农村基础设施建设贷款",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006409": {
+      "elementId": "S01006409",
+      "elementName": "承兑境内中型企业签发商业汇票-电力、热力、燃气及水生产和供应业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030006003": {
+      "elementId": "M1030006003",
+      "elementName": "担保（保证）人信息",
+      "elementInfo": "M_AC_LOAN_GUARINFO",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005001": {
+      "elementId": "M1030005001",
+      "elementName": "信贷账务_信贷合同信息",
+      "elementInfo": "M_AC_LOAN_CONTINFO",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1120104001": {
+      "elementId": "M1120104001",
+      "elementName": "模型检查案例结果",
+      "elementInfo": "MODEL_CHK_RST",
+      "elementType": "ENTITY",
+      "layerId": "L007",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005002": {
+      "elementId": "M1030005002",
+      "elementName": "信贷账务_对公信贷借据信息",
+      "elementInfo": "M_AC_LOAN_CORPDB",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005003": {
+      "elementId": "M1030005003",
+      "elementName": "信贷账务_对私信贷借据信息",
+      "elementInfo": "M_AC_LOAN_PERSDB",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1120104003": {
+      "elementId": "M1120104003",
+      "elementName": "报告客户",
+      "elementInfo": "REPORT_CUST",
+      "elementType": "ENTITY",
+      "layerId": "L007",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005004": {
+      "elementId": "M1030005004",
+      "elementName": "表外业务借据信息",
+      "elementInfo": "M_CR_OFBAL_BUSINFO",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1120104002": {
+      "elementId": "M1120104002",
+      "elementName": "报告",
+      "elementInfo": "REPORT_FXQ",
+      "elementType": "ENTITY",
+      "layerId": "L007",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005005": {
+      "elementId": "M1030005005",
+      "elementName": "信贷账务_违约事件",
+      "elementInfo": "M_AC_LOAN_BRCHEVT",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005006": {
+      "elementId": "M1030005006",
+      "elementName": "信贷账务_贷款项目信息",
+      "elementInfo": "M_AC_LOAN_PROJINFO",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1120104004": {
+      "elementId": "M1120104004",
+      "elementName": "报告账户",
+      "elementInfo": "report_acct",
+      "elementType": "ENTITY",
+      "layerId": "L007",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005007": {
+      "elementId": "M1030005007",
+      "elementName": "信贷账务_项目许可信息",
+      "elementInfo": "M_AC_LOAN_PERINFO",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005008": {
+      "elementId": "M1030005008",
+      "elementName": "票据票面信息",
+      "elementInfo": "M_CR_BILL_INFO",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030006006": {
+      "elementId": "M1030006006",
+      "elementName": "担保质押品信息",
+      "elementInfo": "M_AC_LOAN_PLEDINFO",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030005009": {
+      "elementId": "M1030005009",
+      "elementName": "保函业务信息",
+      "elementInfo": "M_CR_GUAR_INFO",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030006005": {
+      "elementId": "M1030006005",
+      "elementName": "担保抵押物信息",
+      "elementInfo": "M_AC_LOAN_PLEGINFO",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006009": {
+      "elementId": "S01006009",
+      "elementName": "贷款分行业-住宿和餐饮业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006008": {
+      "elementId": "S01006008",
+      "elementName": "贷款分行业-交通运输、仓储和邮政业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006007": {
+      "elementId": "S01006007",
+      "elementName": "贷款分行业-批发和零售业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006006": {
+      "elementId": "S01006006",
+      "elementName": "贷款分行业-建筑业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006005": {
+      "elementId": "S01006005",
+      "elementName": "贷款分行业-电力、热力、燃气及水生产和供应业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006004": {
+      "elementId": "S01006004",
+      "elementName": "贷款分行业-制造业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006003": {
+      "elementId": "S01006003",
+      "elementName": "贷款分行业-采矿业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01005990": {
+      "elementId": "S01005990",
+      "elementName": "城市各类组织-农产品加工贷款",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006002": {
+      "elementId": "S01006002",
+      "elementName": "贷款分行业-农、林、牧、渔业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006423": {
+      "elementId": "S01006423",
+      "elementName": "承兑境内中型企业签发商业汇票-文化、体育和娱乐业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006422": {
+      "elementId": "S01006422",
+      "elementName": "承兑境内中型企业签发商业汇票-卫生和社会工作",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006421": {
+      "elementId": "S01006421",
+      "elementName": "承兑境内中型企业签发商业汇票-教育",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006420": {
+      "elementId": "S01006420",
+      "elementName": "承兑境内中型企业签发商业汇票-居民服务、修理和其他服务业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006427": {
+      "elementId": "S01006427",
+      "elementName": "承兑境内小型企业签发商业汇票-农、林、牧、渔业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030004006": {
+      "elementId": "M1030004006",
+      "elementName": "交易流水账_交易代办信息",
+      "elementInfo": "M_AC_TRAN_AGTINFO",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006426": {
+      "elementId": "S01006426",
+      "elementName": "承兑境内小型企业签发商业汇票",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030004005": {
+      "elementId": "M1030004005",
+      "elementName": "交易流水账_手续费分润",
+      "elementInfo": "M_AC_TRAN_PROFIT",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006425": {
+      "elementId": "S01006425",
+      "elementName": "承兑境内中型企业签发商业汇票-国际组织",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006424": {
+      "elementId": "S01006424",
+      "elementName": "承兑境内中型企业签发商业汇票-公共管理、社会保障和社会组织",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006429": {
+      "elementId": "S01006429",
+      "elementName": "承兑境内小型企业签发商业汇票-制造业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006428": {
+      "elementId": "S01006428",
+      "elementName": "承兑境内小型企业签发商业汇票-采矿业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006430": {
+      "elementId": "S01006430",
+      "elementName": "承兑境内小型企业签发商业汇票-电力、热力、燃气及水生产和供应业",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006021": {
+      "elementId": "S01006021",
+      "elementName": "贷款分行业-国际组织",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006020": {
+      "elementId": "S01006020",
+      "elementName": "贷款分行业-公共管理、社会保障和社会组织",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "S01006022": {
+      "elementId": "S01006022",
+      "elementName": "对境外贷款",
+      "elementInfo": null,
+      "elementType": "INDICATOR",
+      "layerId": "C",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030007001": {
+      "elementId": "M1030007001",
+      "elementName": "投融资产品_基本信息",
+      "elementInfo": "M_CA_PROD_BASINFO",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030007004": {
+      "elementId": "M1030007004",
+      "elementName": "银行融资_基本信息",
+      "elementInfo": "M_CA_FIN_BASINFO",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030007003": {
+      "elementId": "M1030007003",
+      "elementName": "银行投资_债券信息",
+      "elementInfo": "M_CA_INV_DEBTINFO",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M1030007002": {
+      "elementId": "M1030007002",
+      "elementName": "银行投资_基本信息",
+      "elementInfo": "M_CA_INV_BASINFO",
+      "elementType": "ENTITY",
+      "layerId": "L006",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    },
+    "M0155002001": {
+      "elementId": "M0155002001",
+      "elementName": "客户产品汇总信息",
+      "elementInfo": "MD_CUST_PROD_INFO",
+      "elementType": "ENTITY",
+      "layerId": "L007",
+      "superElementId": null,
+      "fields": null,
+      "dims": null
+    }
+  }
+}

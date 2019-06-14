@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>下拉表格</title>
+	<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css"/>
+	<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+	<script src="ComboGridBox.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		Ext.onReady(function(){
+			var store = Ext.create("Ext.data.Store", {
+				fields: ["column1", "column2", "column3"],
+				data: [{column1:"R1C1",column2:"R1C2",column3:"R1C3"},
+					{column1:"R2C1",column2:"R2C2",column3:"R2C3"},
+					{column1:"R3C1",column2:"R3C2",column3:"R3C3"}]
+			});
+			Ext.create("ComboGridBox",{
+				renderTo: "renderDiv",
+				store: store,
+				multiSelect: true
+			});
+		});
+	</script>
+</head>
+<body>
+	<div>正式的，可能下拉这个表格数据不多，但是能支持查询和分页浏览。</div>
+	<div id="renderDiv"></div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="./js/html2canvas1.0.0-alpha.9.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function saveCaptureImg(){
+				var canvas = document.querySelector("canvas");
+				window.open(canvas.toDataURL("image/jpeg"));
+			}
+			window.onload = function(){
+				html2canvas(document.querySelector("#capture")).then(function(canvas){
+				    document.body.appendChild(canvas)
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<div id="capture">
+			<svg width="200px" height="200px">
+				<circle r="20" cx="40" cy="40" fill="red"></circle>
+				<circle r="20" cx="80" cy="80" fill="red"></circle>
+			</svg>
+		</div>
+		<input type="button" value="保存" onclick="saveCaptureImg()"/>
+		<p>照片：</p>
+	</body>
+</html>

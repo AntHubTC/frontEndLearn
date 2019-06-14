@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+<link rel="stylesheet" type="text/css" href="./css/style.css" />
+</head>
+<body>
+	<input style="border:none;outline:none;width:1px">
+	<style type="text/css">
+		body {
+			overflow: hidden;
+		}
+		.hide {
+			display: none;
+			visibility: hidden;
+		}
+		.loading-bar {
+			width: 250px;
+			margin: 0px auto;
+			border-radius: 5px;
+			background-color: #777;
+		}
+		.blue {
+			background-color: #20b9c3;
+		}
+		.green {
+			background-color: #8ac320;
+		}
+		.red {
+			background-color: #dc6565;
+		}
+		.amount {
+			height: 20px;
+			border-radius: 5px;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+		.loaded {
+			text-align: center;
+			font-family: Helvetica, sans-serif;
+			font-weight: bold;
+			font-size: 15px;
+			text-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+			color: #fff;
+			z-index: 9999;
+		}
+		.lines {
+			/* the lines overflow the container. This creates a continuous flow of the background */
+			width: 500%;
+			/* We use a SVG file as the background */
+			background: url('lines.svg') repeat-x;
+			height: 100%;
+			text-align: center;
+			margin-top: -20px;
+			/* Any overflow is hidden */
+			overflow: hidden;
+			/* Implement the animations, we'll get to that later */
+			-webkit-animation: moveBars 1.5s linear infinite;
+			-moz-animation: moveBars 1.5s linear infinite;
+			-ms-animation: moveBars 1.5s linear infinite;
+			-o-animation: moveBars 1.5s linear infinite;
+			animation: moveBars 1.5s linear infinite;
+			font-weight: bold;
+			color: #fff;
+			color: 1px;
+			font-size: 18px;
+		}
+		
+		/* ANIMATIONS */
+		@keyframes moveBars { 100% { margin-left: -180px; } }
+		@-webkit-keyframes moveBars { 100% { margin-left: -180px; } }
+		@-moz-keyframes moveBars { 100% { margin-left: -180px; } }
+		@-ms-keyframes moveBars { 100% { margin-left: -180px; } }
+		@-o-keyframes moveBars { 100% { margin-left: -180px; } }
+		
+		/*flare style*/
+        .previewpanel {
+        	position: absolute;
+        	left: 0;
+        	top: 0;
+        	z-index: 88888;
+        	width: 100%;
+        	height: 100%;
+        	background-color: #ddd;
+        }
+        .previewpanel .closebtn {
+        	position: absolute;
+        	left: 7px;
+        	top: 3px;
+        	background-image: url(./image/fancybox_sprite.png);
+			width: 36px;
+			height: 36px;
+			cursor: pointer;
+        	
+        }
+		.flare .flarenode {
+		  cursor: pointer;
+		}
+		
+		.flare .flarenode circle {
+		  fill: #fff;
+		  stroke: steelblue;
+		  stroke-width: 1.5px;
+		}
+		
+		.flare .flarenode text {
+		  font: 11px sans-serif;
+		}
+		
+		.flare .flareline {
+		  fill: none;
+		  stroke: #ccc;
+		  stroke-width: 1.5px;
+		}
+	</style>	
+	<script src="../../js/d3.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/d3-legend.js" charset="utf-8"></script>
+	<script src="processbar.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="flare-custom.js" ></script>
+	<script src="../../js/queue.v1.min.js" charset="utf-8"></script>
+	<script src="../../js/jquery.js" charset="utf-8"></script>
+	<script>      		
+        //初始化进度条
+		var processbar1 = new ProcessBar({
+			rootD3Ele: d3.select("body"),
+			procItems:[
+				//id 进度序号  pid父进度序号  noticePBar通知父进度条 info进度信息
+				{id:1,pid:null,info:"1..."},
+				{id:2,pid:null,info:"2..."},
+				{id:3,pid:null,noticePBar:true,info:"3..."},
+				{id:4,pid:null,info:"1..."},
+				{id:5,pid:null,info:"2..."},
+				{id:6,pid:null,noticePBar:true,info:"3..."},
+				{id:7,pid:null,info:"1..."},
+				{id:8,pid:null,info:"2..."},
+				{id:9,pid:null,noticePBar:true,info:"3"}
+			],
+			skin:"blue",
+			top:"20px",
+			process:0 //进度
+		});
+		var processbar2 = new ProcessBar({
+			rootD3Ele: d3.select("body"),
+			procItems:[
+				{id:1,pid:null,info:"正在加载数据..."},
+				{id:2,pid:null,info:"正在努力加载基础指标..."},
+				{id:3,pid:null,info:"正在努力加载基础指标..."},
+				{id:4,pid:null,info:"正在努力加载派生指标..."},
+				{id:5,pid:null,info:"正在努力加载应用指标..."},
+				{id:6,pid:null,info:"正在努力加载基础层..."},
+				{id:7,pid:null,info:"正在努力加载汇总层..."},
+				{id:8,pid:null,info:"正在努力加载其他数据..."},
+				{id:9,pid:null,info:"数据加载完毕"}
+			],
+			top:"70px",
+			skin:"green",
+			process:0 //进度
+		});
+		processbar1.setParentPBar(processbar2);//设置逻辑父进度条
+		
+		setInterval(function(){
+			processbar1.nextProcess();
+		},1000);
+		
+        // Function for moving nodes to front
+        d3.selection.prototype.moveToFront = function() {
+          return this.each(function(){
+            this.parentNode.appendChild(this);
+          });
+        };
+
+        // Function for moving to back
+        d3.selection.prototype.moveToBack = function() {
+            return this.each(function() {
+                var firstChild = this.parentNode.firstChild;
+                if (firstChild) {
+                    this.parentNode.insertBefore(this, firstChild);
+                }
+            });
+        };
+
+        var scaleFactor = 1;//缩放英子
+        var translation = [0,0];
+
+        var smallCircleSize = 8;//小圆大小
+        var largeCircleSize = 12;//大圆大小
+        var linkDistance = 100;//线的长度
+
+        var minWidthPoly1 = 200;
+        var minWidthPoly2 = 200;
+        var xMargin = 20;
+        var legendLayerPadding = 5;//图列层layer的padding
+
+        var height = 0;
+        var width = 0;
+        
+		var nodeHistory = [];
+		var linkHistory = [];
+		var nodeHistoryIndex = {};
+		
+		var neighborNodes;
+        var neighborLinks;
+        var tempNeighborNodes; // For field analysis
+
+        // Configure force layout
+        var force = d3.layout.force();
+        var beginTime = new Date().getTime();
+        var endTime = beginTime;
+        
+          requestData("./cloud2.json",{grainSize:null}, ready);
+          function requestData(url, params, callback) {
+          	$.ajax({
+          		url: url,
+//        		type: "post",
+//        		headers: {
+//        	        'Accept': 'application/json',
+//        	        'Content-Type': 'application/json'
+//        	    },
+				type: "GET",//请求方式为get
+          		dataType: "json",
+//        		data: JSON.stringify(params),
+          		async: true,
+          		success: function(data) {
+          			if(typeof callback == 'function') {
+          				callback(false, data);
+          			}
+          		},
+          		error: function() {
+          			console.log('error occures during request server!!')
+          		}
+          	});
+          }
+
+        function ready(error, json) {
+            if (error) throw error;
+            var typejson = {
+            		"types": {
+            			"A": {
+            				"name": "基础指标"
+            			},
+            			"B": {
+            				"name": "派生指标"
+            			},
+            			"C": {
+            				"name": "应用指标"
+            			},
+            			"L006": {
+            				"name": "基础层"
+            			},
+            			"L007": {
+            				"name": "汇总层"
+            			}
+            		}
+            	};
+            
+            endTime = new Date().getTime();
+            console.log("parse json spend "+ (( endTime - beginTime) / 1000) + "s.");
+            beginTime = endTime;
+            
+            // Retrieve data based on the specific json structure
+			var objArray = d3.values(json.CLOUD_ELEMENT);
+
+            // Set up Layer/Indicator/Table lookup table and refactor the links array
+            var lookupTable = {};
+            var links = [];
+            objArray.forEach(function(obj) {
+                lookupTable[obj.elementId] = obj.layerId;
+            });
+            
+            json.CLOUD_RELATION.forEach(function(relation) {
+            	if(json.CLOUD_ELEMENT[relation.superElementId] && json.CLOUD_ELEMENT[relation.elementId]) {
+            		links.push({"source":json.CLOUD_ELEMENT[relation.elementId],"target":json.CLOUD_ELEMENT[relation.superElementId]});
+            	}
+            });
+            
+            // Dynamically construct the color and label array of the layer
+            // to initialize the color scale later  初始化10种颜色的比例尺
+            var colors = d3.scale.category10();
+            var layerArray = d3.keys(typejson.types);
+            var layerColorArray = [];
+            var layerLabelArray = [];
+            
+            layerArray.forEach(function(d) {
+            	layerColorArray.push(colors(d));
+            	layerLabelArray.push(typejson.types[d].name);
+            });
+            
+         	// Initialize Ordinal Color Scale
+            var color = d3.scale.ordinal()
+                .domain(layerArray)
+                .range(layerColorArray);
+
+            var allShowing = true;
+            var layerSelected = false;
+            var nodeHighlighted = false;
+            var searchExecuted = false;
+            var fieldAnalysis = false;
+
+            var mousePos = [0,0];
+            var newMousePos = [0,0];
+
+            /*** Configure zoom behaviour ***/
+            var zoomer = d3.behavior.zoom()
+                .scaleExtent([0.1,10])
+        		//allow 10 times zoom in or out
+                .on("zoom",zoom);
+        		//define the event handler function
+
+            function zoom(d) {
+            	beginTime = new Date().getTime();
+                
+                if (d3.event.sourceEvent && !nodeHighlighted){
+                    d3.event.sourceEvent.stopPropagation();
+                }
+                scaleFactor = d3.event.scale;
+                translation = d3.event.translate;
+                console.log(translation)
+                
+                tick(); //update positions
+                
+                renderNodeText();
+                
+                endTime = new Date().getTime();
+                console.log("zoom spend "+ (( endTime - beginTime) / 1000) + "s.");
+            }
+
+            /*** Configure drag behaviour ***/
+            var isDrag = false;
+            var drag = d3.behavior.drag()
+                .origin(function(d) { return d; }) //center of circle
+                .on("dragstart", dragstarted)
+                .on("drag", dragged)
+                .on("dragend", dragended);
+
+            var getMousePos;
+
+            function dragstarted(d){
+            	beginTime = new Date().getTime();
+                if(d3.select(this).classed("activeNode")){
+                    getMousePos = d3.mouse(vis.node());
+                    mousePos[0] = getMousePos[0];
+                    mousePos[1] = getMousePos[1];
+                    d3.select(this).moveToFront();
+                    d3.event.sourceEvent.stopPropagation();
+                    d3.select(this).classed("dragging", true);
+                    force.stop(); //stop ticks while dragging
+                    isDrag = true;
+                }
+                endTime = new Date().getTime();
+                console.log("dragstarted spend "+ (( endTime - beginTime) / 1000) + "s.");
+            }
+            function dragged(d){
+            	beginTime = new Date().getTime();
+                if(d3.select(this).classed("activeNode")){
+                    if (d.fixed) return; //root is fixed
+
+                    //get mouse coordinates relative to the visualization
+                    //coordinate system:
+                    var mouse = d3.mouse(vis.node());
+                    d.x = (mouse[0] - translation[0])/scaleFactor;
+                    d.y = (mouse[1] - translation[1])/scaleFactor;
+                    
+                    tick();//re-position this node and any links
+                }
+                endTime = new Date().getTime();
+                console.log("dragged spend "+ (( endTime - beginTime) / 1000) + "s.");
+            }
+            function dragended(d){
+            	beginTime = new Date().getTime();
+                if(d3.select(this).classed("activeNode")){
+                    getMousePos = d3.mouse(vis.node());
+                    newMousePos[0] = getMousePos[0];
+                    newMousePos[1] = getMousePos[1];
+                    var shortDrag = Math.abs(newMousePos[0] - mousePos[0]) < 5 && Math.abs(newMousePos[1] - mousePos[1]) < 5;
+                    if(shortDrag){ // Short drag means click 短拖意味着单击
+                        connectedNodes(d, allShowing || layerSelected, this); // else highlight connected nodes
+                    } else {
+                    	renderNodeText();
+                    }
+
+                    d3.select(this).classed("dragging", false);
+                    //if(!shortDrag){force.resume();} // Resume force layout only if not a short drag
+                    isDrag = false;
+                }
+                endTime = new Date().getTime();
+                console.log("dragended spend "+ (( endTime - beginTime) / 1000) + "s.");
+            }
+
+            //Initialize SVG
+            var graph = d3.select("body")
+            	.append("svg")
+            	.attr("class", "mainsvg")
+              	.append("g")
+                .attr("class", "graph")
+                .on("mousedown", function(){
+                    mousePos = d3.mouse(this);
+                  	//Only clicks no drag or pan on menu area
+                    if(mousePos[0] < minWidthPoly1 && mousePos[1] < height) {
+                    	d3.event.stopImmediatePropagation(); 
+                    }
+                })
+                .call(zoomer);
+            
+            graph.append("rect")
+                 .attr("width", "100%")
+                 .attr("height", "100%")
+                 .attr("fill", "white")
+                 //.attr("class", "background")
+                 .attr("fill-opacity", 0.9);
+
+            // Funky shape as background for legend
+            var points = "";
+            var polygon = graph.append("polygon")
+                .attr("opacity", 0.8)
+                .style("pointer-events","all");
+
+            // Rectangle to catch mouse events for zoom
+            var rect = graph.append("rect")
+                .attr("width", "100%")
+                .attr("height", "100%")
+                .style("margin", "0 auto")
+                .style("fill", "none")
+                .style("pointer-events", "all")
+                .style("cursor", "move")
+                .on("click", function(){
+                    if (d3.event.defaultPrevented) return;
+                    showAllNodes();
+                });
+
+            // Create a group that will hold all content to be zoomed
+            var vis = graph.append("svg:g")
+                /* .attr("class", "plotting-area") */;
+
+            // Pinned tooltip
+            var pinnedTooltip = d3.select("body").append("div")
+                .attr("class", "tooltip pinned")
+                .style("opacity", 0);
+
+            // Tooptip besides the node
+            var tooltip = d3.select("body").append("div")
+                .attr("class", "tooltip")
+                .style("opacity", "0");
+            
+         	// Tooptip on the left top
+            var relationTooltip = d3.select("body").append("div")
+                .attr("class", "tooltip pinned")
+                .style("opacity", "0");
+            
+            // search bar
+            var searchBar = d3.select("body").append("div")
+            	.attr("class","searchbar")
+            	.style("opacity", 0);
+            
+            searchBar
+            	.append("input")
+            	.attr("name","keyword")
+            	.attr("type","search")
+            	.attr("placeHolder","请输入关键字...")
+            	.style("width","200px");
+            
+            searchBar
+            	.append("img")
+            	.attr("src","./image/find.png")
+            	.attr("title","查询")
+            	.on("click",function(){
+            		nodeHighlighted = false;
+            		pinnedTooltip.style("opacity", 0);
+            		
+            		var keyword = d3.select('.searchbar input')[0][0].value;
+            		if(keyword) {
+	                    var searchNode = d3.selectAll(".node");
+	                    var notSelectedNodes = searchNode.filter(function (d, i){
+	                        return d.elementName.indexOf(keyword) == -1;
+	                    });
+	
+	                    var selectedNodes = searchNode.filter(function (d, i){
+	                        return d.elementName.indexOf(keyword) != -1;
+	                    });
+	                     
+	                    selectedNodes
+	                        .style("stroke-opacity", 1)
+	                        .style("fill-opacity", 1)
+	                        .classed("activeNode", true)
+	                        .moveToFront();
+	                    notSelectedNodes
+	                        .style("stroke-opacity", 0.3)
+	                        .style("fill-opacity", 0.3)
+	                        .classed("activeNode", false);
+	
+	                    var link = d3.selectAll(".link");
+	                    link.style("stroke-opacity", 0)
+	                     	.style("marker-end","none");
+	                    
+	                    allShowing = false;
+	                    searchExecuted = true;
+	                 	// Clear node history
+	                    nodeHistory = [];
+	                    linkHistory = [];
+	                    nodeHistoryIndex = {};
+	                    d3.selectAll(".nodetext").remove();
+            		} else if (searchExecuted){
+            			showAllNodes();
+            			searchExecuted = false;
+            		}
+            	});
+
+         	// trace option
+            var  traceOption = d3.select("body").append("div")
+            	 .attr("class","traceoption")
+            	 .style("opacity", 0);
+         	
+            traceOption
+            	.append("input")
+            	.attr("type","radio")
+            	.attr("name","traceOption")
+            	.attr("value","BloodRelation")
+            	.attr("checked","checked");
+         	
+            traceOption
+            	.append("label")
+            	.text("血缘分析");
+            
+            traceOption
+            	.append("input")
+		       	.attr("type","radio")
+		       	.attr("name","traceOption")
+		       	.attr("value","Impact");
+            
+            traceOption
+        		.append("label")
+        		.text("影响分析");
+         
+            // Container to hold legend elements
+            var legendContainer = graph.append("g")
+                .attr("class", "legendContainer");
+
+            // Create a legend for Layers
+            var layerTranslate = 0;
+            legendContainer.append("g")
+                .attr("class", "legendOrdinal")
+                .attr("transform", "translate("+ (xMargin+10) + ", 0)");
+
+            var legendOrdinal = d3.legend.color()
+                .shape("circle")
+                .shapePadding(legendLayerPadding)
+                .scale(color)
+                .labels(layerLabelArray);
+
+            var layerLegend = legendContainer.select(".legendOrdinal")
+                .call(legendOrdinal);
+                
+//.......................................................
+            var  optionBox = d3.select("body").append("div")
+            	 .attr("class","optioncontainer");
+//          	 .style("opacity", 0);
+			optionBox.append("span").text("层数：");
+        	optionBox.append("input")
+        	 	.attr("class","layernumipt")
+        	 	.style("width","30px")
+        	 	.attr("value", "4")
+    	 	;
+//.......................................................
+			var previewBtn = optionBox.append("div").append("input")
+				.attr("type", "button")
+				.attr("value", "分析图")
+				.style("margin-top", "4px");
+			        
+	        //子预览面板
+	        var childPreviewPanel = d3.select("body").append("div");
+	        childPreviewPanel.attr("class", "previewpanel");
+	        childPreviewPanel.classed("hide", true);
+	        var flareContainer = childPreviewPanel.append("div")
+	    		.style("margin", "40px 10px 10px 10px")
+	    		.style("width", "100%")
+	        	.style("height", "100%")
+	    		.style("background-color", "white")
+	    		.append("svg");
+	        var closeBtn = childPreviewPanel.append("div")
+	        	.attr("class", "previewpanel closebtn")
+	        	.on("click", function(){
+	        		//隐藏预览面板
+	        		childPreviewPanel.classed("hide", true);
+	        		flareContainer.selectAll("*").remove();
+	        	});
+	        	flareContainer.empty();
+			previewBtn.on("click", function(){
+//				console.info(neighborLinks);
+				if((!neighborLinks) || (!neighborLinks[0])){
+					//没有节点或者只有一个节点，不做处理。
+					return;
+				}
+				var len = neighborLinks[0].length,
+					treeJson={},
+					treeItemMap={},
+					targetMap={} //这个map最后剩下的就是根
+				;
+				
+				for (var i = 0; i < len; i++) {
+					var iNode = neighborLinks[0][i].__data__;
+					treeItemMap[iNode.source.elementId] = {
+						name:iNode.source.elementName,
+						data:iNode.source
+					};
+					treeItemMap[iNode.target.elementId] = {
+						name: iNode.target.elementName,
+						data: iNode.target
+					};
+					targetMap[iNode.target.elementId] = treeItemMap[iNode.target.elementId];
+				}
+				for (var i = 0; i < len; i++) {
+					var iNode = neighborLinks[0][i].__data__;
+					var sourceEleId = iNode.source.elementId;
+					var targetEleId = iNode.target.elementId;
+					var treeItem = treeItemMap[targetEleId];
+					if(!treeItem["children"]) treeItem["children"] = [];
+					treeItem["children"].push(treeItemMap[sourceEleId]);
+					delete targetMap[sourceEleId];
+				}
+				var rootElementId = d3.keys(targetMap)[0];
+				var rootTreeItem = treeItemMap[rootElementId];
+//				console.info(targetMap);
+//				console.info(treeItemMap);
+//				console.info(treeItemMap[rootElementId]);
+//				console.info(JSON.stringify(treeItemMap[rootElementId]));
+				var treeJson = JSON.parse(JSON.stringify(rootTreeItem));//deep copy
+				
+				//显示展示面板
+				childPreviewPanel.classed("hide", false);
+//				console.info(JSON.stringify(rootTreeItem))
+//				console.info(flare);
+				var flare = new Flare({
+					rootContainer: flareContainer
+				});//子树形图
+				flare.render({
+					data: treeJson,
+					width:width - minWidthPoly2,
+					height:height
+				});
+			});
+//.......................................................
+
+            // Filtering by layer 通过层图例过滤搜索
+            d3.selectAll("g.cell")
+              .on("click", function(d){
+                  if (d3.event.defaultPrevented) return;
+                  var self = this;
+                  var activeLegends = d3.selectAll("g.cell");
+
+                  activeLegends.filter(function (x) {return self != this;})
+                      		   .classed("active", false); // Set all other layer filters to false 将其他层图例设置为非激活状态
+
+                  pinnedTooltip.style("opacity", 0);
+              	  //zoomer.translate([20, 0]);
+
+                  searchNode(d, this);
+              });
+
+            // Extract the array of nodes from the map by name.
+            var nodes = objArray
+
+            // Create the link lines.
+            var link;
+           
+            // Create the node circles.
+            var node;
+
+			endTime = new Date().getTime();
+	        console.log("before initialize force layout spend "+ (( endTime - beginTime) / 1000) + "s.");
+	        beginTime = endTime;
+
+            // Start the force layout.
+            force
+                .nodes(nodes) //设置布局中的节点（node）阵列组
+                .links(links) //设置布局中节点间的连接（Link）阵列组
+                .linkDistance(linkDistance) //设置节点间的连接线距离.
+                .gravity(1) //设置节点的引力强度
+                .friction(0.5) //设置摩擦系数
+                .chargeDistance(100) //电荷距离
+            	//.linkStrength(0.08)
+                //.on("tick", function(){})
+                .charge(-2000) //设置节点的电荷数.(电荷数决定结点是互相排斥还是吸引)
+                //.theta(1)
+                /* .start() */;
+
+            /* graph
+                .on("mouseleave", function(){
+                    force.stop();
+                })
+                .on("mouseenter", function(){
+                    force.resume();
+                }); */
+
+            /* Configure highlighting of connected nodes */
+            var toggle = 0;
+
+            //Create an array logging what is connected to what创建一个数组记录节点的连接情况
+            var linkedByIndex = {};
+            for (i = 0; i < nodes.length; i++) {
+                linkedByIndex[nodes[i].elementId + "," + nodes[i].elementId] = 1;
+            };
+            links.forEach(function (d) {
+                linkedByIndex[d.source.elementId + "," + d.target.elementId] = 1;
+            });
+            
+            resize();
+            d3.select(window).on("resize", resize);
+            
+            var loading = vis
+            .append("text")
+            .attr("x", (width - minWidthPoly2) / 2)
+            .attr("y", height / 2)
+            .attr("dy", ".35em")
+            .attr("class","loading")
+            .style("text-anchor", "middle")
+            .text("数据加载中，请耐心等待...");
+            
+            endTime = new Date().getTime();
+	        console.log("initialize force layout spend "+ (( endTime - beginTime) / 1000) + "s.");
+	        beginTime = endTime;
+
+	        // Use a timeout to allow the rest of the page to load first.
+	        //使用超时来让页面首次加载
+	        var n = 100;
+	        setTimeout(function() {
+	
+	          endTime = new Date().getTime();
+	          console.log(endTime);
+		      console.log("before tick spend "+ (( endTime - beginTime) / 1000) + "s.");
+		      beginTime = endTime;
+		        
+	          // Run the layout a fixed number of times.
+	          // The ideal number of times scales with graph complexity.
+	          // Of course, don't run too long—you'll hang the page!
+	          force.start();
+	          for (var i = n*n; i > 0; --i) force.tick();
+	          force.stop();
+	          
+	          endTime = new Date().getTime();
+	          console.log(endTime);
+		      console.log("after tick spend "+ (( endTime - beginTime) / 1000) + "s.");
+		      //beginTime = endTime;
+	
+	          link = vis.selectAll(".link")
+              .data(links)
+              .enter().append("line")
+              .attr("class", "link")
+              .attr("x1", function(d) { return d.source.x; })
+              .attr("y1", function(d) { return d.source.y; })
+              .attr("x2", function(d) { return d.target.x; })
+              .attr("y2", function(d) { return d.target.y; });
+	          
+	          vis.append('defs')
+              .selectAll('marker')
+              .data(['end'])
+         	  .enter().append('marker')
+              .attr('id'          , String)
+              .attr('viewBox'     , '0 0 10 10')
+              .attr('refX'        , 24)
+              .attr('refY'        , 5)
+              .attr('markerWidth' , 8)
+              .attr('markerHeight', 6)
+              .attr('orient'      , 'auto')
+         	  .append('path')
+         	  .attr("d", "M 0 0 L 10 5 L 0 10 z");
+	          
+	          node = vis.selectAll(".node")
+              .data(nodes)
+              .enter().append("circle")
+              .attr("class", "node")
+              .attr("r", function(d) {
+                   return smallCircleSize
+              })
+              .attr("cx", function(d) { return d.x; })
+	          .attr("cy", function(d) { return d.y; })
+              .style("fill", function(d) {return color(lookupTable[d.elementId]);})
+              .classed("activeNode", true)
+              .on("mouseover", function(d){
+                  if(d3.select(this).classed("activeNode") && !d3.select(this).classed("baseNode")){
+                	  //force.stop();
+                      tooltip.transition()
+                    	 .duration(200)
+                         .style("opacity", 1);
+                      tooltip.html(d.elementName)
+                      	 .style("left", (translation[0] + scaleFactor*d.x + 20) + "px")
+                      	 .style("top", (translation[1] + scaleFactor*d.y) + "px");
+                      tooltip.moveToFront();
+                      
+                      var thiz = d3.select(this);
+                      thiz.style("fill-opacity", 1);
+                      /* thiz.moveToFront(); */
+                      /* thiz.attr("r", largeCircleSize); */
+                  }
+              })
+              .on("mouseout", function(d){
+                  if(!isDrag && !nodeHighlighted && allShowing){
+                      //force.resume();
+                      var thiz = d3.select(this);
+                      thiz.style("fill-opacity", 0.3);
+                      /* thiz.attr("r", smallCircleSize); */
+                  }
+                  tooltip.transition()
+                         .duration(500)
+                         .style("opacity", 0);
+              })
+              //.on('contextmenu', d3.contextMenu(menu)) // attach menu to element
+              .call(drag);
+	
+	          loading.remove();
+	          
+	          searchBar
+	          	.transition()
+              	.duration(500)
+              	.style("opacity",1);
+	          
+	          traceOption
+	          	.transition()
+            	.duration(500)
+            	.style("opacity",1);
+	          
+	        }, 10);
+            
+            //#####render ends, below are the funcitons##########
+            
+            function subString(str, len, hasDot) {
+				str = str || "unknown";
+            	var newLength = 0;
+            	var newStr = "";
+            	var chineseRegex = /[^\x00-\xff]/g;
+            	var singleChar = "";
+            	var strLength = str.replace(chineseRegex, "**").length;
+            	for (var i = 0; i < strLength; i++){
+            		singleChar = str.charAt(i).toString();
+            		if (singleChar.match(chineseRegex) != null){
+            			newLength += 2;
+            		}else{
+            			newLength++;
+            		}
+            		if (newLength > len){
+            			break;
+            		}
+            		newStr += singleChar;
+            	}
+
+            	if (hasDot && strLength > len){
+            		newStr += "...";
+            	}
+            	return newStr;
+            }
+
+            //This function looks up whether a pair are neighbours
+            function neighboring(a, b) {
+                return linkedByIndex[a.elementId + "," + b.elementId];
+            }
+            
+            // Change opacity to highlight connected nodes
+            function connectedNodes(clickedOn, firstClick, nodeClicked) {
+                nodeHighlighted = true;
+                d3.selectAll("g.cell").classed("active", false); // Clear layer filters
+                if (d3.select(nodeClicked).classed("baseNode")){ // Base node was clicked, show all
+                    showAllNodes();
+                    return;
+                }
+             	// Stop moving
+                //force.stop(); 
+             	// Clear unpinned tooltip (because it is the same as the pinned)清楚非固定的提示框
+                tooltip.style("opacity", 0); 
+                
+             	// Make all nodes and links invisible 让所有的节点和线条不可见
+                node.classed("baseNode", false)
+					.classed("activeNode", false)
+	            	.style("stroke-opacity", 0.1)
+	            	.style("fill-opacity", 0.1);
+            	link
+	            	.style("stroke-opacity", 0)
+	            	.style("marker-end", "none");
+            	
+            	// Render the pinned tooltip base on the node type在节点上渲染固定提示框
+                renderPinnedTooltip(clickedOn);
+            
+                d3.select(nodeClicked).classed("baseNode", true);//让被单击的节点成为基础节点
+                
+                // If Blood Relation option is checked, only the source node will be highlighted and vice versa.
+                //如果检查了血缘关系项，只会突出显示源节点，反之亦然。
+                var isSource = d3.selectAll('.traceoption input')[0][0].checked;
+                console.log("blood relation checked ? " + isSource);
+                
+                //filterNeighbors(isSource, clickedOn);
+                filterRelationNodes(isSource, clickedOn);
+                
+                // Make the neighbor nodes and links visible 让兄弟节点和他们的链条显示
+                neighborNodes
+                	.classed("activeNode", true)
+                	.style("stroke-opacity", 1)
+                	.style("fill-opacity", 1);
+                neighborLinks
+	            	.style("stroke-opacity", 0.6)
+	            	.style("marker-end", "url(#end)");
+                
+                renderNodeText();
+                
+                // Brings activeNode nodes to front
+                d3.selectAll(".activeNode").moveToFront(); 
+                allShowing = false;
+                layerSelected = false;
+                
+                //############### Node History Handle Begin #####################
+                // If the node checked is already in the history array,
+                // then splice the array from its index
+                var nodeIndex = nodeHistoryIndex[clickedOn.index];
+                if(!isNaN(nodeIndex)) {
+                	nodeHistory.splice(nodeIndex + 1);
+                	linkHistory.splice(nodeIndex + 1);
+                }
+                
+                //linkHistory.push(nodeLink);
+                
+                // Make each node that clicked already visible
+                // and allow for clicking back on previous node
+                /* nodeHistory.forEach(function(d){
+                	d3.select(d)
+                	  .style("fill-opacity", 1)
+                	  .style("stroke-opacity", 1)
+                	  .classed("activeNode", true);
+                }); */
+                
+                /* linkHistory.forEach(function(d){
+                	d3.select(d)
+                	  .style("stroke-opacity", 0.6)
+                	  .style("marker-end", "url(#end)");
+                }); */
+                
+                // Push this node into history array
+                var index = nodeHistory.push(nodeClicked) - 1;
+                // Keep the node index, the element index of this node as key
+                nodeHistoryIndex[clickedOn.index] = index;
+                //############### Node History Handle End ######################
+            }
+            var searchRelNodes = {};
+    		var searchRelLinks = {};
+    		/*
+    		 * dir 是否向下搜索 true是   false不是
+    		 */
+            function nodeRelation(item, layerNum, dir){
+        		var nodes = node.filter(function (o, i){
+        			return dir? neighboring(o, item) : neighboring(item, o);
+            	});
+                if(nodes && (!nodes.empty())){//选择集非空
+	                	layerNum --;//进入下一层，层数减1
+					if(1 != nodes.size()){//排除掉自身
+	                	layerNum &&  //有层数限制，放开这个条件。
+	                	nodes.each(function(a, index){
+	                		if(a.elementId != item.elementId){
+	                			nodeRelation(a, layerNum, dir);
+	                		}
+	                	});
+					}
+                }
+                nodes.each(function(o, i){
+                	searchRelNodes[o.elementId] = 1;
+                })
+        	};
+        	/*
+    		 * dir 是否向下搜索 true是   false不是
+    		 */
+        	function linkRelation(item, layerNum, dir){
+        		var links = link.filter(function(o, i){
+            		return dir ? (item.index == o.target.index) : (item.index == o.source.index);
+            	});
+				if(links && (!links.empty())){//选择集非空
+	                	layerNum --;//进入下一层，层数减1
+	                	layerNum &&  //有层数限制，放开这个条件。
+                	links.each(function(a, index){
+                		var flag = dir ? (a.source.index != item.index) : (a.target.index != item.index); 
+                		if(flag){ //排除自身
+                			var arg = dir? a.source : a.target;
+                			linkRelation(arg, layerNum, dir);
+                		}
+                	});	
+                }
+				links.each(function(o, i){
+                	searchRelLinks[o.source.index+","+o.target.index] = 1;
+                })
+            };
+            function filterRelationNodes(isSource, clickedOn){
+            	searchRelNodes = {};
+        		searchRelLinks = {};
+        		var layerNum = d3.select("body").select("input.layernumipt").property("value");
+        		nodeRelation(clickedOn, layerNum, isSource);
+//          	console.info("searchRelNodes:");
+//          	console.info(searchRelNodes);
+        		linkRelation(clickedOn, layerNum, isSource);
+//          	console.info("searchRelLinks:");
+//          	console.info(searchRelLinks);
+
+                neighborNodes = node.filter(function (d, i){
+                	return searchRelNodes[d.elementId];
+                });
+                neighborLinks = link.filter(function (d, i){
+                	return searchRelLinks[d.source.index+","+d.target.index];
+                });
+            }
+            function filterNeighbors(isSource, clickedOn) {
+            	// Filter the neighbor nodes and links base on the trace option
+                if(isSource) {
+                	neighborNodes = node.filter(function (o, i){
+                        return neighboring(o, clickedOn);
+                    });
+                	neighborLinks = link.filter(function(o, i){
+                		return clickedOn.index == o.target.index;
+                	});
+                } else {
+                	neighborNodes = node.filter(function (o, i){
+                		return neighboring(clickedOn, o);
+                	});
+                	neighborLinks = link.filter(function(o, i){
+                		return clickedOn.index == o.source.index;
+                	});
+                }
+            }
+            //查找多级节点
+            function neighboringNodes(arg1, layerNum){
+            	
+            	neighborNodes = node.filter(function (o, i){
+        			return neighboring(o, a);
+                });;
+                
+            	var nodeFun = function(a, layerNum){
+            		var nodes = node.filter(function (o, i){
+            			return neighboring(o, a);
+	                });
+	                if(nodes && (!nodes.empty())){//选择集非空
+//	                	layerNum --;//进入下一层，层数减1
+						if(1 != nodes.size()){//排除掉自身
+	//	                	layerNum &&  //有层数限制，放开这个条件。
+		                	nodes.each(function(item, index){
+		                		if(item.elementId != a.elementId){
+		                			nodeFun(item, layerNum);
+		                		}
+		                	});
+						}
+	                }
+	                
+            		if(neighborNodes){
+            			console.info(nodes);
+            			console.info(neighborNodes)
+            			neighborNodes.append(nodes);
+//          			nodes.each(function(item){
+//          				neighborNodes.insert(item);
+//          			});
+            		} else {
+            			neighborNodes = nodes;
+            		}
+            	};
+            	var linkFun = function(b, layerNum){
+            		var links = link.filter(function(o, i){
+                		return b.index == o.target.index;
+                	});
+					if(links && (!links.empty())){//选择集非空
+//	                	layerNum --;//进入下一层，层数减1
+//	                	layerNum &&  //有层数限制，放开这个条件。
+	                	links.each(function(item, index){
+	                		if(item.index != b.index){ //排除自身
+	                			linkFun(item, layerNum);
+	                		}
+	                	});	
+	                }
+					
+	                if(neighborLinks){
+	                	neighborLinks.append(links);
+//	                	links.each(function(item){
+//          				neighborLinks.insert(item);
+//          			});
+            		} else {
+            			neighborLinks = links;
+            		}
+            	}
+            	nodeFun(arg1, layerNum);
+            	linkFun(arg1, layerNum);
+            	console.info(neighborNodes);
+            	console.info(neighborLinks);
+            }
+            
+            function renderNodeText() {
+            	d3.selectAll(".nodetext").remove();
+            	var renderNodes = neighborNodes;
+            	console.log("field analysis ?? " + fieldAnalysis)
+            	if(fieldAnalysis) {
+            		renderNodes = tempNeighborNodes;
+            	}
+            	//console.log("render nodes are : " + renderNodes);
+            	if(renderNodes) {
+            		console.info("asdfasdf");
+            		console.info(typeof renderNodes.each);
+            		if(typeof renderNodes.each == "function"){
+            			renderNodes.each(function(d){
+	                	d3.select("body")
+	                	  .append("text")
+	                	  .attr("class", "nodetext")
+	                	  .text(subString(d.elementName, 20, true))
+	                	  .style("left", (translation[0] + scaleFactor*d.x + 15) + "px")
+	                      .style("top", (translation[1] + scaleFactor*d.y + 10) + "px");
+	                });
+            		}
+            	}
+            }
+            
+            function renderPinnedTooltip(node) {
+            	var nodeType = node.elementType,
+            		html = node.elementName;
+           		if(nodeType == 'INDICATOR') {
+            		html ='<lable>指标编号:'+node.elementId+'</label><br/>'+
+			   			  '<label>指标名称:'+node.elementName+'</label></br>';
+			   		if(node.dims){
+			   			drawIndicatorContent(html, node.dims);
+			   		} else {
+			   			requestData("/base/iceDim/getDim.action",
+			   						{idxId:node.elementId},
+			   						function(error, data){
+				   						node.dims = data;
+				   						drawIndicatorContent(html, node.dims);
+				       				});
+			   		}
+           		} else if (nodeType == 'ENTITY') {
+           			html ='<label>实体编号:'+node.elementId+'</label></br>'+
+		   			      '<label>实体名称:'+node.elementInfo+'</label></br>' +
+		   			   	  '<label>实体中文名:'+node.elementName+'</label></br>';
+           			if(node.fields){
+           				drawTableContent(html, node.fields, node.elementId);
+			   		} else {
+			   			requestData("/datacloud/datacloud/getEntityFields.action",
+			   					{dataEntNo: node.elementId},
+		   						function(error, data){
+			   						node.fields = data;
+			   						drawTableContent(html, node.fields, node.elementId);
+			       				});
+			   		}
+           		}
+            }
+        
+			function drawIndicatorContent(html, data) {
+				if(data && data.length > 0) {
+					html+='<table><tr><th colspan="3" align="center">指标维度</th></tr>';
+		         	html+='<tr><th width="60px">维度编号</th><th>维度命名</th><th>维度名称</th></tr>';
+		         	for(var i=0;i<data.length;i++){
+		         		html+='<tr><td>'+data[i].idxDimId+'</td><td>'+data[i].dimCall+'</td><td>'+data[i].dimNameCns+'</td></tr>';
+		         	}
+		         	html+='</table>';
+				}
+				
+				pinnedTooltip
+	       			.transition()
+	                .duration(200)
+	                .style("opacity", 1);
+       		
+	            pinnedTooltip
+	            	.html(html)
+		            .style("left", "20px")
+		            .style("bottom", "20px");
+			}
+			
+			function drawTableContent(html, data, dataEntNo) {
+				if(data) {
+		           	html+='<table><tr><th colspan="4" align="center">实体字段</th></tr>';
+		           	html+='<tr><th width="40px">序号</th><th>字段名称</th><th colspan="2">字段描述</th></tr>';
+		           	for(var i=0;i<data.length;i++){
+		           		html+='<tr><td>'+data[i].fldId+'</td><td>'+data[i].appDeCall+'</td><td>'+data[i].fldDesc
+		           		+'</td><td><img src="./image/analytics.png" title="分析" data_ent_no="'+ dataEntNo 
+		           		+'" data_field_name="'+ data[i].appDeCall +'" data_field_desc="'+ data[i].fldDesc +'"/></td></tr>';
+		           	}
+		           	html+='</table>';
+				}
+				
+				pinnedTooltip
+	       			.transition()
+	                .duration(200)
+	                .style("opacity", 1);
+       		
+	            pinnedTooltip
+	            	.html(html)
+		            .style("left", "20px")
+		            .style("bottom", "20px");
+	            
+	            d3.selectAll(".pinned img").on("click", function (){
+	            	var thiz = d3.select(this),
+	            		dataEntNo = thiz.attr("data_ent_no"),
+	            		fieldName = thiz.attr("data_field_name"),
+	            		fieldDesc = thiz.attr("data_field_desc"),
+	            		traceOption = d3.selectAll('.traceoption input')[0][0].checked ? 'BloodRelation' : 'Impact',
+	            		prefix = traceOption == "BloodRelation" ? "依赖" : "影响";
+	            	requestData("/datacloud/datacloud/getRelationFields.action",
+	            			{dataEntNo:dataEntNo,fieldName:fieldName,traceOption:traceOption},
+		       				function(error, data){
+	            				var result = data;
+            					tempNeighborNodes = neighborNodes.filter(function (o, i){
+                                    return result[o.elementId] != null || o.elementId == dataEntNo;
+                                });
+                            	var tempNeighborLinks = neighborLinks.filter(function(o, i){
+                            		var flag = false;
+                            		tempNeighborNodes.each(function(d){
+                            			if((o.source.elementId == d.elementId && o.target.elementId == dataEntNo)
+                            					|| (o.source.elementId == dataEntNo && o.target.elementId == d.elementId)) {
+                            				flag = true;
+                            			}
+                            		});
+                            		return flag;
+                            	});
+                            	neighborNodes
+	            	            	.style("stroke-opacity", 0.5)
+	            	            	.style("fill-opacity", 0.5);
+                            	neighborLinks
+	            	            	.style("stroke-opacity", 0.1)
+	            	            	.style("marker-end", "none");
+                            	tempNeighborNodes
+	                            	.style("stroke-opacity", 1)
+	                            	.style("fill-opacity", 1);
+                            	tempNeighborLinks
+	            	            	.style("stroke-opacity", 0.6)
+	            	            	.style("marker-end", "url(#end)");
+                            	
+                            	fieldAnalysis = true;
+                            	renderNodeText();
+                            	
+                            	var htmlDefault = "<tr><td colspan='3' align='center'>无字段"+ prefix +"关系！</td></tr>";
+                            	var html = '<label>字段名称:'+ fieldName +'</label></br>' +
+			                			   '<label>字段描述:'+ fieldDesc +'</label></br>' +
+			                			   "<table><tr><th colspan='3' align='center'>字段"+ prefix +"分析</th></tr>"+
+			                			   "<tr><th width='200px'>"+ prefix +"实体</th><th width='100px'>"+ prefix +"字段</th><th width='200px'>表达式</th></tr>";
+			                	var appendHtml = "";
+                            	d3.keys(result).map(function(key){
+                            		result[key].forEach(function(o,i) {
+                            			appendHtml += "<tr>";
+                            			if(i == 0) {
+                            				appendHtml += "<td rowspan='"+ result[key].length +"'>"+ o.frmTabNm + "</br>(" + o.tableName +")</td>";
+                            			}
+                            			appendHtml += "<td>" + o.frmField + "</td><td>" + o.fldValue + "</td></tr>";
+                            		});
+                            	});
+                            	html += appendHtml == "" ? htmlDefault : appendHtml;
+                            	html += "</table>";
+                            	
+                            	relationTooltip
+	            	       			.transition()
+	            	                .duration(200)
+	            	                .style("opacity", 1);
+	                   		
+                            	relationTooltip
+		            	            	.html(html)
+		            		            .style("top", "20px")
+		            		            .style("right", "20px");
+				       		});
+	            });
+			}
+			
+            function searchNode(searchVal, gObject) {
+                nodeHighlighted = false;
+            	// Clear node history
+                nodeHistory = [];
+                linkHistory = [];
+                nodeHistoryIndex = {};
+                d3.selectAll(".nodetext").remove();
+                
+                var searchNode = d3.selectAll(".node");
+                var notSelectedNodes = searchNode.filter(function (d, i){
+                    return lookupTable[d.elementId] != searchVal
+                });
+
+                var selectedNodes = searchNode.filter(function (d, i){
+                    return lookupTable[d.elementId] == searchVal
+                });
+                
+                var link = d3.selectAll(".link");
+                if (!d3.select(gObject).classed("active")){
+                    selectedNodes
+                        .style("stroke-opacity", 1)
+                        .style("fill-opacity", 1)
+                        .classed("activeNode", true);
+                    notSelectedNodes
+                        .style("stroke-opacity", 0.3)
+                        .style("fill-opacity", 0.3)
+                        .classed("activeNode", false);
+
+                    link.style("stroke-opacity", 0)
+                    	.style("marker-end","none");
+                    
+                    d3.select(gObject).classed("active", true);
+                    layerSelected = true;
+                    allShowing = false;
+                } else {
+                    d3.select(gObject).classed("active", false);
+                    showAllNodes();
+                }
+            }
+
+            // Show all nodes on click in empty space
+            function showAllNodes(){
+                if(d3.event.stopPropagation){d3.event.stopPropagation();}
+                //force.resume();
+                //Put them back to opacity=1
+                node
+                    .style("stroke-opacity", 0.3)
+                    .style("fill-opacity", 0.3)
+                    .classed("activeNode", true)
+                    .classed("clickedNode", false)
+                    .classed("baseNode", false);
+                link.style("stroke-opacity", 0)
+                	.style("marker-end","");
+                
+                d3.selectAll("g.cell").classed("active", false); // Clear layer filters
+                allShowing = true;
+                layerSelected = false;
+                nodeHighlighted = false;
+                fieldAnalysis = false;
+                pinnedTooltip.style("opacity", 0);
+                relationTooltip.style("opacity", 0);
+                pinnedTooltip.html("");
+                relationTooltip.html("");
+                
+                // Clear node history
+                nodeHistory = [];
+                linkHistory = [];
+                nodeHistoryIndex = {};
+                neighborNodes = {};
+                neighborLinks = {};
+                tempNeighborNodes = {};
+                d3.selectAll(".nodetext").remove();
+            }
+            
+            // Update positions of nodes and links
+            function tick() {
+                link.attr("x1", function(d) { return translation[0] + scaleFactor*d.source.x; })
+                    .attr("y1", function(d) { return translation[1] + scaleFactor*d.source.y; })
+                    .attr("x2", function(d) { return translation[0] + scaleFactor*d.target.x; })
+                    .attr("y2", function(d) { return translation[1] + scaleFactor*d.target.y; });
+
+                node.attr("cx", function(d) { return translation[0] + scaleFactor*d.x; })
+                    .attr("cy", function(d) { return translation[1] + scaleFactor*d.y; });
+            }
+
+            function resize() {
+                width = window.innerWidth  + minWidthPoly2 , 
+                height = (window.innerHeight < 500 ? 500 : window.innerHeight);
+                d3.select("svg.mainsvg").attr("width", width).attr("height", height);
+                force.size([width, height]);//.resume();
+
+                rect.attr("x", minWidthPoly1);
+
+                points ="0,0 " + minWidthPoly1 + ",0 " +minWidthPoly2 + "," + height + " " + "0," + height;
+                polygon.attr("points", points );
+
+                legendContainerHeight = d3.select("g.legendContainer").node().getBoundingClientRect().height;
+
+                /* legendContainer.attr("transform", "translate(0," + ((height-legendContainerHeight)/2) + ")"); */
+                legendContainer.attr("transform", "translate(0,95)");
+
+                polygon.moveToFront();
+                legendContainer.moveToFront();
+                //tick();
+            }
+        }
+
+
+        //测试用
+//      var json = {
+//          CLOUD_ELEMENT: {
+//
+//          },
+//          CLOUD_RELATION:[]
+//      };
+//      ready(false, json);
+        </script>
+</body>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>case02</title>
+		<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css" />
+		<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Ext.onReady(function(){
+		var store = Ext.create('Ext.data.Store',{
+			fields : ['name', 'seniority', 'department'],
+			groupField : 'department',
+			data:{'employees':[{"name":"Michael", "seniority":7, "department":"Sales"}]},
+			proxy : {
+				type:'memory',
+				reader : {
+					type : 'json',
+					root : 'employees'
+				}
+			}
+		});
+	 
+		var columns = [{text:'Name', dataIndex:'name'},
+						{text:'Seniority', dataIndex:'seniority'}];
+	
+		var grid = Ext.create('Ext.grid.Panel',{
+			title : 'Employees',
+			enableLocking : true,
+			columns : [],
+			features:[{
+				ftype : 'grouping'
+			}],
+			width : 200,
+			resizable : true,
+			store : Ext.create('Ext.data.Store',{
+				fields : []
+			}),
+			height : 275
+		});
+	
+		var tab = Ext.create('Ext.tab.Panel',{
+			width : 400,
+			height : 400,
+			renderTo : document.body,
+			items : []
+		});
+	
+		var button = Ext.widget('button',{
+			renderTo : Ext.getBody(),
+			text : 'rec',
+			handler : function(){
+				tab.add(grid);
+				grid.reconfigure(store, columns);
+				
+			}
+		});
+	});
+		</script>
+	</head>
+
+	<body>
+	</body>
+
+</html>

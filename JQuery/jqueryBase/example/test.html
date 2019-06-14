@@ -3,19 +3,21 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<script src="../js/jquery-1.7.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				var str = $("#tt").attr("pp");
+				console.info(str);    
+				$("#flex1").text(str);
+			}); 
+		</script>
 	</head>
-	<script type="text/javascript">
-		var params = {
-			name : 'zhangsan',
-			age : 15
-		}
-		var result = "";
-		for (var key in params) {
-			result += params[key];
-		}
-		alert(result);
-	</script>
-	<body>
-		<input type="button" ondblclick="alert('1')" value="button"/>
+	<body> 
+		<div id="tt" pp="&lt;root&gt; 
+&lt;node&gt; 
+&lt;/node&gt;
+&lt;/root&gt;"></div>
+		<div id="flex1">
+		</div>
 	</body>
 </html>

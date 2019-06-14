@@ -1,0 +1,198 @@
+{
+	"CLOUD_RELATION": [
+		{
+			"elementId": "M1030005014",
+			"elementName": null,
+			"elementInfo": null,
+			"elementType": null,
+			"layerId": null,
+			"superElementId": "M1030005013",
+			"fields": null,
+			"dims": null
+		}, {
+			"elementId": "M1030005011",
+			"elementName": null,
+			"elementInfo": null,
+			"elementType": null,
+			"layerId": null,
+			"superElementId": "M1030005014",
+			"fields": null,
+			"dims": null
+		}, {
+			"elementId": "M1030005012",
+			"elementName": null,
+			"elementInfo": null,
+			"elementType": null,
+			"layerId": null,
+			"superElementId": "M1030005014",
+			"fields": null,
+			"dims": null
+		}, {
+			"elementId": "T01",
+			"elementName": null,
+			"elementInfo": null,
+			"elementType": null,
+			"layerId": null,
+			"superElementId": "M1030005012",
+			"fields": null,
+			"dims": null
+		}, {
+			"elementId": "T02",
+			"elementName": null,
+			"elementInfo": null,
+			"elementType": null,
+			"layerId": null,
+			"superElementId": "T01",
+			"fields": null,
+			"dims": null
+		},{
+			"elementId": "T03",
+			"elementName": null,
+			"elementInfo": null,
+			"elementType": null,
+			"layerId": null,
+			"superElementId": "T01",
+			"fields": null,
+			"dims": null
+		},{
+			"elementId": "T03",
+			"elementName": null,
+			"elementInfo": null,
+			"elementType": null,
+			"layerId": null,
+			"superElementId": "pp",
+			"fields": null,
+			"dims": null
+		},{
+			"elementId": "T04",
+			"elementName": null,
+			"elementInfo": null,
+			"elementType": null,
+			"layerId": null,
+			"superElementId": "T01",
+			"fields": null,
+			"dims": null
+		},{
+			"elementId": "T05",
+			"elementName": null,
+			"elementInfo": null,
+			"elementType": null,
+			"layerId": null,
+			"superElementId": "T03",
+			"fields": null,
+			"dims": null
+		}
+	],
+	"CLOUD_ELEMENT": {
+		"M1030005013": {
+			"elementId": "M1030005013",
+			"elementName": "信贷账务_转贴现基本信息",
+			"elementInfo": "M_AC_LOAN_TDIS",
+			"elementType": "ENTITY",
+			"layerId": "L006",
+			"superElementId": null,
+			"fields": null,
+			"dims": null
+		},
+		"M1030005014": {
+			"elementId": "M1030005014",
+			"elementName": "信贷账务_再贴现基本信息",
+			"elementInfo": "M_AC_LOAN_REDI",
+			"elementType": "ENTITY",
+			"layerId": "L006",
+			"superElementId": null,
+			"fields": null,
+			"dims": null
+		},
+		"M1030005011": {
+			"elementId": "M1030005011",
+			"elementName": "信贷账务_垫款登记薄",
+			"elementInfo": "M_AC_LOAN_ADVA",
+			"elementType": "ENTITY",
+			"layerId": "L006",
+			"superElementId": null,
+			"fields": null,
+			"dims": null
+		},
+		"M1030005012": {
+			"elementId": "M1030005012",
+			"elementName": "信贷账务_贴现基本信息",
+			"elementInfo": "M_AC_LOAN_DISC",
+			"elementType": "ENTITY",
+			"layerId": "L006",
+			"superElementId": null,
+			"fields": null,
+			"dims": null
+		},
+		"M1030005099": {
+			"elementId": "M1030005099",
+			"elementName": "独立节点",
+			"elementInfo": "biubiu",
+			"elementType": "ENTITY",
+			"layerId": "L006",
+			"superElementId": null,
+			"fields": null,
+			"dims": null
+		},
+		"T01": {
+			"elementId": "T01",
+			"elementName": "T01",
+			"elementInfo": "biubiu",
+			"elementType": "ENTITY",
+			"layerId": "L006",
+			"superElementId": null,
+			"fields": null,
+			"dims": null
+		},
+		"T02": {
+			"elementId": "T02",
+			"elementName": "T02",
+			"elementInfo": "biubiu",
+			"elementType": "ENTITY",
+			"layerId": "L006",
+			"superElementId": null,
+			"fields": null,
+			"dims": null
+		},
+		"T03": {
+			"elementId": "T03",
+			"elementName": "T03",
+			"elementInfo": "biubiu",
+			"elementType": "ENTITY",
+			"layerId": "L006",
+			"superElementId": null,
+			"fields": null,
+			"dims": null
+		},
+		"T04": {
+			"elementId": "T04",
+			"elementName": "T04",
+			"elementInfo": "biubiu",
+			"elementType": "ENTITY",
+			"layerId": "L006",
+			"superElementId": null,
+			"fields": null,
+			"dims": null
+		},
+		"T05": {
+			"elementId": "T05",
+			"elementName": "T05",
+			"elementInfo": "biubiu",
+			"elementType": "ENTITY",
+			"layerId": "L006",
+			"superElementId": null,
+			"fields": null,
+			"dims": null
+		},
+		"pp": {
+			"elementId": "PP",
+			"elementName": "PP",
+			"elementInfo": "biubiu",
+			"elementType": "ENTITY",
+			"layerId": "L006",
+			"superElementId": null,
+			"fields": null,
+			"dims": null
+		}
+	}
+}

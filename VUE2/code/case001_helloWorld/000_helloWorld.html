@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>hello world</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	</head>
+	<body>
+		<!--鼠标悬停几秒钟查看此处动态绑定的提示信息！-->
+		<!--
+			v-bind 特性被称为指令。指令带有前缀 v-，以表示它们是 Vue 提供的特殊特性。可
+			能你已经猜到了，它们会在渲染的 DOM 上应用特殊的响应式行为。
+			在这里，该指令的意思是：“将这个元素节点的 title 特性和 Vue 实例的 message 属性保持一致”
+			
+		-->
+		<div id="app" v-bind:title="title">
+			{{message}}
+		</div>
+		//脚本得在dom渲染后出现
+		<script>
+		    //每个 Vue 应用都是通过用 Vue 函数创建一个新的 Vue 实例
+			var app = new Vue({
+				el: "#app",
+				data:{
+					message: "Hello Vue!",
+					title:"fck VUE!"
+				}
+			});
+			console.info(app.message);
+			console.info(app.title);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>v-for</title>
+		<script src="../../vue-2.5.13/dist/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<button onclick="app.todos.push({text:'新项目',say:'某某'})">
+			新项目
+		</button>
+		<div id="app">
+			<ul>
+				<li v-for="todo in todos">
+					{{todo.text}} -say by: {{todo.say}}
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			var app = new Vue({
+				el:"#app",
+				data:{
+					todos:[{ text: '学习 JavaScript', say:'tc' },
+				      { text: '学习 Vue' , say:'pp'},
+				      { text: '整个牛项目' ,say:'gg'}]
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>combo</title>
+	<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css"/>
+	<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		Ext.onReady(function(){
+			var panel,listStore1;
+			listStore1 = Ext.create("Ext.data.ArrayStore",{
+				storeId: 'ValueTypes',
+				fields: ['id','text'],
+				data: [['1','四川'],['2','重庆'],['3','上海']]
+			});
+			
+			var emptyStore = Ext.create("Ext.data.ArrayStore",{
+				storeId: 'ValueTypes',
+				fields: ['id','text'],
+				data: []
+			});
+			var store1 = Ext.create("Ext.data.ArrayStore",{
+				storeId: 'ValueTypes',
+				fields: ['id','text'],
+				data: [['1','四川-地方1']]
+			});
+			var store2 = Ext.create("Ext.data.ArrayStore",{
+				storeId: 'ValueTypes',
+				fields: ['id','text'],
+				data: [['1','重庆-地方1'],['2','重庆-地方2']]
+			});
+			var store3 = Ext.create("Ext.data.ArrayStore",{
+				storeId: 'ValueTypes',
+				fields: ['id','text'],
+				data: [['1','上海-地方1'],['2','上海-地方2'],['3','上海-地方3']]
+			});
+			var combo = Ext.create("Ext.form.field.ComboBox",{
+		        fieldLabel: '被改变项',
+		        name: 'list',
+		        store: emptyStore,
+		        valueField: 'id',
+				displayField: 'text',
+				queryMode: 'local'
+		    });
+			panel = Ext.create("Ext.Panel",{  
+			       renderTo: 'borderDiv',  
+			       layout: 'border',  
+			       tltle: 'Border Layout',
+			       height: 600,
+			       renderTo: Ext.getBody(),
+			       defaults: {  
+			           bodyStyle: 'padding:15px'  
+			       },  
+			       items: [{
+			       		xtype:"form",
+			       		defaultType: 'textfield',
+			       		items:[{
+					        fieldLabel: 'First Name',
+					        name: 'first',
+					        allowBlank: false
+					    },{
+					        fieldLabel: 'Last Name',
+					        name: 'last',
+					        allowBlank: false
+					    },{
+					        fieldLabel: '改变项',
+					        xtype:"combo",
+					        name: 'list',
+					        store: listStore1,
+					        valueField: 'id',
+							displayField: 'text',
+					        listeners:{
+					        	change:function(tthis, newVal, oldVal){
+					        		var store = 1==newVal?store1:2==newVal?store2:store3;
+					        		combo.setValue("");
+					        		combo.store.removeAll();
+					        		combo.store.add(store.getRange());
+//					        		combo.store = store;
+//					        		combo.store.reload();
+//									combo.getView().refresh();
+					        	}
+					        }
+					    }, combo],
+//					    bbar: [{
+//								xtype: 'button',
+//								text: 'Button 3'
+//						},{
+//								xtype: 'button',
+//								text: 'Button 4'
+//						}]
+			       }],
+			       tbar: [{
+							xtype: 'button',
+							text: 'Button 1'
+					},{
+							xtype: 'button',
+							text: 'Button 2'
+					}]
+			   });
+		});
+	</script>
+</head>
+<body>
+	<div id="borderDiv"></div>
+</body>
+</html>

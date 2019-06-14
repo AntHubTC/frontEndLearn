@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>下拉树</title>
+		<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css" />
+		<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script src="ComboTreeBox.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Ext.onReady(function() {
+				var store = Ext.create('Ext.data.TreeStore', {
+					root: {
+						expanded: true,
+						children: [{
+							text: "detention",
+							leaf: true
+						}, {
+							text: "homework",
+							expanded: true,
+							children: [{
+								text: "book report",
+								leaf: true
+							}, {
+								text: "alegrbra",
+								leaf: true
+							}]
+						}, {
+							text: "buy lottery tickets",
+							leaf: true
+						}]
+					}
+				});
+				Ext.create("ComboTreeBox", {
+					renderTo: "renderDiv",
+					treeStore: store,
+				    width: 200
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div></div>
+		<div id="renderDiv"></div>
+	</body>
+</html>

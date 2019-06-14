@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			table:last-child{
+				border-collapse: collapse;
+			}
+			table td {
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<p style="text-align:center">边框折叠border-collapse</p>
+		<p>未使用border-collapse: collapse;</p>
+		<table>
+			<tr>
+				<td>1</td>
+				<td colspan="2">2</td>
+				<td>3</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+			</tr>
+		</table>
+		<p>使用border-collapse: collapse;</p>
+		<table>
+			<tr>
+				<td>1</td>
+				<td colspan="2">2</td>
+				<td>3</td>
+			</tr>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+			</tr>
+		</table>
+	</body>
+</html>

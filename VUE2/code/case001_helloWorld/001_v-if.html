@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>v-if</title>
+		<script src="../../vue-2.5.13/dist/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--
+			这个例子演示了我们不仅可以把数据绑定到 DOM 文本或特性，
+			还可以绑定到 DOM 结构。此外，Vue 也提供一个强大的过渡效果系统，
+			可以在 Vue 插入/更新/移除元素时自动应用过渡效果。
+		-->
+		<button onclick="app.seen = !app.seen">
+			点我
+		</button>
+		<div id="app">
+			<p v-if="seen">你看到我了</p>
+		</div>
+		<script type="text/javascript">
+			var app = new Vue({
+				el:"#app",
+				data:{
+					seen:true
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css" />
+		<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Ext.onReady(function() {
+				var columnPanel = new Ext.Panel({
+					renderTo: 'dom1',
+					layout: 'column',
+					title: '这是一个column和form配合的一种多行多列的布局方式',
+					width: 500,
+					height: 300,
+					items: [{
+						columnWidth: .5, //多列靠这个进行分配
+						xtype: 'panel',
+						layout: 'form',
+						defaultType: 'displayfield', //默认类型
+						defaults:{
+							labelAlign:'right' //标签对齐方式
+						},
+						border: 0,
+						items: [{
+							fieldLabel: '指标代码',
+							labelSeparator: '：',
+							name: 'idxIdBuss',
+							hidden: true,
+							value:"A123123"
+						}, {
+							fieldLabel: '指标名称',
+							labelSeparator: '：',
+							name: 'idxName',
+							value:'AAAAAA'
+						}, {
+							fieldLabel: '生效日期',
+							labelSeparator: '：',
+							name: 'teDate',
+							value: '20180130'
+						}, {
+							fieldLabel: '指标描述',
+							labelSeparator: '：',
+							name: 'idxDescr',
+							value: 'indicator description'
+						}]
+					}, {
+						columnWidth: .5,
+						xtype: 'panel',
+						layout: 'form',
+						defaultType: 'displayfield',
+						defaults:{
+							labelAlign:'right'
+						},
+						border: 0,
+						items: [{
+							fieldLabel: '适用渠道-系统',
+							labelSeparator: '：',
+							name: 'idxSoaCn',
+							value: '通用-通用'
+						}, {
+							fieldLabel: '失效日期',
+							labelSeparator: '：',
+							name: 'leDate',
+							value: '9999-12-31'
+						}]
+					}]
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="dom1"></div>
+	</body>
+
+</html>

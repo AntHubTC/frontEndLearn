@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>hello world</title>
+		<script src="../../vue-2.5.13/dist/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<p>{{value}}</p>
+		</div>
+		<script>
+		//这个案例有问题，不能双向绑定，应该是差点什么
+			var app = new Vue({
+				el:"#app",
+				render: function(createElement){
+					var self = this;
+					//这就是深入底层要付出的，尽管麻烦了一些，但相对于 v-model 来说，你可以更灵活地控制。
+					return createElement("input",{
+						domProps:{
+							value: self.value
+						},
+						on:{
+							input: function(event){
+								self.value = event.target.value;
+								self.$emit('input', self.value);
+								
+								console.info(app.value);
+							}
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+</html>

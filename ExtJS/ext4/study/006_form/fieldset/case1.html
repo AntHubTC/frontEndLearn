@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css" />
+		<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var form = new Ext.form.FormPanel({
+				labelAlign: 'right',
+				title: '布局',
+				//					renderTo: Ext.getBody(),
+				labelWidth: 50,
+				buttonAlign: 'center',
+				frame: true,
+				width: 600,
+				items: [{
+					layout: 'column',
+					items: [{
+						columnWidth: .33,
+						layout: 'form',
+						xtype: 'fieldset',
+						autoHeight: true,
+						defaultType: 'textfield',
+						title: '俩字',
+						items: [{
+							fieldLabel: '俩字'
+						}, {
+							fieldLabel: '俩字'
+						}]
+					}, {
+						columnWidth: .33,
+						layout: 'form',
+						xtype: 'fieldset',
+						autoHeight: true,
+						style: 'margin-left:10px',
+						defaultType: 'textfield',
+						title: '三字',
+						items: [{
+							fieldLabel: '三个字'
+						}, {
+							fieldLabel: '三个字'
+						}, {
+							fieldLabel: '三个字'
+						}]
+					}, {
+						columnWidth: .33,
+						layout: 'form',
+						xtype: 'fieldset',
+						style: 'margin-left:10px',
+						autoHeight: true,
+						title: '四字',
+						defaultType: 'textfield',
+						items: [{
+							fieldLabel: '四个字'
+						}, {
+							fieldLabel: '四个字'
+						}, {
+							fieldLabel: '四个字'
+						}, {
+							fieldLabel: '四个字'
+						}]
+					}]
+				}, {
+					xtype: 'fieldset',
+					autoHeight: true,
+					title: '文本域',
+					items: [{
+						width: 345,
+						height: 100,
+						xtype: 'textarea',
+						fieldLabel: '文本域'
+					}]
+				}],
+				buttons: [{
+					text: '按钮',
+					handler: function() {}
+				}]
+			});
+			
+			Ext.onReady(function() {
+				form.render("form");
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="form"></div>
+	</body>
+
+</html>

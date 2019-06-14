@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body {
+				overflow: hidden;
+			}
+			
+			body > svg {
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			
+			.div-stage-wapper {
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 999999;
+				overflow: hidden;
+			}
+			
+			.div-stage {
+				transform-origin: 0 0;
+			}
+			
+			.diagram-node {
+				width: 200px;
+				font-size: 10px;
+				position: absolute;
+			}
+			
+			.diagram-node-item {
+				height: 20px;
+				line-height: 20px;
+				padding: 3px;
+				color: black;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
+			
+			.diagram-node-sys {
+				border: 4px solid #d77b78;
+				background-color: #d77b78;
+				font-weight: 900;
+			}
+			
+			.diagram-node-table {
+				border: 3px solid #8278D7;
+				background-color: #8278D7;
+				font-weight: 600;
+			}
+			
+			.diagram-node-column {
+				/*border: 2px solid #FFFFE9;*/
+				background-color: #FFFFE9;
+				font-weight: 500;
+			}
+		</style>
+		<script src="https://d3js.org/d3.v5.js" type="text/javascript" charset="utf-8"></script>
+		<script src="jquery.min.js"></script>
+		<script src="mustache.js"></script>
+		<script src="svg_coordinate.js"></script>
+		<script id="diagramNodeTpl" type="text/mustache-template">
+			<div class="diagram-node">
+				<div class="diagram-node-sys" title="xxx系统">
+					<div class="diagram-node-item" title="xxx系统">
+						系统：{{name}}
+					</div>
+					{{#elements}}
+					<div class="diagram-node-table">
+						<div class="diagram-node-item" title="xxx表">
+							表：{{name}}
+						</div>
+						{{#elements}}
+						<div class="diagram-node-column">
+							<div class="diagram-node-item" title="xxx字段">
+								字段：{{name}}
+							</div>
+						</div>
+						{{/elements}}
+					</div>
+					{{/elements}}
+				</div>
+			</div>
+		</script>
+		<script type="text/javascript">
+			/**
+			 * 本例实现了节点的连接的目标箭头仅仅在矩形的周围。活用了数学的三角函数
+			 */
+			window.onload = function() {
+				var coordinate = new Coordinate();
+				var dataCloud = {
+					data: {
+						nodes: [{
+							name: "北京系统",
+							elements: [{
+								name: '北京表',
+								elements: [{
+									name: '北京字段'
+								}]
+							}]
+						}, {
+							name: '天津系统',
+							elements: [{
+								name: '天津表',
+								elements: [{
+									name: '天津字段'
+								}]
+							}]
+						}, {
+							name: '地区系统',
+							elements: [{
+								name: '地区表',
+								elements: [{
+									name: '地区字段'
+								}]
+							}]
+						}, {
+							name: '单位系统',
+							elements: [{
+								name: '单位表',
+								elements: [{
+									name: '单位字段'
+								}]
+							}]
+						}, {
+							name: '单位住址系统',
+							elements: [{
+								name: '单位住址表',
+								elements: [{
+									name: '单位住址字段'
+								}]
+							}]
+						}, {
+							name: '单位类型系统',
+							elements: [{
+								name: '单位类型表',
+								elements: [{
+									name: '单位类型字段'
+								}]
+							}]
+						}, {
+							name: '民营系统',
+							elements: [{
+								name: '民营表',
+								elements: [{
+									name: '民营字段'
+								}]
+							}]
+						}],
+						links: [{
+							source: 0,
+							target: 2
+						}, {
+							source: 1,
+							target: 2
+						}, {
+							source: 3,
+							target: 2
+						}, {
+							source: 3,
+							target: 4
+						}, {
+							source: 3,
+							target: 5
+						}, {
+							source: 6,
+							target: 5
+						}]
+					},
+					viewInfo: {
+						width: 1024,
+						height: 500,
+						rectWidth: 200,
+						rectHeight: 92
+					},
+					init: function() {
+						var nodes = this.data.nodes,
+							links = this.data.links;
+						console.info("nodes:");
+						console.info(nodes);
+						console.info("links:");
+						console.info(links);
+						// 画布宽度
+						var width = this.viewInfo.width;
+						// 画布高度
+						var height = this.viewInfo.height;
+						// 矩形宽度
+						var rect_width = this.viewInfo.rectWidth;
+						// 矩形高度
+						var rect_height = this.viewInfo.rectHeight;
+						// 画布对象
+						var diagramBox = d3.select('body');
+						var svgStage = diagramBox.append('svg')
+							.attr('width', width)
+							.attr('height', height);
+						var divStageWapper = diagramBox.append('div')
+							.attr('class', 'div-stage-wapper')
+							.style('width', width + 'px')
+							.style('height', height + 'px');
+						var divStage = divStageWapper.append('div')
+							.attr('class', 'div-stage');
+							
+						var marker = svgStage.append("marker")
+							.attr("id", "resolved")
+							.attr("markerUnits", "userSpaceOnUse")
+							.attr("viewBox", "0 -5 10 10") // 坐标系的区域
+							.attr("refX", 10) // 箭头坐标
+							.attr("refY", -1)
+							.attr("markerWidth", 12) // 标识的大小
+							.attr("markerHeight", 12)
+							.attr("orient", "auto") // 绘制方向，可设定为：auto（自动确认方向）和 角度值
+							.attr("stroke-width", 2) // 箭头宽度
+							.append("path")
+							.attr("d", "M0,-5L10,0L0,5") // 箭头的路径
+							.attr('fill', '#000000'); // 箭头颜色
+						//  通过布局来转换数据，然后进行绘制
+						var simulation = d3.forceSimulation(nodes)
+							.force("link", d3.forceLink(links).distance(300))
+							.force("charge", d3.forceManyBody().strength(-600))
+							.force("center", d3.forceCenter(width / 2, height / 2));
+						// 颜色对象
+						var color = d3.scaleOrdinal(d3.schemeCategory10);
+						//  绘制线
+						var svg_links = svgStage.selectAll("path")
+							.data(links)
+							.enter()
+							.append("path")
+							.style("stroke", "#ccc")
+							.style("stroke-width", 3);
+						// 节点
+						var div_nodes = divStage.selectAll("div.diagram-node")
+							.data(nodes)
+							.enter()
+							.append(function(d) {
+								var htmlEle = $(Mustache.render($('#diagramNodeTpl').html(), d)).get(0);
+								d.domElement = htmlEle;
+								return htmlEle;
+							})
+							.style("width", rect_width)
+							.style("height", rect_height)
+							.call(d3.drag()
+								.on("start", dragstarted)
+								.on("drag", dragged)
+								.on("end", dragended));
+						var zoomIns = d3.zoom().scaleExtent([0.1, 4]).on('zoom', function() {
+							//  保存当前缩放的属性值
+							var transform = d3.event.transform;
+							console.info(transform)
+							var divTransfrom = 'translateX(' + transform.x + 'px) translateY(' + transform.y + 'px) ' +
+									'scale(' + transform.k + ')';
+							divStage.style('transform', divTransfrom);
+							svg_links.attr("transform", transform);
+							svg_text.attr("transform", transform);
+						});
+						divStageWapper.call(zoomIns).on('dblclick.zoom', null);
+						/**
+						 * 节点（开始）拖拽事件
+						 */
+						function dragstarted(d) {
+							if (!d3.event.active)
+								simulation.alphaTarget(0.002).restart();
+							d.fx = d.x;
+							d.fy = d.y;
+						}
+						/**
+						 * 节点拖拽事件
+						 */
+						function dragged(d) {
+							d.fx = d3.event.x;
+							d.fy = d3.event.y;
+						}
+						/**
+						 * 节点（结束）拖拽事件
+						 */
+						function dragended(d) {
+							if (!d3.event.active)
+								simulation.alphaTarget(0);
+						}
+						// 节点描述
+						var svg_text = svgStage.selectAll("text")
+							.data(nodes)
+							.enter()
+							.append("text")
+							.style("fill", "#ffffff")
+							.attr("dominant-baseline", "middle")
+							.attr("text-anchor", "middle") // 在圆圈中加上数据
+							.text(function(d) {
+								return d.name;
+							});
+						// 绘制节点 文本 直线
+						function draw() {
+							div_nodes
+								.style("left", function(d) {
+									var r = d.x - (rect_width / 2);
+									return r + 'px';
+								})
+								.style("top", function(d) {
+									var r = d.y - (rect_height / 2);
+									return r + 'px';
+								});
+							svg_text
+								.attr("x", function(d) {
+									return d.x;
+								})
+								.attr("y", function(d) {
+									return d.y;
+								});
+							svg_links
+								.attr("d", function(d) {
+									var xAndy = coordinate.findArrowPoint(d.source.x, d.source.y, d.target.x, d.target.y, rect_width, rect_height);
+									return 'M ' + d.source.x + ' ' + d.source.y + ' L ' +
+										xAndy[0] + ' ' + xAndy[1]
+								})
+								.attr("marker-end", "url(#resolved)");
+						}
+						simulation.on("tick", draw);
+						var e = {
+							name: '河北系统',
+							elements: [{
+								name: '河北表',
+								elements: [{
+									name: '河北字段'
+								}]
+							}]
+						};
+						var f = {
+							source: 7,
+							target: 2
+						};
+						d3.timeout(function() {
+							nodes.push(e);
+							links.push(f);
+							restart()
+						}, 4000);
+						// 动态添加节点
+						function restart() {
+							svg_links = svg_links.data(links, function(d) {
+								return d.source.name + "-" + d.target.name;
+							});
+							svg_links = svg_links.enter()
+								.append("path")
+								.style("stroke", "#ccc")
+								.style("stroke-width", 3)
+								.merge(svg_links);
+							div_nodes = div_nodes
+								.data(nodes, function(d) {
+									return d.name;
+								})
+								.enter()
+								.append(function(d) {
+									var htmlEle = $(Mustache.render($('#diagramNodeTpl').html(), d)).get(0);
+									d.domElement = htmlEle;
+									return htmlEle;
+								})
+								.style("width", rect_width)
+								.style("height", rect_height)
+								.merge(div_nodes).call(d3.drag()
+									.on("start", dragstarted)
+									.on("drag", dragged)
+									.on("end", dragended));
+							// 节点描述
+							svg_text = svg_text
+								.data(nodes, function(d) {
+									return d.name;
+								}).enter()
+								.append("text")
+								.style("fill", "#ffffff")
+								.attr("dominant-baseline", "middle")
+								.attr("text-anchor", "middle") // 在圆圈中加上数据
+								.text(function(d) {
+									return d.name;
+								}).merge(svg_text);
+							// 加载节点
+							simulation.nodes(nodes);
+							simulation.force("link").links(links);
+							simulation.alpha(1).restart();
+						}
+					}
+				};
+				dataCloud.init();
+				//222
+			};
+		</script>
+	</head>
+
+	<body>
+	</body>
+</html>

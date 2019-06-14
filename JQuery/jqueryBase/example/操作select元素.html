@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		</style>
+		<script src="../js/jquery-1.7.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<select id="sec">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+		</select>
+		<script type="text/javascript"> 
+			$(function(){
+				window.status = ' ';
+				var $sec = $("#sec");
+				$sec.change(function() {
+					console.info("change");
+					//获取下拉框选中项的text属性值
+			        var selectText = $(this).find("option:selected").text();
+			        console.info(selectText);
+			        //获取下拉框选中项的value属性值
+			        var selectValue = $(this).val();
+			        console.info(selectValue);
+			        //获取下拉框选中项的index属性值
+			        var selectIndex = $(this).get(0).selectedIndex;
+			        console.info(selectIndex);
+			        //获取下拉框最大的value属性值
+			        var selectMaxIndex = $("#sec option:last").attr("value");
+			        console.info(selectMaxIndex);
+				});
+				
+				//设置下拉框index属性为5的选项 选中
+        		$sec.get(0).selectedIndex = 5;  
+        		
+        		//设置下拉框value属性为4的选项 选中
+        		$sec.val(4);
+        		
+        		//设置下拉框text属性为5的选项 选中
+		         $sec.find("option[text=5]").attr("selected", "selected");
+		         $sec.find("option:contains('5')").attr("selected", true);
+		         
+		         //在下拉框最后添加一个选项
+        		$sec.append("<option value='7'>7</option>");
+        		
+        		 //在下拉框最前添加一个选项
+        		$sec.prepend("<option value='0'>0</option>")
+        		
+        		//移除下拉框最后一个选项
+        		$sec.find("option:last").remove();
+        		
+        		 //移除下拉框 value属性为4的选项
+        		$sec.find("option[value=4]").remove();
+        		
+			});
+		</script>
+	</body>
+</html>

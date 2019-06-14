@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>下拉树</title>
+		<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css" />
+		<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script src="ComboTreeBox.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Ext.onReady(function() {
+				//定义model   (多列情况要定义这个model，好像不定义这个就会列显示不出来的问题)
+			    Ext.define('partModel', {  
+			        extend: 'Ext.data.Model',  
+			        fields: [  
+			            {name: 'id',   type: 'string'},  
+			            {name: 'text', type: 'string'},  
+			            {name: 'phone',  type: 'string'},
+			            {name: 'address',  type: 'string'}
+			        ]  
+			    });  
+				var store = Ext.create('Ext.data.TreeStore', {
+					model: 'partModel',
+					root: {
+						expanded: true,
+						children: [{
+							text: "啥啥银行1",
+							id:"xxxxx1",
+							address: "啥啥啥地址1",
+							phone:"啥啥电话1",
+							leaf: true
+						}, {
+							text: "啥啥银行营业部",
+							id:"xxxxx2",
+							address: "啥啥啥地址",
+							phone:"啥啥电话",
+							expanded: true,
+							children: [{
+								text: "啥啥银行2",
+								id:"xxxx21",
+								address: "啥啥啥地址2",
+								phone:"啥啥电话2",
+								leaf: true
+							}, {
+								text: "啥啥银行3",
+								id:"xxxx22",
+								address: "啥啥啥地址3",
+								phone:"啥啥电话3",
+								leaf: true
+							}]
+						}, {
+							text: "啥啥银行4",
+							id:"xxxxx4",
+							address: "啥啥啥地址4",
+							phone:"啥啥电话4",
+							leaf: true
+						}]
+					}
+				});
+				Ext.create("ComboTreeBox", {
+					renderTo: "renderDiv",
+					treeStore: store,
+				    width: 200,
+				    columns:[{
+						dataIndex: 'id',
+						text: '编号',
+						hidden: true
+					},{
+						xtype: 'treecolumn',
+						flex: 2,
+						dataIndex: 'text'
+					},{
+						dataIndex: 'phone',
+						flex: 1,
+						text: '电话'
+					},{
+						dataIndex: 'address',
+						flex: 2,
+						text: '地址'
+					}]
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div></div>
+		<div id="renderDiv"></div>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../js/ext4.2/resources/css/ext-all.css"/>
+		<script src="../../../js/ext4.2/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Ext.onReady(function(){
+				Ext.define('com.tc.Title', {
+					extend: 'Ext.Component',
+					xtype: 'loadtitle',
+					height: 40,
+					title: null,
+					renderTpl: ['<div><h3 style="text-align:center">{caption}</h3></div>'],
+					renderSelectors: {
+						titleEl: 'h3'
+					},
+					initComponent: function() {
+						var me = this;
+						//要渲染的数据
+						me.renderData = {
+							caption: me.title
+						};
+						me.callParent();
+					},
+					setTitle: function(title) {
+						var me = this;
+						me.titleEl.setHTML(title);
+					}
+				});
+				var title = Ext.create('com.tc.Title',{
+					title: "我是标题" //传一个数据
+				});
+				
+				Ext.create('Ext.panel.Panel',{  
+					renderTo: document.body,
+					frame:true,
+					width : 500,
+					height: 200,
+				    items: [title]
+			   });
+			});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

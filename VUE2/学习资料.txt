@@ -1,0 +1,13 @@
+VUE官方API文档  https://cn.vuejs.org/v2/api/#v-text
+
+VUE官方介绍    https://cn.vuejs.org/v2/guide
+
+
+
+
+
+CDN:
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+release js:
+VUE\vue-2.5.13\dist

@@ -1,0 +1,36 @@
+.button {
+  display: inline-block;
+  height: 20px;
+  text-decoration: none;
+  border: 1px solid #d6d6d6;
+  border-radius: 5px;
+  padding: 5px;
+  /*background: rgba(139, 139, 255, 0.99);*/
+}
+
+.box{
+  border: 2px solid #EEE;
+}
+
+.a-class{
+  text-decoration: none;
+  color: #853966;
+}
+.a-class:hover{
+  text-decoration: underline;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.m10{
+  margin: 10px;
+}
+.mt10{
+  margin-top: 10px;
+}
+
+.pd10{
+  padding: 10px;
+}
